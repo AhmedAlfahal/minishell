@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/01/22 20:33:46 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/03/26 05:40:29 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,29 +16,17 @@ CC		= cc
 
 CFLAGS	= -Wall -Wextra -Werror
 
-OBJ		= 	ft_isascii.c	\
-			ft_memcpy.c		\
-			ft_strdup.c		\
+OBJ		= 	ft_strdup.c		\
 			ft_strnstr.c	\
 			ft_bzero.c		\
-			ft_isdigit.c	\
-			ft_strlcat.c	\
 			ft_strrchr.c	\
 			ft_calloc.c		\
-			ft_isprint.c	\
 			ft_memset.c		\
-			ft_strlcpy.c	\
 			ft_tolower.c	\
-			ft_isalnum.c	\
-			ft_memchr.c		\
-			ft_memmove.c	\
 			ft_strlen.c		\
 			ft_toupper.c	\
-			ft_isalpha.c 	\
-			ft_memcmp.c 	\
 			ft_strchr.c 	\
 			ft_strncmp.c	\
-			ft_atoi.c		\
 			ft_strjoin.c	\
 			ft_substr.c		\
 			ft_strtrim.c	\

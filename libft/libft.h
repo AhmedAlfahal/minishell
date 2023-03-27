@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/25 03:59:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/26 05:40:19 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 
 /*********************************--Part One--*********************************/
 
-int		ft_tolower(char *s);
+int		ft_tolower(int s);
 int		ft_toupper(int s);
-int		ft_atoi(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);
 char	*ft_strrchr(const char *s, int c);
