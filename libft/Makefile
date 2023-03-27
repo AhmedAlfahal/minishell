@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/03/26 05:40:29 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/03/27 22:47:12 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,33 +37,24 @@ OBJ		= 	ft_strdup.c		\
 			ft_putnbr_fd.c	\
 			ft_itoa.c		\
 			ft_strmapi.c	\
-			ft_striteri.c
-		
-
-BOBJ	=	ft_lstmap.c				\
+			ft_striteri.c	\
+			ft_lstmap.c				\
 			ft_lstnew.c				\
 			ft_lstsize.c			\
 			ft_lstlast.c			\
 			ft_lstiter.c			\
-			ft_lstclear.c			\
-			ft_lstdelone.c			\
 			ft_lstadd_back.c		\
 			ft_lstadd_front.c		\
 			
 OBJS 	= $(OBJ:%.c=%.o)
-
-BOBJS 	= $(BOBJ:%.c=%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
-bonus: $(BOBJS)
-	ar rc $(NAME) $(BOBJS)
-
 clean:
-	rm -fr $(OBJS) $(BOBJS)
+	rm -fr $(OBJS)
 
 fclean: clean
 	rm -fr $(NAME)
