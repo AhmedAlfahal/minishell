@@ -6,23 +6,35 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/27 22:21:28 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:57:57 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static void	count_all(t_c *counter, char *rdln)
-// {
-// 	int	i;
+static void	count_all(t_c *counter, char *rdln)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (rdln[i])
-// 	{
-// 		if (rdln[i] == '"')
-// 			counter->
-// 	}
-// }
+	i = 0;
+	while (rdln[i])
+	{
+		if (rdln[i] == '"')
+			counter->d_com++;
+		else if (rdln[i] == '\'')
+			counter->s_com++;
+		else if (rdln[i] == '\\')
+			counter->bslsh++;
+		else if (rdln[i] == '|')
+			counter->pipes++;
+		else if (rdln[i] == ';')
+			counter->smcln++;
+		else if (rdln[i] == '>' && rdln[i + 1] == '>')
+			counter->rr_redir++;
+		else if (rdln[i] == '<' && rdln[i + 1] == '<')
+			counter->rr_redir++;
+	}
+}
 
 static void	init_all(t_ms *m)
 {
