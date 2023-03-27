@@ -19,7 +19,7 @@
 
 /*********************************--Part One--*********************************/
 
-int		ft_tolower(char *s);
+int		ft_tolower(int s);
 int		ft_toupper(int s);
 int		ft_atoi(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
