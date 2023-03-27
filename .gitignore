@@ -7,3 +7,4 @@
 *.so
 libft/a.out.dSYM/Contents/Info.plist
 a.out.dSYM/
+minishell
