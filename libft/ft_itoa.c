@@ -3,30 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal < aalfahal@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 12:04:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2022/10/29 18:24:37 by aalfahal         ###   ########.fr       */
+/*   Created: 2022/10/02 17:24:01 by hmohamed          #+#    #+#             */
+/*   Updated: 2022/11/15 13:50:46 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-static int	lenn(int n)
+static	size_t	count(int n)
 {
-	int	i;
+	size_t	i;
 
-	i = 0;
-	if (n == 0)
-		i++;
-	if (n < 0)
-	{
-		i++;
-		n = n * -1;
-	}
+	if (n > 0)
+		i = 0;
+	else
+		i = 1;
 	while (n)
 	{
-		n = n / 10;
+		n /= 10;
 		i++;
 	}
 	return (i);
@@ -34,27 +30,26 @@ static int	lenn(int n)
 
 char	*ft_itoa(int n)
 {
-	char			*str;
-	unsigned int	nn;
-	size_t			i;
+	char	*temp;
+	long	num;
+	size_t	i;
 
-	i = lenn(n);
-	nn = n;
-	str = malloc(sizeof(char) * (i) + 1);
-	if (!str)
+	i = count(n);
+	temp = (char *)malloc(i + 1);
+	if (!temp)
 		return (NULL);
-	str[i] = '\0';
-	if (n == 0)
-		str[--i] = '0';
-	if (n < 0)
+	num = n;
+	if (num < 0)
+		num = -num;
+	temp[i--] = '\0';
+	while (num > 0)
 	{
-		str[0] = '-';
-		nn = n * -1;
+		temp[i--] = num % 10 + '0';
+		num /= 10;
 	}
-	while (nn > 0)
-	{
-		str[--i] = (nn % 10) + '0';
-		nn = nn / 10;
-	}
-	return (str);
+	if (i == 0 && temp[1] == '\0')
+		temp[i] = '0';
+	else if (i == 0 && temp[1] != '\0')
+		temp[i] = '-';
+	return (temp);
 }

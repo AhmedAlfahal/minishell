@@ -3,35 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 19:17:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/25 03:54:16 by aalfahal         ###   ########.fr       */
+/*   Created: 2022/10/02 17:32:11 by hmohamed          #+#    #+#             */
+/*   Updated: 2022/10/16 13:17:13 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
+
+static int	check(int i, char *s, int c)
+{
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t		i;
-	char		tmp;
+	int		i;
+	char	*temp;
 
-	if (!s)
-		return (NULL);
-	i = ft_strlen(s);
-	tmp = (char )c;
-	while (i >= 0)
+	i = 0;
+	temp = (char *)s;
+	while (s[i] != '\0')
 	{
-		if (s[i] == tmp)
-		{
-			return (&((char *)s)[i]);
-		}
-		else if (i == 0)
-		{
-			return (NULL);
-		}
-		i--;
+		if (temp[i] == (unsigned char)c && !check(i + 1, temp, c))
+			return (&temp[i]);
+		i++;
 	}
-	return (NULL);
+	if (c == '\0' && temp[i] == '\0')
+		return (&temp[i]);
+	return (0);
 }

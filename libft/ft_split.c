@@ -3,67 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 16:00:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/02/06 18:14:39 by aalfahal         ###   ########.fr       */
+/*   Created: 2022/10/02 17:27:29 by hmohamed          #+#    #+#             */
+/*   Updated: 2022/12/30 14:56:10 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-static int	sep_count(char const *s, char c)
+static int	w_len(const char *str, char s)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (*s)
+	j = 0;
+	while (*str)
 	{
-		if (*s != c && (s[1] == c || s[1] == '\0'))
+		if (*str != s && j == 0)
+		{
+			j = 1;
 			i++;
-		s++;
+		}
+		else if (*str == s)
+			j = 0;
+		str++;
 	}
 	return (i);
 }
 
-static size_t	next_sep(char const *s, char c)
+static char	*wdup(const char *str, int i, int j, int *p)
 {
-	size_t	i;
+	char	*s;
+	int		a;
 
-	i = 0;
-	while (s[i])
+	a = 0;
+	s = (char *)malloc((j - i + 1) * sizeof(char));
+	if (!s)
+		return (NULL);
+	while (i < j)
 	{
-		if (s[i] == c)
-		{
-			return (i);
-		}
+		s[a] = str[i];
+		a++;
 		i++;
 	}
-	return (ft_strlen(s));
+	s[a] = '\0';
+	*p = -1;
+	return (s);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	char	**temp;
+	size_t	i;
 	int		j;
-	int		seps;
-	char	**split;
+	int		a;
+	size_t	slen;
 
+	slen = ft_strlen(s);
+	i = 0;
+	j = -1;
+	a = -1;
 	if (!s)
 		return (NULL);
-	j = 0;
-	seps = sep_count(s, c);
-	split = (char **)malloc(sizeof(char *) * (seps + 1));
-	if (!split)
-		return (NULL);
-	while (*s)
+	temp = malloc((w_len(s, c) + 1) * sizeof(char *));
+	if (temp == NULL)
+		return (0);
+	while (i <= slen)
 	{
-		while (*s == c)
-			s++;
-		if (j < seps)
-			split[j++] = ft_substr(s, 0, next_sep(s, c));
-		while (*s != c && *s)
-			s++;
+		if (s[i] != c && a < 0)
+			a = i;
+		else if ((s[i] == c || s[i] == '\0') && a >= 0)
+			temp[++j] = wdup(s, a, i, &a);
+		i++;
 	}
-	split[j] = 0;
-	return (split);
+	temp[++j] = 0;
+	return (temp);
 }

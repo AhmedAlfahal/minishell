@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 17:21:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/09 20:02:41 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/10/02 17:22:08 by hmohamed          #+#    #+#             */
+/*   Updated: 2022/10/02 17:22:11 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_isalnum(int c)
 {
-	size_t	i;
+	int	re;
 
-	i = 0;
-	while (i < n)
+	re = 0;
+	if ((c > 47 && c < 58) || (c > 64 && c < 91) || (c > 96 && c < 123))
 	{
-		*(char *)(s + i) = '\0';
-		i++;
+		re = 1;
 	}
-	return ;
+	return (re);
 }

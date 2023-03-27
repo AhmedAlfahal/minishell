@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 17:21:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/09 20:02:41 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/10/02 17:20:34 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/01/01 19:57:40 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+long	ft_atol(const char *str)
 {
-	size_t	i;
+	int					i;
+	int					c;
+	unsigned long long	num;
 
 	i = 0;
-	while (i < n)
+	c = 1;
+	num = 0;
+	if (str == 0)
+		return (0);
+	if (str[i] != '\0' && (str[i] == '-' || str[i] == '+'))
+		if (str[i++] == '-')
+			c = -1;
+	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 	{
-		*(char *)(s + i) = '\0';
+		num = num * 10 + (str[i] - '0');
+		if (num > 9223372036854775807)
+			return (9223372036854775);
 		i++;
 	}
-	return ;
+	if (str[i] != '\0')
+		return (9223372036854775);
+	return (c * num);
 }
