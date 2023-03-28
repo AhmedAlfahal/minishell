@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/03/28 23:44:41 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/03/29 01:00:12 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ NAME	=	minishell
 
 LIBFT	=	libft/libft.a
 
-SRC		=	minishell.c			\
-			counters_dupper.c	\
-			free_utils.c				\
-			pars_utils.c		\
-			pipes.c
+SRC		=	pars/minishell.c		\
+			pars/counters_dupper.c	\
+			pars/free_utils.c		\
+			pars/pars_utils.c		\
+			pars/pipes.c
 
 SRCS	=	$(SRC:%.c=%.o)
 
