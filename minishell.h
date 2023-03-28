@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 05:37:21 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:58:57 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ typedef struct s_counters
 
 typedef struct s_redirection
 {
-	char	**a_cmd;
+	int		rdr_type;
 	char	*file_name;
 }			t_rdr;
 
 typedef struct s_commands
 {
 	char	**args;
+	t_rdr	redirs;
 }			t_cmd;
 
 typedef struct s_minishell
@@ -48,12 +49,20 @@ typedef struct s_minishell
 	char	**env;
 	char	*rdln;
 	t_cmd	*cmds;
-	t_rdr	*redirs;
 	t_c		*counters;
 	int		i;
 }			t_ms;
 
+/******************************Pars_utils*****************************/
+
+int		to_chrlen(char *s, char c);
+void	print_2d_array(char **d);
 void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
-void	free_all(t_ms *m);
+void	pars(t_ms *m);
+
+/******************************Free_things*****************************/
+
+void	free_all(t_ms *m, int exit);
+void	free_2d_array(char **s);
 #endif

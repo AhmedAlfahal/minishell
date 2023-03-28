@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 19:17:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 21:49:04 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/03/29 00:54:05 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "minishell.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	free_2d_array(char **s)
 {
-	int			i;
-	char		tmp;
+	int	i;
 
-	if (!s)
-		return (NULL);
-	i = ft_strlen(s);
-	tmp = (char )c;
-	while (i >= 0)
+	i = 0;
+	while (s[i])
+		free(s[i++]);
+	free(s[i]);
+	free(s);
+}
+
+static void	free_cmds(t_ms *m)
+{
+	int	i;
+
+	i = 0;
+	while (m->cmds[i].args != NULL)
+		free_2d_array(m->cmds[i++].args);
+	free(m->cmds);
+}
+
+void	free_all(t_ms *m, int exit)
+{
+	if (exit == 0)
 	{
-		if (s[i] == tmp)
-		{
-			return (&((char *)s)[i]);
-		}
-		else if (i == 0)
-		{
-			return (NULL);
-		}
-		i--;
+		free_cmds(m);
+		return ;
 	}
-	return (NULL);
 }

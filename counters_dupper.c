@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 05:36:52 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:41:14 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,4 @@ void	dupper_2d(t_ms *m, char **source)
 		i++;
 	}
 	m->env[i] = NULL;
-}
-
-void	free_all(t_ms *m)
-{
-	
 }

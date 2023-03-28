@@ -6,18 +6,21 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/03/28 04:22:11 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/03/28 23:44:41 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
 NAME	=	minishell
 
 LIBFT	=	libft/libft.a
 
 SRC		=	minishell.c			\
-			counters_dupper.c
+			counters_dupper.c	\
+			free_utils.c				\
+			pars_utils.c		\
+			pipes.c
 
 SRCS	=	$(SRC:%.c=%.o)
 

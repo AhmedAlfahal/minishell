@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 19:17:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 21:49:04 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/03/28 22:46:04 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/03/28 23:30:42 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "minishell.h"
 
-char	*ft_strrchr(const char *s, int c)
+int	to_chrlen(char *s, char c)
 {
-	int			i;
-	char		tmp;
+	int		i;
+	int		ln;
 
 	if (!s)
-		return (NULL);
-	i = ft_strlen(s);
-	tmp = (char )c;
-	while (i >= 0)
+		return (0);
+	i = 0;
+	ln = (int)ft_strlen(s);
+	while (i < ln)
 	{
-		if (s[i] == tmp)
-		{
-			return (&((char *)s)[i]);
-		}
-		else if (i == 0)
-		{
-			return (NULL);
-		}
-		i--;
+		if (s[i] == c)
+			return (i);
+		i++;
 	}
-	return (NULL);
+	return (-1);
+}
+
+void	print_2d_array(char **d)
+{
+	int	i;
+
+	i = 0;
+	while (d[i])
+		printf("	[%s]	", d[i++]);
 }
