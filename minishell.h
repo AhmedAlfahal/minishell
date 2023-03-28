@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/27 23:17:15 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/28 04:42:24 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@ typedef struct s_minishell
 	t_c		*counters;
 	int		i;
 }			t_ms;
+
+void	count(t_c *counter, char *rdln);
+void	dupper_2d(t_ms *m, char **source);
 
 #endif
