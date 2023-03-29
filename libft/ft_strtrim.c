@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:06:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/02/09 19:22:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 05:48:15 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	return (trm);
 }
-

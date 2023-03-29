@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   counters_dupper_free.c                             :+:      :+:    :+:   */
+/*   counters_dupper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 23:41:14 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 05:51:26 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 static void	count_all_helper(char *rdln, int *i, t_c *counter)
 {
-	if (rdln[*i] == '"')
-		counter->d_com++;
-	else if (rdln[*i] == '\'')
-		counter->s_com++;
-	else if (rdln[*i] == '\\')
-		counter->bslsh++;
+	if (rdln[*i] == '|' && rdln[*i + 1] == '|')
+	{
+		counter->pipes++;
+		*i = *i + 1;
+	}
 	else if (rdln[*i] == '|')
 		counter->pipes++;
 	else if (rdln[*i] == ';')
@@ -47,6 +46,12 @@ void	count(t_c *counter, char *rdln)
 	i = 0;
 	while (rdln[i])
 	{
+		if (rdln[i] == '"')
+			counter->d_com++;
+		else if (rdln[i] == '\'')
+			counter->s_com++;
+		else if (rdln[i] == '\\')
+		counter->bslsh++;
 		count_all_helper(rdln, &i, counter);
 		i++;
 	}

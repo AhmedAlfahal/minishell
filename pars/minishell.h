@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/29 01:00:33 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 03:27:27 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ typedef struct s_minishell
 	char	**env;
 	char	*rdln;
 	t_cmd	*cmds;
+	int		c_cmds;
 	t_c		*counters;
+	int		error;
 	int		i;
 }			t_ms;
 

@@ -6,11 +6,31 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 23:59:44 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 05:46:59 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	pipes_error(t_ms *m)
+{
+	int	i;
+
+	i = 0;
+	m->error = 0;
+	if ((m->c_cmds == m->counters->pipes) \
+	|| (ft_strlen(m->rdln) == 1 && m->rdln[0] == '|'))
+		m->error = 1;
+	while (m->cmds[i].args != NULL && i + 1 != m->c_cmds)
+	{
+		if ((m->cmds[i].args[0] == 0 && m->cmds[i + 1].args[0] != 0) \
+		|| m->cmds[m->c_cmds - 1].args[0] == 0)
+			m->error = 1;
+		i++;
+	}
+	if (m->error == 1)
+		write(2, "Syntax Error\n", 14);
+}
 
 void	print_pipes(t_ms *m)
 {
@@ -28,18 +48,18 @@ void	print_pipes(t_ms *m)
 
 void	pars(t_ms *m)
 {
-	int		i;
 	char	**tmp;
 
-	i = 0;
+	m->c_cmds = 0;
 	tmp = ft_split(m->rdln, '|');
 	m->cmds = malloc(sizeof(t_cmd) * (m->counters->pipes + 3));
 	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 3));
-	while (tmp[i])
+	while (tmp[m->c_cmds])
 	{
-		m->cmds[i].args = ft_split(tmp[i], ' ');
-		i++;
+		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
+		m->c_cmds++;
 	}
 	print_pipes(m);
+	pipes_error(m);
 	free_2d_array(tmp);
 }

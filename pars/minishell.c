@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 23:58:39 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:06:23 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		m.rdln = readline("minishell$:");
+		add_history(m.rdln);
 		if (ft_strlen(m.rdln) == 4 && !ft_strncmp("exit", m.rdln, 4))
 			break ;
 		count(m.counters, m.rdln);
