@@ -6,16 +6,17 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/28 04:29:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:36:44 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include"../pars/minishell.h"
 # include<stdlib.h>
 # include<unistd.h>
-# include <stdint.h>
+# include<stdint.h>
 
 /*********************************--Part One--*********************************/
 

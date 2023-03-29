@@ -6,11 +6,11 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/03/29 01:00:12 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/03/29 22:31:59 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 NAME	=	minishell
 
@@ -20,7 +20,8 @@ SRC		=	pars/minishell.c		\
 			pars/counters_dupper.c	\
 			pars/free_utils.c		\
 			pars/pars_utils.c		\
-			pars/pipes.c
+			pars/pipes.c			\
+			tmp_printers.c
 
 SRCS	=	$(SRC:%.c=%.o)
 

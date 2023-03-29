@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/29 05:46:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:33:44 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,6 @@ void	pipes_error(t_ms *m)
 	}
 	if (m->error == 1)
 		write(2, "Syntax Error\n", 14);
-}
-
-void	print_pipes(t_ms *m)
-{
-	int	i;
-
-	i = 0;
-	while (m->cmds[i].args != NULL)
-	{
-		printf("pipe	%d	", i);
-		print_2d_array(m->cmds[i].args);
-		printf("\n");
-		i++;
-	}
 }
 
 void	pars(t_ms *m)

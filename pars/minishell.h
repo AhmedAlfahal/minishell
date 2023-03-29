@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/29 03:27:27 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:42:59 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 typedef struct s_counters
 {
 	int	pipes;
-	int	d_com;
-	int	s_com;
+	int	d_cot;
+	int	s_cot;
 	int	l_redir;
 	int	r_redir;
 	int	ll_redir;
@@ -57,7 +57,8 @@ typedef struct s_minishell
 
 /******************************Pars_utils*****************************/
 
-int		to_chrlen(char *s, char c);
+int		cms_ck(char *s, int i, t_c *c);
+int		to_chrnlen(char *s, char c, int start, int end);
 void	print_2d_array(char **d);
 void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
@@ -67,4 +68,9 @@ void	pars(t_ms *m);
 
 void	free_all(t_ms *m, int exit);
 void	free_2d_array(char **s);
+
+/******************************Free_things*****************************/
+
+void	print_counters(t_c *counter);
+void	print_pipes(t_ms *m);
 #endif
