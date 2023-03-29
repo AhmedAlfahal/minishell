@@ -6,36 +6,48 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/29 05:51:26 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/29 06:04:17 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	cms_ck(char *rdln, int *i, t_c *c)
+{
+	int	j;
+
+	j = 0;
+	(void)i;
+	(void)rdln;
+	if (c->s_com == 0 || c->d_com)
+		return (0);
+	return (1);
+}
+
 static void	count_all_helper(char *rdln, int *i, t_c *counter)
 {
-	if (rdln[*i] == '|' && rdln[*i + 1] == '|')
+	if (rdln[*i] == '|' && rdln[*i + 1] == '|' && !cms_ck(rdln, i, counter))
 	{
 		counter->pipes++;
 		*i = *i + 1;
 	}
-	else if (rdln[*i] == '|')
+	else if (rdln[*i] == '|' && !cms_ck(rdln, i, counter))
 		counter->pipes++;
-	else if (rdln[*i] == ';')
+	else if (rdln[*i] == ';' && !cms_ck(rdln, i, counter))
 		counter->smcln++;
-	else if (rdln[*i] == '>' && rdln[*i + 1] == '>')
+	else if (rdln[*i] == '>' && rdln[*i + 1] == '>' && !cms_ck(rdln, i, counter))
 	{
 		counter->rr_redir++;
 		*i = *i + 1;
 	}
-	else if (rdln[*i] == '<' && rdln[*i + 1] == '<')
+	else if (rdln[*i] == '<' && rdln[*i + 1] == '<' && !cms_ck(rdln, i, counter))
 	{
 		*i = *i + 1;
 		counter->ll_redir++;
 	}
-	else if (rdln[*i] == '>')
+	else if (rdln[*i] == '>' && !cms_ck(rdln, i, counter))
 		counter->r_redir++;
-	else if (rdln[*i] == '<')
+	else if (rdln[*i] == '<' && !cms_ck(rdln, i, counter))
 		counter->l_redir++;
 }
 
@@ -46,11 +58,11 @@ void	count(t_c *counter, char *rdln)
 	i = 0;
 	while (rdln[i])
 	{
-		if (rdln[i] == '"')
+		if (rdln[i] == '"' && !cms_ck(rdln, &i, counter))
 			counter->d_com++;
-		else if (rdln[i] == '\'')
+		else if (rdln[i] == '\'' && !cms_ck(rdln, &i, counter))
 			counter->s_com++;
-		else if (rdln[i] == '\\')
+		else if (rdln[i] == '\\' && !cms_ck(rdln, &i, counter))
 		counter->bslsh++;
 		count_all_helper(rdln, &i, counter);
 		i++;
