@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 23:42:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:48:06 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ static void	count_all_helper(char *rdln, int *i, t_c *counter)
 	&& cots_check(rdln, 0, j + 1) == 0)
 	{
 		counter->redirs++;
-		counter->rr_redir++;
+		counter->append++;
 		*i = *i + 1;
 	}
 	else if (rdln[*i] == '>' && cots_check(rdln, 0, j + 1) == 0)
 	{
 		counter->redirs++;
-		counter->r_redir++;
+		counter->output++;
 	}
 	else if (rdln[*i] == '<' && rdln[*i + 1] == '<' \
 	&& cots_check(rdln, 0, j + 1) == 0)
 	{
 		*i = *i + 1;
 		counter->redirs++;
-		counter->ll_redir++;
+		counter->herdock++;
 	}
 	else if (rdln[*i] == '<' && cots_check(rdln, 0, j + 1) == 0)
 	{	
 		counter->redirs++;
-		counter->l_redir++;
+		counter->input++;
 	}
 }
 
