@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/31 00:40:53 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:48:21 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	count(t_c *counter, char *rdln)
 		count_all_helper(rdln, &i, counter);
 		i++;
 	}
-	// print_counters(counter);
+	print_counters(counter);
 }
 
 void	dupper_2d(t_ms *m, char **source)
