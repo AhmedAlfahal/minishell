@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:29:55 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 06:24:37 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:41:49 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	print_counters(t_c *counter)
 {
-	printf("l_redir		%d\n", counter->l_redir);
-	printf("ll_redir	%d\n", counter->ll_redir);
-	printf("r_redir		%d\n", counter->r_redir);
-	printf("rr_redir	%d\n", counter->rr_redir);
+	printf("input		%d\n", counter->input);
+	printf("herdock		%d\n", counter->herdock);
+	printf("output		%d\n", counter->output);
+	printf("append		%d\n", counter->append);
+	printf("redirs		%d\n", counter->redirs);
 	printf("pipes		%d\n", counter->pipes);
 }
 

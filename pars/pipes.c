@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 09:00:33 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:42:13 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	pipes_error(t_ms *m)
 
 	i = 0;
 	m->error = 0;
-	if ((m->c_cmds == m->counters->pipes) \
+	if ((m->c_cmds == m->counters->pipes && m->c_cmds != 0) \
 	|| (ft_strlen(m->rdln) == 1 && m->rdln[0] == '|'))
 		m->error = 1;
 	while (m->cmds[i].args != NULL && i + 1 != m->c_cmds)
@@ -45,7 +45,7 @@ void	pars(t_ms *m)
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
 		m->c_cmds++;
 	}
-	print_pipes(m);
+	// print_pipes(m);
 	pipes_error(m);
 	free_2d_array(tmp);
 }

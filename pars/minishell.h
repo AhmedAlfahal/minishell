@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 06:26:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:40:33 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 typedef struct s_counters
 {
 	int	pipes;
-	int	l_redir;
-	int	r_redir;
-	int	ll_redir;
-	int	rr_redir;
+	int	redirs;
+	int	input;
+	int	output;
+	int	herdock;
+	int	append;
 }		t_c;
 
 typedef struct s_redirection

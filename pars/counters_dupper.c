@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 06:26:46 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:42:09 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,29 @@ static void	count_all_helper(char *rdln, int *i, t_c *counter)
 	int	j;
 
 	j = *i;
-	if (rdln[*i] == '|' && rdln[*i + 1] == '|' \
+	if (rdln[*i] == '>' && rdln[*i + 1] == '>' \
 	&& cots_check(rdln, 0, j + 1) == 0)
 	{
-		counter->pipes++;
-		*i = *i + 1;
-	}
-	else if (rdln[*i] == '>' && rdln[*i + 1] == '>' \
-	&& cots_check(rdln, 0, j + 1) == 0)
-	{
+		counter->redirs++;
 		counter->rr_redir++;
 		*i = *i + 1;
+	}
+	else if (rdln[*i] == '>' && cots_check(rdln, 0, j + 1) == 0)
+	{
+		counter->redirs++;
+		counter->r_redir++;
 	}
 	else if (rdln[*i] == '<' && rdln[*i + 1] == '<' \
 	&& cots_check(rdln, 0, j + 1) == 0)
 	{
 		*i = *i + 1;
+		counter->redirs++;
 		counter->ll_redir++;
+	}
+	else if (rdln[*i] == '<' && cots_check(rdln, 0, j + 1) == 0)
+	{	
+		counter->redirs++;
+		counter->l_redir++;
 	}
 }
 
@@ -44,16 +50,18 @@ void	count(t_c *counter, char *rdln)
 	i = 0;
 	while (rdln[i])
 	{
-		if (rdln[i] == '|' && cots_check(rdln, 0, i + 1) == 0)
+		if (rdln[i] == '|' && rdln[i + 1] == '|' \
+		&& cots_check(rdln, 0, i + 1) == 0)
+		{
 			counter->pipes++;
-		else if (rdln[i] == '>' && cots_check(rdln, 0, i + 1) == 0)
-			counter->r_redir++;
-		else if (rdln[i] == '<' && cots_check(rdln, 0, i + 1) == 0)
-			counter->l_redir++;
+			i = i + 1;
+		}
+		else if (rdln[i] == '|' && cots_check(rdln, 0, i + 1) == 0)
+			counter->pipes++;
 		count_all_helper(rdln, &i, counter);
 		i++;
 	}
-	print_counters(counter);
+	// print_counters(counter);
 }
 
 void	dupper_2d(t_ms *m, char **source)
