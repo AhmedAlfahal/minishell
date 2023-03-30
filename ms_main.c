@@ -6,23 +6,39 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:32:00 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/03/27 19:58:31 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:16:19 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av)
+static void	init_all(t_ms *m)
 {
-	char	**str;
+	m->counters = malloc(sizeof(t_c));
+	ft_bzero(m->counters, sizeof(t_c));
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_ms	m;
 
 	(void)ac;
 	(void)av;
-	str = malloc(3 * sizeof(char *));
-	str[0] = "ls";
-	str[1] = "-l";
-	str[2] = NULL;
-	execve("/bin/ls", str , NULL);
-	printf("got here\n");
-	return (1);
+	dupper_2d(&m, env);
+	init_all(&m);
+	while (1)
+	{
+		m.rdln = readline("minishell$:");
+		add_history(m.rdln);
+		if (ft_strlen(m.rdln) == 4 && !ft_strncmp("exit", m.rdln, 4))
+			break ;
+		count(m.counters, m.rdln);
+		pars(&m);
+		if (m.error != 1)
+			exce(&m);
+		free_all(&m, 0);
+	}
+	free(m.counters);
+	free_2d_array(m.env);
+	return (0);
 }
