@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/29 22:33:44 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 09:00:33 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	pipes_error(t_ms *m)
 			m->error = 1;
 		i++;
 	}
-	if (m->error == 1)
+	if (m->error == 1 || cots_check(m->rdln, 0, ft_strlen(m->rdln)))
 		write(2, "Syntax Error\n", 14);
 }
 

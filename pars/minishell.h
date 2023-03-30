@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/29 22:42:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 06:26:17 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,10 @@
 typedef struct s_counters
 {
 	int	pipes;
-	int	d_cot;
-	int	s_cot;
 	int	l_redir;
 	int	r_redir;
 	int	ll_redir;
 	int	rr_redir;
-	int	bslsh;
-	int	smcln;
 }		t_c;
 
 typedef struct s_redirection
@@ -41,7 +37,8 @@ typedef struct s_redirection
 typedef struct s_commands
 {
 	char	**args;
-	t_rdr	redirs;
+	t_rdr	*input;
+	t_rdr	*output;
 }			t_cmd;
 
 typedef struct s_minishell
@@ -57,8 +54,8 @@ typedef struct s_minishell
 
 /******************************Pars_utils*****************************/
 
-int		cms_ck(char *s, int i, t_c *c);
-int		to_chrnlen(char *s, char c, int start, int end);
+int		cms_ck(char *s, int i);
+int		cots_check(char *s, int start, int end);
 void	print_2d_array(char **d);
 void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);

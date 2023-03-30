@@ -6,61 +6,36 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:46:04 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/29 23:14:48 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/30 06:26:07 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cms_ck(char *s, int i, t_c *c)
+int	cots_check(char *s, int start, int end)
 {
-	int	j;
-	int	x;
+	int		l;
+	char	p;
 
-	j = 0;
-	x = 0;
-	if (c->s_cot == 0 && c->d_cot == 0)
-		return (0);
-	if (c->d_cot >= 1)
-	{
-		if ((to_chrnlen(s, '"', 0, i + 1) == 1 \
-		&& to_chrnlen(s, '"', i, ft_strlen(s)) > 0) \
-		|| (to_chrnlen(s, '"', 0, i + 1) % 2 == 1 \
-		&& to_chrnlen(s, '"', i, ft_strlen(s)) > 0))
-			x = 1;
-	}
-	if (c->s_cot >= 1)
-	{
-		if ((to_chrnlen(s, '\'', 0, i + 1) == 1 \
-		&& to_chrnlen(s, '\'', i, ft_strlen(s)) > 0) \
-		|| (to_chrnlen(s, '\'', 0, i + 1) % 2 == 1 \
-		&& to_chrnlen(s, '\'', i, ft_strlen(s)) > 0))
-			x = 1;
-	}
-	return (x);
-}
-
-int	to_chrnlen(char *s, char c, int start, int end)
-{
-	int	i;
-
-	i = 0;
 	if (!s)
 		return (0);
+	l = 0;
+	p = 0;
 	while (start < end)
 	{
-		if (s[start] == c)
-			i++;
+		if ((s[start] == '"' || s[start] == '\'') && l == 0)
+		{
+			p = s[start];
+			start++;
+			l = 1;
+		}
+		if (s[start] == p)
+		{
+			if (l == 1)
+				l = 0;
+			p = 0;
+		}
 		start++;
 	}
-	return (i);
-}
-
-void	print_2d_array(char **d)
-{
-	int	i;
-
-	i = 0;
-	while (d[i])
-		printf("	[%s]	", d[i++]);
+	return (l);
 }
