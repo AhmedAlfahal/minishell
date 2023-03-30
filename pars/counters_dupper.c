@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 23:48:06 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:10:21 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	count_all_helper(char *rdln, int *i, t_c *counter)
 		counter->append++;
 		*i = *i + 1;
 	}
-	else if (rdln[*i] == '>' && cots_check(rdln, 0, j + 1) == 0)
+	else if (rdln[*i] == '>' && cots_check(rdln, 0, j + 1) == 0 \
+	&& (rdln[*i + 1] != '>' && rdln[*i - 1] != '>'))
 	{
 		counter->redirs++;
 		counter->output++;
@@ -36,7 +37,8 @@ static void	count_all_helper(char *rdln, int *i, t_c *counter)
 		counter->redirs++;
 		counter->herdock++;
 	}
-	else if (rdln[*i] == '<' && cots_check(rdln, 0, j + 1) == 0)
+	else if (rdln[*i] == '<' && cots_check(rdln, 0, j + 1) == 0 \
+	&& (rdln[*i + 1] != '<' && rdln[*i - 1] != '<'))
 	{	
 		counter->redirs++;
 		counter->input++;
@@ -61,7 +63,7 @@ void	count(t_c *counter, char *rdln)
 		count_all_helper(rdln, &i, counter);
 		i++;
 	}
-	// print_counters(counter);
+	print_counters(counter);
 }
 
 void	dupper_2d(t_ms *m, char **source)
