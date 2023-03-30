@@ -6,11 +6,36 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 23:49:41 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:40:03 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	clean_cots(t_cmd *c)
+{
+	int		i;
+	char	*s;
+
+	i = 0;
+	s = NULL;
+	while (c->args[i])
+	{
+		if (c->args[i][0] == '"')
+		{
+			s = ft_strtrim(c->args[i], "\"");
+			free(c->args[i]);
+			c->args[i] = s;
+		}
+		else if (c->args[i][0] == '\'')
+		{
+			s = ft_strtrim(c->args[i], "\'");
+			free(c->args[i]);
+			c->args[i] = s;
+		}
+		i++;
+	}
+}
 
 void	pipes_error(t_ms *m)
 {
@@ -19,7 +44,8 @@ void	pipes_error(t_ms *m)
 	i = 0;
 	m->error = 0;
 	if ((m->c_cmds == m->counters->pipes && m->c_cmds != 0) \
-	|| (ft_strlen(m->rdln) == 1 && m->rdln[0] == '|'))
+	|| (ft_strlen(m->rdln) == 1 && m->rdln[0] == '|') \
+	|| cots_check(m->rdln, 0, ft_strlen(m->rdln)))
 		m->error = 1;
 	while (m->cmds[i].args != NULL && i + 1 != m->c_cmds)
 	{
@@ -28,7 +54,7 @@ void	pipes_error(t_ms *m)
 			m->error = 1;
 		i++;
 	}
-	if (m->error == 1 || cots_check(m->rdln, 0, ft_strlen(m->rdln)))
+	if (m->error == 1)
 		write(2, "Syntax Error\n", 14);
 }
 
@@ -43,9 +69,10 @@ void	pars(t_ms *m)
 	while (tmp[m->c_cmds])
 	{
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
+		clean_cots(m->cmds);
 		m->c_cmds++;
 	}
-	print_pipes(m);
+	// print_pipes(m);
 	pipes_error(m);
 	free_2d_array(tmp);
 }
