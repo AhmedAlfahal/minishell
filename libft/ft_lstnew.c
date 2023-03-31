@@ -6,13 +6,13 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:11:59 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/01/01 19:50:47 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:25:53 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(int content)
+t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
