@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:02:20 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/03/31 01:11:01 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:53:29 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	echo_fun(t_ms *data)
 	i = 0;
 	j = 0;
 	cm = data->cmds;
-	if (ft_strncmp(cm->args[i], "echo", 4) == 0)
+	if (ft_strncmp(ft_stolower(cm->args[i]), "echo", 4) == 0)
 		i++;
-	if (ft_strncmp(cm->args[i], "-n", 3) == 0)
+	if (cm->args[i] && ft_strncmp(cm->args[i], "-n", 3) == 0)
 	{
 		j = 1;
 		i++;
@@ -35,7 +35,7 @@ void	echo_fun(t_ms *data)
 			printf(" ");
 		i++;
 	}
-	if (!j)
+	if (!j || cm->args[1] == NULL)
 		printf("\n");
 }
 

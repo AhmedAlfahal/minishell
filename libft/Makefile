@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/03/30 07:31:59 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/03/31 22:11:51 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,8 @@ OBJ		= 	ft_strdup.c		\
 			ft_lstiter.c			\
 			ft_lstadd_back.c		\
 			ft_lstadd_front.c		\
+			ft_lstdelone.c 			\
+			ft_lstclear.c			 \
 			
 OBJS 	= $(OBJ:%.c=%.o)
 
