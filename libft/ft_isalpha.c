@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 17:11:59 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 21:43:26 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/09/22 14:28:36 by hmohamed          #+#    #+#             */
+/*   Updated: 2022/10/02 17:22:48 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-t_list	*ft_lstnew(void *name, void *value, int err)
+int	ft_isalpha(int c)
 {
-	t_list	*new;
+	int	re;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->name = name;
-	new->value = value;
-	new->err = err;
-	new->next = NULL;
-	return (new);
+	re = 1;
+	if (c < 'A' || (c > 'Z' && c < 'a') || c > 'z')
+		re = 0;
+	return (re);
 }

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 03:53:15 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/02 02:28:29 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_minishell
 	int		error;
 	int		i;
 	t_list	*envd;
+	t_list	*expd;
 }	t_ms;
 
 /******************************Pars_utils*****************************/
@@ -85,15 +86,15 @@ void	print_pipes(t_ms *m);
 
 t_list	*ft_lstnew(void *name, void *value, int err);
 void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
 void	ft_lstdelone(t_list *lst);
 void	ft_lstclear(t_list **lst);
 t_list	*ft_lstlast(t_list *lst);
 char	*env_name(char *path);
 char	*env_value(char *path);
 
-/******************************Exce_utils*****************************/
+/******************************Exce_utils_builtins*****************************/
 void	echo_fun(t_ms *data);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data);
@@ -101,5 +102,13 @@ int		pwd_fun(void);
 int		cd_fun(t_ms *data);
 int		init_envlist(t_ms *data, char **env);
 int		env_fun(t_ms *data);
+int		export_fun(t_ms *data);
+int		sort_env(t_ms *data);
+int		set_exp(t_ms *data);
+int		find_updatenv(t_ms *data, char *name, char *value);
+int		check_envpath(char *s);
+int		check_expath(char *s);
+int		find_updatexp(t_ms *data, char *name, char *value);
+int		find_updatexpx(t_ms *data, char *name, char *value);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:30:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 04:11:35 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/01 23:01:56 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,22 @@ int	init_envlist(t_ms *data, char **env)
 
 	i = 0;
 	data->envd = NULL;
+	data->expd = NULL;
 	while (env[i])
 	{
 		ft_lstadd_back(&data->envd,
 			ft_lstnew(env_name(env[i]), env_value(env[i]), 0));
 		i++;
 	}
+	sort_env(data);
+	i = 0;
+	while (data->env[i])
+	{
+		ft_lstadd_back(&data->expd,
+			ft_lstnew(env_name(data->env[i]), env_value(data->env[i]), 0));
+		i++;
+	}
+	free_2d_array(data->env);
 	return (0);
 }
 
@@ -66,4 +76,28 @@ char	*env_value(char *path)
 	return (str);
 }
 
+int	sort_env(t_ms *data)
+{
+	int		i;
+	int		j;
+	char	*temp;
 
+	i = 0;
+	while (data->env[i])
+	{
+		j = i + 1;
+		while (data->env[j])
+		{
+			if (ft_strncmp(data->env[j], data->env[i],
+					ft_strlen(data->env[j])) <= 0)
+			{
+				temp = data->env[i];
+				data->env[i] = data->env[j];
+				data->env[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

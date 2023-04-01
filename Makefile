@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/01 03:10:44 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/02 01:23:59 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRC = ms_main.c 				\
 			lists/ft_lstadd_front.c	\
 			lists/ft_lstdelone.c 	\
 			lists/ft_lstclear.c		 \
+			ms_export.c			\
+			ms_exportex.c			\
 			
 OBJ = $(SRC:.c=.o)
 CC = cc 

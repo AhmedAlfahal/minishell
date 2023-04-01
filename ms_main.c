@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:32:00 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 03:35:15 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/01 23:00:56 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ int	main(int ac, char **av, char **env)
 		free_all(&m, 0);
 	}
 	free(m.counters);
-	free_2d_array(m.env);
 	return (0);
 }

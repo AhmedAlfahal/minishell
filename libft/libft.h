@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 03:07:01 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/01 23:24:33 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include<unistd.h>
 # include<stdint.h>
 
-
 /*********************************--Part One--*********************************/
 
 int		ft_tolower(int s);
+int		ft_isalpha(int c);
 char	*ft_stolower(char *str);
 int		ft_toupper(int s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
