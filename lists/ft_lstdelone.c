@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 17:16:21 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/05 20:19:03 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/10/06 13:12:17 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/01 03:11:51 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstdelone(t_list *lst)
 {
-	if (!new)
-		return ;
 	if (!lst)
-	{
-		*lst = new;
 		return ;
-	}
-	new->next = *lst;
-	*lst = new;
+	free(lst);
 }

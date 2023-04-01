@@ -6,16 +6,17 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:32:00 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/03/30 23:16:19 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/01 03:35:15 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	init_all(t_ms *m)
+static void	init_all(t_ms *m, char **env)
 {
 	m->counters = malloc(sizeof(t_c));
 	ft_bzero(m->counters, sizeof(t_c));
+	init_envlist(m, env);
 }
 
 int	main(int ac, char **av, char **env)
@@ -25,7 +26,7 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	dupper_2d(&m, env);
-	init_all(&m);
+	init_all(&m, env);
 	while (1)
 	{
 		m.rdln = readline("minishell$:");

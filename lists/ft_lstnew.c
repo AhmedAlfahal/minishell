@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 17:24:35 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/09 16:46:30 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/10/05 17:11:59 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/01 03:54:39 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstnew(void *name, void *value, int err)
 {
-	int	i;
+	t_list	*new;
 
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->name = name;
+	new->value = value;
+	new->err = err;
+	new->next = NULL;
+	return (new);
 }

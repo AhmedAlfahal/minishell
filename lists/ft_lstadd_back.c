@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:40:21 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/09 16:44:00 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/01 03:11:59 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {

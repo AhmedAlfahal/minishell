@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 13:12:17 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/01/01 18:56:23 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/10/05 17:24:35 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/01 03:11:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstdelone(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	if (!lst)
-		return ;
-	free(lst);
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }

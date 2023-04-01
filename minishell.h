@@ -6,18 +6,26 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/31 01:25:44 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/01 03:53:15 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include"libft/libft.h"
+# include "libft/libft.h"
 # include<stdio.h>
 # include<fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+typedef struct s_list
+{
+	void			*name;
+	void			*value;
+	int				err;
+	struct s_list	*next;
+}	t_list;
 
 typedef struct s_counters
 {
@@ -51,7 +59,8 @@ typedef struct s_minishell
 	t_c		*counters;
 	int		error;
 	int		i;
-}			t_ms;
+	t_list	*envd;
+}	t_ms;
 
 /******************************Pars_utils*****************************/
 
@@ -72,11 +81,25 @@ void	free_2d_array(char **s);
 void	print_counters(t_c *counter);
 void	print_pipes(t_ms *m);
 
+/******************************lists*****************************/
+
+t_list	*ft_lstnew(void *name, void *value, int err);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst);
+void	ft_lstclear(t_list **lst);
+t_list	*ft_lstlast(t_list *lst);
+char	*env_name(char *path);
+char	*env_value(char *path);
+
 /******************************Exce_utils*****************************/
 void	echo_fun(t_ms *data);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data);
 int		pwd_fun(void);
 int		cd_fun(t_ms *data);
+int		init_envlist(t_ms *data, char **env);
+int		env_fun(t_ms *data);
 
 #endif
