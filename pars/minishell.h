@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/31 00:46:16 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 03:23:22 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_counters
 {
 	int	pipes;
+	int	error;
 	int	redirs;
 	int	input;
 	int	output;
@@ -61,6 +62,7 @@ void	print_2d_array(char **d);
 void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
+void	check_rdr_error(char *s, t_c *counter);
 
 /******************************Free_things*****************************/
 

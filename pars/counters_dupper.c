@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/31 00:48:21 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 05:13:40 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,7 @@ static void	count_all_helper(char *rdln, int *i, t_c *counter)
 	int	j;
 
 	j = *i;
-	if (rdln[*i] == '>' && rdln[*i + 1] == '>' \
-	&& cots_check(rdln, 0, j + 1) == 0)
-	{
-		counter->redirs++;
-		counter->append++;
-		*i = *i + 1;
-	}
-	else if (rdln[*i] == '>' && cots_check(rdln, 0, j + 1) == 0 \
-	&& (rdln[*i + 1] != '>' && rdln[*i - 1] != '>'))
+	if (rdln[*i] == '>' && cots_check(rdln, 0, j + 1) == 0)
 	{
 		counter->redirs++;
 		counter->output++;
@@ -37,8 +29,7 @@ static void	count_all_helper(char *rdln, int *i, t_c *counter)
 		counter->redirs++;
 		counter->herdock++;
 	}
-	else if (rdln[*i] == '<' && cots_check(rdln, 0, j + 1) == 0 \
-	&& (rdln[*i + 1] != '<' && rdln[*i - 1] != '<'))
+	else if (rdln[*i] == '<' && cots_check(rdln, 0, j + 1) == 0)
 	{	
 		counter->redirs++;
 		counter->input++;
@@ -60,6 +51,13 @@ void	count(t_c *counter, char *rdln)
 		}
 		else if (rdln[i] == '|' && cots_check(rdln, 0, i + 1) == 0)
 			counter->pipes++;
+		else if (rdln[i] == '>' && rdln[i + 1] == '>' \
+		&& cots_check(rdln, 0, i + 1) == 0)
+		{
+			counter->redirs++;
+			counter->append++;
+			i = i + 1;
+		}
 		count_all_helper(rdln, &i, counter);
 		i++;
 	}

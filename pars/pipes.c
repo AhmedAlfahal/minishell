@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/31 00:44:06 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 05:21:54 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ void	pars(t_ms *m)
 
 	m->c_cmds = 0;
 	tmp = ft_split(m->rdln, '|');
+	while (tmp[m->c_cmds] && m->counters->error != 1)
+		check_rdr_error(tmp[m->c_cmds++], m->counters);
+	// if (m->counters->error == 1)
+	// 	return ;
+	m->c_cmds = 0;
 	m->cmds = malloc(sizeof(t_cmd) * (m->counters->pipes + 3));
 	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 3));
 	while (tmp[m->c_cmds])

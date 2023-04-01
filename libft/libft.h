@@ -6,14 +6,13 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 06:32:48 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 03:27:10 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include"../pars/minishell.h"
 # include<stdlib.h>
 # include<unistd.h>
 # include<stdint.h>

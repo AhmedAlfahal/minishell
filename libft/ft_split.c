@@ -6,11 +6,39 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:00:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 09:05:16 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 03:27:45 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
+
+static int	cots_check(char *s, int start, int end)
+{
+	int		l;
+	char	p;
+
+	if (!s)
+		return (0);
+	l = 0;
+	p = 0;
+	while (start < end)
+	{
+		if ((s[start] == '"' || s[start] == '\'') && l == 0)
+		{
+			p = s[start];
+			start++;
+			l = 1;
+		}
+		if (s[start] == p)
+		{
+			if (l == 1)
+				l = 0;
+			p = 0;
+		}
+		start++;
+	}
+	return (l);
+}
 
 static int	sep_count(char *s, char c)
 {
