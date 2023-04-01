@@ -6,16 +6,16 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 03:23:22 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 06:33:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include"../libft/libft.h"
-# include<stdio.h>
-# include<fcntl.h>
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 

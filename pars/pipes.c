@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 05:21:54 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 06:48:40 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	pipes_error(t_ms *m)
 		i++;
 	}
 	if (m->error == 1)
-		write(2, "Syntax Error\n", 14);
+		write(2, "syntax error near unexpected token\n", 36);
 }
 
 void	pars(t_ms *m)
@@ -66,17 +66,17 @@ void	pars(t_ms *m)
 	tmp = ft_split(m->rdln, '|');
 	while (tmp[m->c_cmds] && m->counters->error != 1)
 		check_rdr_error(tmp[m->c_cmds++], m->counters);
-	// if (m->counters->error == 1)
-	// 	return ;
 	m->c_cmds = 0;
 	m->cmds = malloc(sizeof(t_cmd) * (m->counters->pipes + 3));
 	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 3));
 	while (tmp[m->c_cmds])
 	{
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
-		clean_cots(m->cmds);
+		clean_cots(&m->cmds[m->c_cmds]);
 		m->c_cmds++;
 	}
+	if (m->counters->error == 1)
+		return ;
 	print_pipes(m);
 	pipes_error(m);
 	free_2d_array(tmp);
