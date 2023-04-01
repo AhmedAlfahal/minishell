@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 06:33:31 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 06:55:23 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ typedef struct s_minishell
 
 /******************************Pars_utils*****************************/
 
-int		cms_ck(char *s, int i);
 int		cots_check(char *s, int start, int end);
-void	print_2d_array(char **d);
 void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
@@ -73,4 +71,6 @@ void	free_2d_array(char **s);
 
 void	print_counters(t_c *counter);
 void	print_pipes(t_ms *m);
+void	print_2d_array(char **d);
+
 #endif

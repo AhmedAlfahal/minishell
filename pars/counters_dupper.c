@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 05:13:40 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 07:05:28 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	count(t_c *counter, char *rdln)
 			counter->append++;
 			i = i + 1;
 		}
-		count_all_helper(rdln, &i, counter);
+		else
+			count_all_helper(rdln, &i, counter);
 		i++;
 	}
 	print_counters(counter);

@@ -6,11 +6,39 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 06:48:40 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/01 07:07:26 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	cots_check(char *s, int start, int end)
+{
+	int		l;
+	char	p;
+
+	if (!s)
+		return (0);
+	l = 0;
+	p = 0;
+	while (start < end)
+	{
+		if ((s[start] == '"' || s[start] == '\'') && l == 0)
+		{
+			p = s[start];
+			start++;
+			l = 1;
+		}
+		if (s[start] == p)
+		{
+			if (l == 1)
+				l = 0;
+			p = 0;
+		}
+		start++;
+	}
+	return (l);
+}
 
 static void	clean_cots(t_cmd *c)
 {
@@ -37,7 +65,7 @@ static void	clean_cots(t_cmd *c)
 	}
 }
 
-void	pipes_error(t_ms *m)
+static void	pipes_error(t_ms *m)
 {
 	int	i;
 
@@ -76,7 +104,10 @@ void	pars(t_ms *m)
 		m->c_cmds++;
 	}
 	if (m->counters->error == 1)
+	{
+		free_2d_array(tmp);
 		return ;
+	}
 	print_pipes(m);
 	pipes_error(m);
 	free_2d_array(tmp);
