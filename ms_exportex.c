@@ -6,11 +6,37 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:23:33 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/02 02:31:15 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/02 03:27:22 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	find_upxp(t_ms *data, char *name, char *value)
+{
+	t_list	*temp;
+	int		i;
+
+	temp = data->expd;
+	i = 0;
+	while (temp)
+	{
+		if (ft_strncmp(temp->name, name, ft_strlen(name)) == 0)
+		{
+			if (temp->value && ft_strncmp(temp->value, "", 1) != 0)
+				free(temp->value);
+			if (!value && temp->value)
+				return (0);
+			temp->value = value;
+			return (0);
+		}
+		temp = temp->next;
+	}
+	if (!temp)
+		find_updatexpx(data, name, value);
+	return (0);
+}
+
 
 int	find_updatexpx(t_ms *data, char *name, char *value)
 {
