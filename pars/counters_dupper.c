@@ -6,45 +6,44 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 06:08:53 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 22:55:07 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	rdr_condition(t_cmd *c, int rdr, int i)
+static void	rdr_condition(t_cmd *c, int *rdr, int *i)
 {
-	if (c->args[i][0] == '>' \
-	&& c->args[i][1] != '>' && c->args[i][1] != '<')
+	if (c->args[*i][0] == '>' \
+	&& c->args[*i][1] != '>' && c->args[*i][1] != '<')
 	{
-		c->rdr[rdr].rdr_type = output;
-		c->rdr[rdr].file_name = ft_substr(c->args[i], 1, 2);
+		c->rdr[*rdr].rdr_type = output;
+		c->rdr[*rdr].file_name = ft_substr(c->args[*i], 1, 2);
 	}
-	else if (c->args[i][0] == '<' \
-	&& c->args[i][1] != '>' && c->args[i][1] != '<')
+	else if (c->args[*i][0] == '<' \
+	&& c->args[*i][1] != '>' && c->args[*i][1] != '<')
 	{
-		c->rdr[rdr].rdr_type = input;
-		c->rdr[rdr].file_name = ft_substr(c->args[i], 1, 2);
+		c->rdr[*rdr].rdr_type = input;
+		c->rdr[*rdr].file_name = ft_substr(c->args[*i], 1, 2);
 	}
-	else if (c->args[i][0] == '<' && c->args[i][1] == '<')
+	else if (c->args[*i][0] == '<' && c->args[*i][1] == '<')
 	{
-		c->rdr[rdr].rdr_type = herdock;
-		c->rdr[rdr].file_name = ft_strdup(c->args[i + 1]);
+		c->rdr[*rdr].rdr_type = herdock;
+		c->rdr[*rdr].file_name = ft_strdup(c->args[*i + 1]);
 	}
-	else if (c->args[i][0] == '>' && c->args[i][1] == '>')
+	else if (c->args[*i][0] == '>' && c->args[*i][1] == '>')
 	{
-		c->rdr[rdr].rdr_type = append;
-		c->rdr[rdr].file_name = ft_strdup(c->args[i + 1]);
+		c->rdr[*rdr].rdr_type = append;
+		c->rdr[*rdr].file_name = ft_strdup(c->args[*i + 1]);
 	}
-	if (c->rdr[rdr].rdr_type != 0)
-		rdr++;
+	if (c->rdr[*rdr].rdr_type != 0)
+		*rdr = *rdr + 1;
 }
 
-void	clean_rdrs(t_cmd *c, int i, int j)
+void	clean_rdrs(t_cmd *c, int i)
 {
 	int		rdr;
 
-	(void)j;
 	rdr = 0;
 	if (!c->args)
 		return ;
@@ -57,13 +56,10 @@ void	clean_rdrs(t_cmd *c, int i, int j)
 			else if (c->args[i][0] == '<')
 				c->rdr[rdr].rdr_type = input;
 			if (c->args[i][0] == '>' || c->args[i][0] == '<')
-			{
-				c->rdr[rdr].file_name = ft_strdup(c->args[i + 1]);
-				rdr++;
-			}
+				c->rdr[rdr++].file_name = ft_strdup(c->args[i + 1]);
 		}
 		else if (ft_strlen(c->args[i]) == 2)
-			rdr_condition(c, rdr, i);
+			rdr_condition(c, &rdr, &i);
 		i++;
 	}
 }

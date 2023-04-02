@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 06:13:37 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 23:02:34 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	free_cmds(t_ms *m)
 	i = 0;
 	while (m->cmds[i].args != NULL)
 	{
-		if (m->c_cmds != 0)
+		if (m->cmds->rdr != 0)
 			free_rdr(m->cmds);
 		free_2d_array(m->cmds[i++].args);
 	}

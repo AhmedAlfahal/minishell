@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 06:22:08 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 21:23:17 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_rdrs(t_cmd *c)
 		free(c->rdr);
 		return ;
 	}
-	clean_rdrs(c, 0, 0);
+	clean_rdrs(c, 0);
 }
 
 int	cots_check(char *s, int start, int end)
