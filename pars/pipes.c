@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 23:06:49 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/03 02:32:57 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ static void	pipes_error(t_ms *m)
 		m->error = 1;
 	while (m->cmds[i].args != NULL && i + 1 != m->c_cmds)
 	{
-		if ((m->cmds[i].args[0] == 0 && m->cmds[i + 1].args[0] != 0) \
-		|| m->cmds[m->c_cmds - 1].args[0] == 0)
+		if ((m->cmds[i].args[0] == 0 && m->cmds[i + 1].args[0] != 0 \
+		&& m->cmds[i].c_rdr == 0))
 			m->error = 1;
 		i++;
 	}
