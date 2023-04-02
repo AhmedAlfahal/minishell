@@ -6,11 +6,21 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/31 00:48:02 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 06:13:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	free_rdr(t_cmd *s)
+{
+	int	i;
+
+	i = 0;
+	while (s->rdr[i].file_name)
+		free(s->rdr[i++].file_name);
+	free(s->rdr);
+}
 
 void	free_2d_array(char **s)
 {
@@ -29,7 +39,11 @@ static void	free_cmds(t_ms *m)
 
 	i = 0;
 	while (m->cmds[i].args != NULL)
+	{
+		if (m->c_cmds != 0)
+			free_rdr(m->cmds);
 		free_2d_array(m->cmds[i++].args);
+	}
 	free(m->cmds);
 }
 

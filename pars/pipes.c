@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 04:39:31 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 06:18:34 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ static void	check_rdrs(t_cmd *c)
 	// int	i;
 
 	// i = 0;
+	malloc_rdrs(c);
+	if (c->c_rdr == 0)
+	{
+		free(c->rdr);
+		return ;
+	}
 	clean_rdrs(c, 0, 0);
 }
 
@@ -108,10 +114,7 @@ void	pars(t_ms *m)
 	while (tmp[m->c_cmds] && m->counters->error != 1)
 	{
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
-		// print_2d_array(m->cmds[m->c_cmds].args);
-		// printf("\n");
-		if (m->counters->redirs != 0)
-			check_rdrs(&m->cmds[m->c_cmds]);
+		check_rdrs(&m->cmds[m->c_cmds]);
 		clean_cots(&m->cmds[m->c_cmds]);
 		m->c_cmds++;
 	}

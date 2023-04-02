@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 04:45:52 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 05:54:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	malloc_rdrs(t_cmd *c)
 		i++;
 	}
 	c->c_rdr = j;
+	c->rdr = malloc(sizeof(t_rdr) * (c->c_rdr + 1));
+	ft_bzero(c->rdr, sizeof(t_rdr) * (c->c_rdr + 1));
 }
 
 static int	ft_wospace_len(char *s)
