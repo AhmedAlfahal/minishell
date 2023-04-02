@@ -6,11 +6,29 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 06:22:33 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:45:52 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
+
+void	malloc_rdrs(t_cmd *c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!c->args)
+		return ;
+	while (c->args[i])
+	{
+		if (c->args[i][0] == '>' || c->args[i][0] == '<')
+			j++;
+		i++;
+	}
+	c->c_rdr = j;
+}
 
 static int	ft_wospace_len(char *s)
 {

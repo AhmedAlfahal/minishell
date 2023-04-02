@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/01 06:57:07 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/02 03:33:12 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC		=	pars/minishell.c		\
 			pars/free_utils.c		\
 			pars/pipes.c			\
 			pars/rdr_errors.c		\
+			pars/rdr.c				\
 			tmp_printers.c
 
 SRCS	=	$(SRC:%.c=%.o)

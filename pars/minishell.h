@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 06:55:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:45:00 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+typedef enum redirection_flags
+{
+	input = 1,
+	output = 2,
+	append = 3,
+	herdock = 4,
+}	t_rdr_flags;
 
 typedef struct s_counters
 {
@@ -39,8 +47,8 @@ typedef struct s_redirection
 typedef struct s_commands
 {
 	char	**args;
-	t_rdr	*input;
-	t_rdr	*output;
+	t_rdr	*rdr;
+	int		c_rdr;
 }			t_cmd;
 
 typedef struct s_minishell
@@ -61,6 +69,9 @@ void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
 void	check_rdr_error(char *s, t_c *counter);
+void	malloc_rdrs(t_cmd *c);
+void	clean_rdrs(t_cmd *c, int i, int j);
+void	rdr_remove(t_cmd *c, int i, int nums);
 
 /******************************Free_things*****************************/
 

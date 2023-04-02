@@ -6,11 +6,19 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 07:07:26 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:39:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	check_rdrs(t_cmd *c)
+{
+	// int	i;
+
+	// i = 0;
+	clean_rdrs(c, 0, 0);
+}
 
 int	cots_check(char *s, int start, int end)
 {
@@ -97,18 +105,22 @@ void	pars(t_ms *m)
 	m->c_cmds = 0;
 	m->cmds = malloc(sizeof(t_cmd) * (m->counters->pipes + 3));
 	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 3));
-	while (tmp[m->c_cmds])
+	while (tmp[m->c_cmds] && m->counters->error != 1)
 	{
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
+		// print_2d_array(m->cmds[m->c_cmds].args);
+		// printf("\n");
+		if (m->counters->redirs != 0)
+			check_rdrs(&m->cmds[m->c_cmds]);
 		clean_cots(&m->cmds[m->c_cmds]);
 		m->c_cmds++;
 	}
+	print_pipes(m);
 	if (m->counters->error == 1)
 	{
 		free_2d_array(tmp);
 		return ;
 	}
-	print_pipes(m);
 	pipes_error(m);
 	free_2d_array(tmp);
 }

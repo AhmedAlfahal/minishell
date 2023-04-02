@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:29:55 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 23:41:49 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:25:27 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ void	print_counters(t_c *counter)
 	printf("pipes		%d\n", counter->pipes);
 }
 
+void	print_rdr(t_cmd *r)
+{
+	int	i;
+
+	i = 0;
+	while (r->rdr[i].file_name != NULL)
+	{
+		printf("\nrdr type:	[%d]\nfile name	[%s]\n", i, r->rdr[i].file_name);
+		printf("\n");
+		i++;
+	}
+}
+
 void	print_pipes(t_ms *m)
 {
 	int	i;
@@ -31,10 +44,12 @@ void	print_pipes(t_ms *m)
 	{
 		printf("pipe	%d	", i);
 		print_2d_array(m->cmds[i].args);
+		print_rdr(m->cmds);
 		printf("\n");
 		i++;
 	}
 }
+
 
 void	print_2d_array(char **d)
 {

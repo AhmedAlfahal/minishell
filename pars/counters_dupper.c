@@ -6,11 +6,73 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/01 07:05:28 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:47:01 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	rdr_condition(t_cmd *c, int rdr, int i)
+{
+	if (c->args[i][0] == '>' \
+	&& (c->args[i][1] != '>' || c->args[i][1] != '<'))
+	{
+		c->rdr[rdr].rdr_type = output;
+		c->rdr[rdr].file_name = ft_substr(c->args[i], 1, 2);
+	}
+	else if (c->args[i][0] == '<' \
+	&& (c->args[i][1] != '>' || c->args[i][1] != '<'))
+	{
+		c->rdr[rdr].rdr_type = input;
+		c->rdr[rdr].file_name = ft_substr(c->args[i], 1, 2);
+	}
+	else if (c->args[i][0] == '<' && c->args[i][1] == '<')
+	{
+		c->rdr[rdr].rdr_type = herdock;
+		c->rdr[rdr].file_name = ft_strdup(c->args[i + 1]);
+	}
+	else if (c->args[i][0] == '>' && c->args[i][1] == '>')
+	{
+		c->rdr[rdr].rdr_type = append;
+		c->rdr[rdr].file_name = ft_strdup(c->args[i + 1]);
+	}
+	// if (c->rdr[rdr].rdr_type != 0)
+	// 	rdr_remove(c, i, 1);
+}
+
+void	clean_rdrs(t_cmd *c, int i, int j)
+{
+	int		rdr;
+	t_rdr	*r;
+
+	rdr = 0;
+	(void)j;
+	r = NULL;
+	if (!c->args)
+		return ;
+	malloc_rdrs(c);
+	r = malloc(sizeof(t_rdr) * (c->c_rdr + 1));
+	ft_bzero(r, sizeof(t_rdr) * (c->c_rdr + 1));
+	while (c->args[i])
+	{
+		if (ft_strlen(c->args[i]) == 1)
+		{
+			if (c->args[i][0] == '>')
+				r[rdr].rdr_type = output;
+			else if (c->args[i][0] == '<')
+				r[rdr].rdr_type = input;
+			if (c->args[i][0] == '>' || c->args[i][0] == '<')
+			{
+				r[rdr].file_name = ft_strdup(c->args[i + 1]);
+			}
+		}
+		if (ft_strlen(c->args[i]) == 2)
+			rdr_condition(c, rdr, i);
+		i++;
+	}
+	c->rdr = r;
+	printf("rrrrrr[%d]\n", c->rdr[0].rdr_type);
+}
 
 static void	count_all_helper(char *rdln, int *i, t_c *counter)
 {
