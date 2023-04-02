@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:12:17 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 03:11:51 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/02 23:39:20 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@ void	ft_lstdelone(t_list *lst)
 {
 	if (!lst)
 		return ;
+	free(lst->name);
+	free(lst->value);
 	free(lst);
 }

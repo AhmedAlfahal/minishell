@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 19:38:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/02 03:27:27 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/02 23:36:29 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,33 @@ int	set_exp(t_ms *data)
 	i = 0;
 	while (cm->args[++i])
 	{
-		if (ft_isalpha(cm->args[i][0]) || cm->args[i][0] == '_')
-		{
-			if (check_envpath(cm->args[i]))
-			{	
-				find_upnv(data, env_name(cm->args[i]), env_value(cm->args[i]));
-				find_upxp(data, env_name(cm->args[i]), env_value(cm->args[i]));
-			}
-			else if (check_expath(cm->args[i]))
-			{
-				find_upxp(data, env_name(cm->args[i]), "");
-				find_upnv(data, env_name(cm->args[i]), "");
-			}
-			else
-				find_upxp(data, env_name(cm->args[i]), NULL);
+		check_expcmd(cm, data, i);
+	}
+	return (0);
+}
+
+int	check_expcmd(t_cmd *cm, t_ms *data, int i)
+{
+	if (ft_isalpha(cm->args[i][0]) || cm->args[i][0] == '_')
+	{
+		if (check_envpath(cm->args[i]))
+		{	
+			find_upnv(data, env_name(cm->args[i]), env_value(cm->args[i]));
+			find_upxp(data, env_name(cm->args[i]), env_value(cm->args[i]));
 		}
+		else if (check_expath(cm->args[i]))
+		{
+			find_upxp(data, env_name(cm->args[i]), "");
+			find_upnv(data, env_name(cm->args[i]), "");
+		}
+		else
+			find_upxp(data, env_name(cm->args[i]), NULL);
+	}
+	else
+	{
+		write(2, "minishell: export: `", 20);
+		write(2, cm->args[i], ft_strlen(cm->args[i]));
+		write(2, "\': not a valid identifier\n", 26);
 	}
 	return (0);
 }

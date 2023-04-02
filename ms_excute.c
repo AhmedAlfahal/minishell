@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 19:43:16 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/03 00:45:05 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@ int	builtin_fun(t_ms *data)
 	if (data ->c_cmds == 1
 		&& ft_strncmp(data->cmds->args[0], "export", 7) == 0)
 		export_fun(data);
+	if (data ->c_cmds == 1
+		&& ft_strncmp(data->cmds->args[0], "unset", 6) == 0)
+		unset_fun(data);
 	return (0);
 }

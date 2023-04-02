@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 03:20:55 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/03 00:38:15 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,10 @@ int		check_envpath(char *s);
 int		check_expath(char *s);
 int		find_upxp(t_ms *data, char *name, char *value);
 int		find_updatexpx(t_ms *data, char *name, char *value);
+int		check_expcmd(t_cmd *cm, t_ms *data, int i);
+int		find_unsetxp(t_list **data, char *name);
+int		find_unsetxpx(t_list **data, char *name);
+int		unset_fun(t_ms *data);
+int		check_unsetpath(char *s);
 
 #endif

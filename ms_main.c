@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:32:00 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 23:00:56 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/02 23:45:25 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ static void	init_all(t_ms *m, char **env)
 	m->counters = malloc(sizeof(t_c));
 	ft_bzero(m->counters, sizeof(t_c));
 	init_envlist(m, env);
+}
+
+static void	f_free(t_ms *m)
+{
+	ft_lstclear(&m->envd);
+	ft_lstclear(&m->expd);
+	free(m->counters);
 }
 
 int	main(int ac, char **av, char **env)
@@ -39,6 +46,6 @@ int	main(int ac, char **av, char **env)
 			exce(&m);
 		free_all(&m, 0);
 	}
-	free(m.counters);
+	f_free(&m);
 	return (0);
 }
