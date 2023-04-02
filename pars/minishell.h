@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 21:23:10 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/03 01:51:03 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef enum redirection_flags
 	output = 2,
 	append = 3,
 	herdock = 4,
+	reno = 5,
 }	t_rdr_flags;
 
 typedef struct s_counters
@@ -71,7 +72,6 @@ void	pars(t_ms *m);
 void	check_rdr_error(char *s, t_c *counter);
 void	malloc_rdrs(t_cmd *c);
 void	clean_rdrs(t_cmd *c, int i);
-void	rdr_remove(t_cmd *c, int i, int nums);
 
 /******************************Free_things*****************************/
 
