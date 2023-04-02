@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 06:18:34 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/02 06:22:08 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void	check_rdrs(t_cmd *c)
 {
-	// int	i;
-
-	// i = 0;
 	malloc_rdrs(c);
 	if (c->c_rdr == 0)
 	{
