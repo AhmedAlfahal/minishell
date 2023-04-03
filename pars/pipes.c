@@ -6,16 +6,36 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 03:56:00 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 03:46:24 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	check_rdrs(t_cmd *c)
+static void	remove_cots(t_cmd *c, int i, int j, int k)
 {
-	malloc_rdrs(c);
-	clean_rdrs(c, 0);
+	char	*tmp;
+
+	tmp = NULL;
+	while (c->args[i][j])
+	{
+		if (c->args[i][j] == '\'' || c->args[i][j] == '"')
+			k++;
+		j++;
+	}
+	tmp = malloc(sizeof(char) * (ft_strlen(c->args[i]) - k + 1));
+	ft_bzero(tmp, sizeof(char) * (ft_strlen(c->args[i]) - k + 1));
+	j = 0;
+	k = 0;
+	while (c->args[i][j])
+	{
+		if (c->args[i][j] != '\'' && c->args[i][j] != '"')
+			tmp[k++] = c->args[i][j];
+		j++;
+	}
+	tmp[k] = 0;
+	free(c->args[i]);
+	c->args[i] = tmp;
 }
 
 int	cots_check(char *s, int start, int end)
@@ -46,16 +66,19 @@ int	cots_check(char *s, int start, int end)
 	return (l);
 }
 
-static void	clean_cots(t_cmd *c)
+static void	clean_cots(t_cmd *c, int i)
 {
-	int		i;
 	char	*s;
 
-	i = 0;
 	s = NULL;
 	while (c->args[i])
 	{
-		if (c->args[i][0] == '"')
+		if ((c->args[i][0] == '"' \
+		&& c->args[i][ft_strlen(c->args[i]) - 1] == '\'') \
+		|| (c->args[i][0] == '\'' \
+		&& c->args[i][ft_strlen(c->args[i]) - 1] == '"'))
+			remove_cots(c, i, 0, 0);
+		else if (c->args[i][0] == '"')
 		{
 			s = ft_strtrim(c->args[i], "\"");
 			free(c->args[i]);
@@ -106,8 +129,9 @@ void	pars(t_ms *m)
 	while (tmp[m->c_cmds] && m->counters->error != 1)
 	{
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
-		check_rdrs(&m->cmds[m->c_cmds]);
-		clean_cots(&m->cmds[m->c_cmds]);
+		malloc_rdrs(&m->cmds[m->c_cmds]);
+		clean_rdrs(&m->cmds[m->c_cmds], 0);
+		clean_cots(&m->cmds[m->c_cmds], 0);
 		m->c_cmds++;
 	}
 	print_pipes(m);

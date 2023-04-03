@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 02:11:39 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:53:24 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ void	free_all(t_ms *m, int exit)
 		return ;
 	}
 }
-
