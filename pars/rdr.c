@@ -6,11 +6,36 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 02:09:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/03 06:43:26 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
+
+static void	rdr_condition3(t_cmd *c, int *rdr, int *i)
+{
+	if (c->args[*i][0] == '"' || c->args[*i][0] == '\'')
+		return ;
+	if (ft_strchr(c->args[*i], '>'))
+	{
+		c->rdr[*rdr].rdr_type = output;
+		c->rdr[*rdr].file_name = ft_substr(ft_strchr(c->args[*i], '>') \
+		, 1, ft_strlen(ft_strchr(c->args[*i], '>')));
+	}
+	else if (ft_strchr(c->args[*i], '<'))
+	{
+		c->rdr[*rdr].rdr_type = input;
+		c->rdr[*rdr].file_name = ft_substr(ft_strchr(c->args[*i], '<') \
+		, 1, ft_strlen(ft_strchr(c->args[*i], '<')));
+	}
+	if (c->rdr[*rdr].rdr_type != 0 && c->rdr[*rdr].rdr_type == input)
+		ft_bzero(ft_strchr(c->args[*i], '<'), \
+		ft_strlen(ft_strchr(c->args[*i], '<')));
+	if (c->rdr[*rdr].rdr_type != 0 && c->rdr[*rdr].rdr_type == output)
+		ft_bzero(ft_strchr(c->args[*i], '>'), \
+		ft_strlen(ft_strchr(c->args[*i], '>')));
+	*rdr = *rdr + 1;
+}
 
 static void	rdr_remove(t_cmd *c, int k, int j)
 {
@@ -101,10 +126,12 @@ void	clean_rdrs(t_cmd *c, int i)
 		return ;
 	while (c->args[i])
 	{
-		if (ft_isrdr(c->args[i]) == 1)
+		if (ft_isrdr(c->args[i]) > 0)
 		{
 			rdr_condition1(c, &rdr, &i);
 			rdr_condition2(c, &rdr, &i);
+			if (ft_strlen(c->args[i]) > 2)
+				rdr_condition3(c, &rdr, &i);
 		}
 		i++;
 	}
