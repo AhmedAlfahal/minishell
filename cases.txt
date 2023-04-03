@@ -1,3 +1,5 @@
 ls > w | ls "><"
 ls>> | "| ls >| <s
 ls | ">>"
+------Syntax Error need to fix-----
+[asdasd>asdasd"''

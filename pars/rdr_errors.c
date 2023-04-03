@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 02:21:06 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:14:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	malloc_rdrs(t_cmd *c)
 		return ;
 	while (c->args[i])
 	{
-		if (c->args[i][0] == '>' || c->args[i][0] == '<')
+		if (ft_isrdr(c->args[i]) > 0)
 			j++;
 		i++;
 	}
