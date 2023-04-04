@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 07:43:05 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/05 02:49:08 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	ft_bzero(void *s, size_t n);
+void	ft_bnzero(void *s, size_t start, size_t end);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 int		ft_isrdr(char *s);
 int		crdr(char **s);
+char	*near_rdr(char *s);
+int		next_rdr(char *s);
 int		ft_strlen_2d(char **s);
 
 /*********************************--Part Two--*********************************/

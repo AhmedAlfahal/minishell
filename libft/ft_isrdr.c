@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:26:06 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 06:02:43 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:04:13 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ int	ft_isrdr(char *s)
 		return (0);
 	while (s[i])
 	{
-		if (s[i] == '>' || s[i] == '<')
+		if ((s[i] == '>' && s[i + 1] == '>') \
+		|| (s[i] == '<' && s[i + 1] == '<'))
+		{
+			j++;
+			i = i + 2;
+			continue ;
+		}
+		else if (s[i] == '<' || s[i] == '>')
 			j++;
 		i++;
 	}
@@ -46,4 +53,32 @@ int	crdr(char **s)
 		i++;
 	}
 	return (j);
+}
+
+char	*near_rdr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '<' || s[i] == '>')
+			return (&((char *)s)[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+int	next_rdr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '<' || s[i] == '>')
+			return (i);
+		i++;
+	}
+	return (ft_strlen(s));
 }

@@ -6,11 +6,41 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 06:05:13 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/05 03:09:00 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	rdr_condition5(t_cmd *c, int *rdr, int *i)
+{
+	char	*tmp;
+	int		j;
+	int		k;
+	char	**tmp2;
+
+	j = 0;
+	k = 0;
+	tmp = ft_substr(c->rdr[*rdr].file_name, \
+	next_rdr(c->rdr[*rdr].file_name), ft_strlen(c->rdr[*rdr].file_name));
+	// ft_bnzero(c->rdr[*rdr].file_name, next_rdr(c->rdr[*rdr].file_name),
+	// ft_strlen(c->rdr[*rdr].file_name));
+	tmp2 = malloc(sizeof(char *) * (ft_strlen_2d(c->args) + 2));
+	ft_bzero(tmp2, sizeof(char *) * (ft_strlen_2d(c->args) + 2));
+	while (c->args[k])
+	{
+		if (j - 1 == *i && j != 0)
+			tmp2[j++] = tmp;
+		else if (j == 0 && *i == 0)
+			tmp2[1] = tmp;
+		tmp2[j++] = ft_strdup(c->args[k++]);
+	}
+	free_2d_array(c->args);
+	c->args = tmp2;
+	print_2d_array(tmp2);
+	printf("\n");
+	free(tmp);
+}
 
 void	rdr_condition4(t_cmd *c, int rdr, int i)
 {

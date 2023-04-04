@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 06:05:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:47:04 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
 void	rdr_condition4(t_cmd *c, int rdr, int i);
+void	rdr_condition5(t_cmd *c, int *rdr, int *i);
 void	check_rdr_error(char *s, t_c *counter);
 void	malloc_rdrs(t_cmd *c);
 void	clean_rdrs(t_cmd *c, int i);

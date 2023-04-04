@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 07:47:57 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:56:14 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	rdr_condition3(t_cmd *c, int *rdr, int *i)
 	|| (c->args[*i][0] == '\'' \
 	&& c->args[*i][ft_strlen(c->args[*i]) - 1] == '\''))
 		return ;
-	if (ft_strchr(c->args[*i], '<') && ft_strchr(c->args[*i], '<')[1] == '<')
+	if (near_rdr(c->args[*i])[0] == '<' && near_rdr(c->args[*i])[1] == '<')
 	{
 		c->rdr[*rdr].rdr_type = herdock;
-		c->rdr[*rdr].file_name = ft_substr(ft_strchr(c->args[*i], '<') \
-		, 2, ft_strlen(ft_strchr(c->args[*i], '<')));
+		c->rdr[*rdr].file_name = ft_substr(near_rdr(c->args[*i]) \
+		, 2, ft_strlen(near_rdr(c->args[*i])));
 	}
 	else
 		rdr_condition4(c, *rdr, *i);
@@ -35,6 +35,8 @@ static void	rdr_condition3(t_cmd *c, int *rdr, int *i)
 	&& (c->rdr[*rdr].rdr_type == output || c->rdr[*rdr].rdr_type == append))
 		ft_bzero(ft_strchr(c->args[*i], '>'), \
 		ft_strlen(ft_strchr(c->args[*i], '>')));
+	if (ft_isrdr(c->rdr[*rdr].file_name) > 0)
+		rdr_condition5(c, rdr, i);
 	*rdr = *rdr + 1;
 }
 
