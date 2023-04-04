@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 00:38:15 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/05 00:51:37 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,7 @@ int		find_unsetxp(t_list **data, char *name);
 int		find_unsetxpx(t_list **data, char *name);
 int		unset_fun(t_ms *data);
 int		check_unsetpath(char *s);
+char	**dupper_lst(t_list *lst);
+int		other_fun(t_ms *data);
 
 #endif

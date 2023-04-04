@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/03 00:45:05 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/05 01:10:32 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	exce(t_ms	*data)
 
 	i = 0;
 	builtin_fun(data);
+	other_fun(data);
 	return (0);
 }
 
@@ -45,5 +46,18 @@ int	builtin_fun(t_ms *data)
 	if (data ->c_cmds == 1
 		&& ft_strncmp(data->cmds->args[0], "unset", 6) == 0)
 		unset_fun(data);
+	return (0);
+}
+
+int	other_fun(t_ms *data)
+{
+	char	**env;
+
+	env = dupper_lst(data->envd);
+	if (execve("/bin/ls", data->cmds->args, env) < -1)
+	{
+		printf("error\n");
+		exit(0);
+	}
 	return (0);
 }

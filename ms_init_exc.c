@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:30:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 23:01:56 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/05 00:47:43 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,22 @@ int	sort_env(t_ms *data)
 		i++;
 	}
 	return (0);
+}
+
+char	**dupper_lst(t_list *lst)
+{
+	int		i;
+	char	**env;
+
+	i = ft_lstsize(lst);
+	env = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (lst)
+	{
+		env[i] = ft_strjoin2(lst->name, lst->value);
+		i++;
+		lst = lst->next;
+	}
+	env[i] = NULL;
+	return (env);
 }
