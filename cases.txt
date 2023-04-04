@@ -4,3 +4,6 @@ ls | ">>"
 ------Syntax Error need to fix-----
 "asdasd>asdasd"''
 ------Solved-------
+------Syntax Error need to fix-----
+ls > a | <b >c
+------Solved-------

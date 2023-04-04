@@ -1,16 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   counters_dupper.c                                  :+:      :+:    :+:   */
+/*   helper_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/02 23:40:46 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 06:05:13 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	rdr_condition4(t_cmd *c, int rdr, int i)
+{
+	if (ft_strchr(c->args[i], '>') \
+	&& ft_strchr(c->args[i], '>')[1] == '>')
+	{
+		c->rdr[rdr].rdr_type = append;
+		c->rdr[rdr].file_name = ft_substr(ft_strchr(c->args[i], '>') \
+		, 2, ft_strlen(ft_strchr(c->args[i], '>')));
+	}
+	else if (ft_strchr(c->args[i], '>'))
+	{
+		c->rdr[rdr].rdr_type = output;
+		c->rdr[rdr].file_name = ft_substr(ft_strchr(c->args[i], '>') \
+		, 1, ft_strlen(ft_strchr(c->args[i], '>')));
+	}
+	else if (ft_strchr(c->args[i], '<'))
+	{
+		c->rdr[rdr].rdr_type = input;
+		c->rdr[rdr].file_name = ft_substr(ft_strchr(c->args[i], '<') \
+		, 1, ft_strlen(ft_strchr(c->args[i], '<')));
+	}
+}
 
 static void	count_all_helper(char *rdln, int *i, t_c *counter)
 {

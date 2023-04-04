@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 06:43:26 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 06:07:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 static void	rdr_condition3(t_cmd *c, int *rdr, int *i)
 {
-	if (c->args[*i][0] == '"' || c->args[*i][0] == '\'')
+	if ((c->args[*i][0] == '"' \
+	&& c->args[*i][ft_strlen(c->args[*i]) - 1] == '"') \
+	|| (c->args[*i][0] == '\'' \
+	&& c->args[*i][ft_strlen(c->args[*i]) - 1] == '\''))
 		return ;
-	if (ft_strchr(c->args[*i], '>'))
+	if (ft_strchr(c->args[*i], '<') && ft_strchr(c->args[*i], '<')[1] == '<')
 	{
-		c->rdr[*rdr].rdr_type = output;
-		c->rdr[*rdr].file_name = ft_substr(ft_strchr(c->args[*i], '>') \
-		, 1, ft_strlen(ft_strchr(c->args[*i], '>')));
-	}
-	else if (ft_strchr(c->args[*i], '<'))
-	{
-		c->rdr[*rdr].rdr_type = input;
+		c->rdr[*rdr].rdr_type = herdock;
 		c->rdr[*rdr].file_name = ft_substr(ft_strchr(c->args[*i], '<') \
-		, 1, ft_strlen(ft_strchr(c->args[*i], '<')));
+		, 2, ft_strlen(ft_strchr(c->args[*i], '<')));
 	}
-	if (c->rdr[*rdr].rdr_type != 0 && c->rdr[*rdr].rdr_type == input)
+	else
+		rdr_condition4(c, *rdr, *i);
+	if (c->rdr[*rdr].rdr_type != 0 \
+	&& (c->rdr[*rdr].rdr_type == input || c->rdr[*rdr].rdr_type == herdock))
 		ft_bzero(ft_strchr(c->args[*i], '<'), \
 		ft_strlen(ft_strchr(c->args[*i], '<')));
-	if (c->rdr[*rdr].rdr_type != 0 && c->rdr[*rdr].rdr_type == output)
+	if (c->rdr[*rdr].rdr_type != 0 \
+	&& (c->rdr[*rdr].rdr_type == output || c->rdr[*rdr].rdr_type == append))
 		ft_bzero(ft_strchr(c->args[*i], '>'), \
 		ft_strlen(ft_strchr(c->args[*i], '>')));
 	*rdr = *rdr + 1;
@@ -45,13 +46,11 @@ static void	rdr_remove(t_cmd *c, int k, int j)
 	ft_bzero(tmp, sizeof(char *) * (ft_strlen_2d(c->args) - crdr(c->args) + 1));
 	while (c->args[k])
 	{
-		if ((c->args[k][0] == '>' || c->args[k][0] == '<') \
-		&& (c->args[k][1] != '>' && c->args[k][1] != '<'))
+		if (((c->args[k][0] == '>' || c->args[k][0] == '<') \
+		&& (c->args[k][1] != '>' && c->args[k][1] != '<' \
+		&& c->args[k][1] != '\0')) || c->args[k][0] == '\0')
 		{
-			if (c->args[k][1] == '\0')
-				k = k + 2;
-			else
-				k++;
+			k++;
 			continue ;
 		}
 		else if ((c->args[k][0] == '>' || c->args[k][0] == '<') \
@@ -105,11 +104,6 @@ static void	rdr_condition2(t_cmd *c, int *rdr, int *i)
 		else if (c->args[*i][0] == '>' && c->args[*i][1] == '>')
 		{
 			c->rdr[*rdr].rdr_type = append;
-			c->rdr[*rdr].file_name = ft_strdup(c->args[*i + 1]);
-		}
-		else if (c->args[*i][0] == '<' && c->args[*i][1] == '>')
-		{
-			c->rdr[*rdr].rdr_type = reno;
 			c->rdr[*rdr].file_name = ft_strdup(c->args[*i + 1]);
 		}
 		if (c->rdr[*rdr].rdr_type != 0)

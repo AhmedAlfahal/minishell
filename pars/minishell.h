@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 01:51:03 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 06:05:23 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef enum redirection_flags
 	output = 2,
 	append = 3,
 	herdock = 4,
-	reno = 5,
 }	t_rdr_flags;
 
 typedef struct s_counters
@@ -69,6 +68,7 @@ int		cots_check(char *s, int start, int end);
 void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
+void	rdr_condition4(t_cmd *c, int rdr, int i);
 void	check_rdr_error(char *s, t_c *counter);
 void	malloc_rdrs(t_cmd *c);
 void	clean_rdrs(t_cmd *c, int i);
@@ -78,7 +78,7 @@ void	clean_rdrs(t_cmd *c, int i);
 void	free_all(t_ms *m, int exit);
 void	free_2d_array(char **s);
 
-/******************************Free_things*****************************/
+/******************************Tmp_printers*****************************/
 
 void	print_counters(t_c *counter);
 void	print_pipes(t_ms *m);

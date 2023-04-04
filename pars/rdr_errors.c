@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 02:44:36 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 05:57:59 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ static void	condition(char *tmp, int i, int len, int *error)
 		else if (tmp[i + 2] == '<' || tmp[i + 2] == '>')
 			*error = 1;
 	}
-	else if (tmp[i] == '>' && tmp[i + 1] == '<' && cots_check(tmp, 0, i) == 0)
+	else if (((tmp[i] == '>' || tmp[i] == '<') \
+	&& (tmp[i + 1] == '<' || tmp[i + 1] == '>') && cots_check(tmp, 0, i) == 0))
 		*error = 1;
 	else if (tmp[i] == '>' && len - i == 1)
 		*error = 1;
