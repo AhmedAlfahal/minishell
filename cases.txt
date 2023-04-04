@@ -7,3 +7,5 @@ ls | ">>"
 ------Syntax Error need to fix-----
 ls > a | <b >c
 ------Solved-------
+------Segfault-----
+>>f<<a

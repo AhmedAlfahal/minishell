@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 06:07:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 07:40:57 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	rdr_condition3(t_cmd *c, int *rdr, int *i)
 	&& (c->rdr[*rdr].rdr_type == input || c->rdr[*rdr].rdr_type == herdock))
 		ft_bzero(ft_strchr(c->args[*i], '<'), \
 		ft_strlen(ft_strchr(c->args[*i], '<')));
-	if (c->rdr[*rdr].rdr_type != 0 \
+	else if (c->rdr[*rdr].rdr_type != 0 \
 	&& (c->rdr[*rdr].rdr_type == output || c->rdr[*rdr].rdr_type == append))
 		ft_bzero(ft_strchr(c->args[*i], '>'), \
 		ft_strlen(ft_strchr(c->args[*i], '>')));
@@ -42,6 +42,8 @@ static void	rdr_remove(t_cmd *c, int k, int j)
 {
 	char	**tmp;
 
+	if (!c->args || *c->args == NULL)
+		return ;
 	tmp = malloc(sizeof(char *) * (ft_strlen_2d(c->args) - crdr(c->args) + 1));
 	ft_bzero(tmp, sizeof(char *) * (ft_strlen_2d(c->args) - crdr(c->args) + 1));
 	while (c->args[k])
@@ -56,7 +58,10 @@ static void	rdr_remove(t_cmd *c, int k, int j)
 		else if ((c->args[k][0] == '>' || c->args[k][0] == '<') \
 		&& (c->args[k][1] != '>' || c->args[k][1] != '<'))
 		{
-			k = k + 2;
+			if (k == ft_strlen_2d(c->args) - 1)
+				k++;
+			else
+				k = k + 2;
 			continue ;
 		}
 		tmp[j++] = ft_strdup(c->args[k++]);
