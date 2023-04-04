@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 07:40:57 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 07:47:57 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ static void	rdr_condition3(t_cmd *c, int *rdr, int *i)
 	*rdr = *rdr + 1;
 }
 
-static void	rdr_remove(t_cmd *c, int k, int j)
+static void	rdr_remove(t_cmd *c, int k, int j, char **tmp)
 {
-	char	**tmp;
-
 	if (!c->args || *c->args == NULL)
 		return ;
 	tmp = malloc(sizeof(char *) * (ft_strlen_2d(c->args) - crdr(c->args) + 1));
@@ -58,10 +56,9 @@ static void	rdr_remove(t_cmd *c, int k, int j)
 		else if ((c->args[k][0] == '>' || c->args[k][0] == '<') \
 		&& (c->args[k][1] != '>' || c->args[k][1] != '<'))
 		{
-			if (k == ft_strlen_2d(c->args) - 1)
-				k++;
-			else
-				k = k + 2;
+			k = k + 2;
+			if (k - 2 == ft_strlen_2d(c->args) - 1)
+				k--;
 			continue ;
 		}
 		tmp[j++] = ft_strdup(c->args[k++]);
@@ -134,5 +131,5 @@ void	clean_rdrs(t_cmd *c, int i)
 		}
 		i++;
 	}
-	rdr_remove(c, 0, 0);
+	rdr_remove(c, 0, 0, NULL);
 }

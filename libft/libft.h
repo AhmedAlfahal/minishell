@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 07:41:29 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/04 07:43:05 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 int		ft_isrdr(char *s);
 int		crdr(char **s);
-int	ft_strlen_2d(char **s);
+int		ft_strlen_2d(char **s);
 
 /*********************************--Part Two--*********************************/
 

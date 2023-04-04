@@ -9,3 +9,4 @@ ls > a | <b >c
 ------Solved-------
 ------Segfault-----
 >>f<<a
+------Solved-------
