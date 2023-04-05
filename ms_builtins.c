@@ -6,13 +6,13 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:02:20 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/01 04:31:02 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/06 01:37:33 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	echo_fun(t_ms *data)
+int	echo_fun(t_ms *data)
 {
 	t_cmd	*cm;
 	int		i;
@@ -37,12 +37,16 @@ void	echo_fun(t_ms *data)
 	}
 	if (!j || cm->args[1] == NULL)
 		printf("\n");
+	return (0);
 }
 
-int	pwd_fun(void)
+int	pwd_fun(t_ms *data)
 {
 	char	*path;
 
+	if (data->cmds->args[1] != NULL
+		&& ft_strncmp(data->cmds->args[1], "-", 1) == 0)
+		return (1);
 	path = malloc(1000000 * sizeof(char));
 	if (getcwd(path, 1000000) == NULL)
 		return (1);

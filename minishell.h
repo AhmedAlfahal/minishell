@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/05 00:51:37 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/06 01:37:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ char	*env_name(char *path);
 char	*env_value(char *path);
 
 /******************************Exce_utils_builtins*****************************/
-void	echo_fun(t_ms *data);
+int		echo_fun(t_ms *data);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data);
-int		pwd_fun(void);
+int		pwd_fun(t_ms *data);
 int		cd_fun(t_ms *data);
 int		init_envlist(t_ms *data, char **env);
 int		env_fun(t_ms *data);
@@ -117,5 +117,6 @@ int		unset_fun(t_ms *data);
 int		check_unsetpath(char *s);
 char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
+char	*find_path(t_ms *data, int i);
 
 #endif
