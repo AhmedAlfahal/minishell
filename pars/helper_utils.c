@@ -6,68 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/06 05:55:00 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 01:35:28 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	condition(t_tmp *t, char **tmp)
-{
-	char	*local;
-
-	local = *tmp;
-	if (t->s[t->i] == t->a && t->s[t->i + 1] == t->a)
-	{
-		local[t->j++] = ' ';
-		local[t->j++] = t->a;
-		local[t->j++] = t->a;
-		local[t->j++] = ' ';
-	}
-	else if (t->s[t->i] == t->a && t->s[t->i + 1] == t->b)
-	{
-		local[t->j++] = ' ';
-		local[t->j++] = '<';
-		local[t->j++] = '>';
-		local[t->j++] = ' ';
-	}
-	else if (t->s[t->i] == t->a)
-	{
-		local[t->j++] = ' ';
-		local[t->j++] = t->a;
-		local[t->j++] = ' ';
-		t->i++;
-	}
-}
-
-char	*malloc_rdr_space(char *s)
-{
-	t_tmp	t;
-	char	*tmp;
-
-	tmp = malloc(ft_strlen(s) + ft_isrdr(s) + ft_isrdr(s) + 1);
-	ft_bzero(&t, sizeof(t_tmp) * 1);
-	t.s = s;
-	while (s[t.i])
-	{
-		if (s[t.i] == '>' || s[t.i] == '<')
-			t.a = s[t.i];
-		if (t.a == '>')
-			t.b = '<';
-		else if (t.a == '<')
-			t.b = '>';
-		condition(&t, &tmp);
-		if ((s[t.i] == t.a && s[t.i + 1] == t.a) \
-		|| (s[t.i] == t.a && s[t.i + 1] == t.a))
-			t.i = t.i + 2;
-		if (s[t.i] == '\0')
-			break ;
-		tmp[t.j++] = s[t.i++];
-	}
-	tmp[t.j] = 0;
-	free(s);
-	return (tmp);
-}
 
 static void	count_all_helper(char *rdln, int *i, t_c *counter)
 {
