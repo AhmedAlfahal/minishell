@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 03:54:23 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 03:56:17 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	remove_cots(char **s, t_tmp *t, char cot)
 	char	*c;
 
 	tmp = NULL;
+	ft_bzero(t, sizeof(t_tmp) * 1);
 	c = *s;
 	while (c[t->j])
 	{
@@ -72,7 +73,6 @@ static void	clean_cots(t_cmd *c, int i)
 {
 	t_tmp	t;
 
-	ft_bzero(&t, sizeof(t_tmp) * 1);
 	while (c->args[i])
 	{
 		if (c->args[i][0] == '"' \
@@ -84,10 +84,8 @@ static void	clean_cots(t_cmd *c, int i)
 		else if (ft_isrdr(c->args[i]) > 0)
 		{
 			remove_cots(&c->args[i], &t, '\'');
-			ft_bzero(&t, sizeof(t_tmp) * 1);
 			remove_cots(&c->args[i], &t, '"');
 		}
-		ft_bzero(&t, sizeof(t_tmp) * 1);
 		i++;
 	}
 }
