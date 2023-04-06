@@ -6,36 +6,38 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 01:50:40 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 03:54:23 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	remove_cots(t_cmd *c, int i, int j, int k)
+void	remove_cots(char **s, t_tmp *t, char cot)
 {
 	char	*tmp;
+	char	*c;
 
 	tmp = NULL;
-	while (c->args[i][j])
+	c = *s;
+	while (c[t->j])
 	{
-		if (c->args[i][j] == '\'' || c->args[i][j] == '"')
-			k++;
-		j++;
+		if (c[t->j] == cot)
+			t->x++;
+		t->j++;
 	}
-	tmp = malloc(sizeof(char) * (ft_strlen(c->args[i]) - k + 1));
-	ft_bzero(tmp, sizeof(char) * (ft_strlen(c->args[i]) - k + 1));
-	j = 0;
-	k = 0;
-	while (c->args[i][j])
+	tmp = malloc(sizeof(char) * (ft_strlen(c) - t->x + 1));
+	ft_bzero(tmp, sizeof(char) * (ft_strlen(c) - t->x + 1));
+	t->j = 0;
+	t->x = 0;
+	while (c[t->j])
 	{
-		if (c->args[i][j] != '\'' && c->args[i][j] != '"')
-			tmp[k++] = c->args[i][j];
-		j++;
+		if (c[t->j] != cot)
+			tmp[t->x++] = c[t->j];
+		t->j++;
 	}
-	tmp[k] = 0;
-	free(c->args[i]);
-	c->args[i] = tmp;
+	tmp[t->x] = 0;
+	free(*s);
+	*s = tmp;
 }
 
 int	cots_check(char *s, int start, int end)
@@ -68,28 +70,24 @@ int	cots_check(char *s, int start, int end)
 
 static void	clean_cots(t_cmd *c, int i)
 {
-	char	*s;
+	t_tmp	t;
 
-	s = NULL;
+	ft_bzero(&t, sizeof(t_tmp) * 1);
 	while (c->args[i])
 	{
-		if ((c->args[i][0] == '"' \
-		&& c->args[i][ft_strlen(c->args[i]) - 1] == '\'') \
-		|| (c->args[i][0] == '\'' \
-		&& c->args[i][ft_strlen(c->args[i]) - 1] == '"'))
-			remove_cots(c, i, 0, 0);
-		else if (c->args[i][0] == '"')
+		if (c->args[i][0] == '"' \
+		&& c->args[i][ft_strlen(c->args[i]) - 1] == '"')
+			remove_cots(&c->args[i], &t, '"');
+		else if (c->args[i][0] == '\'' \
+		&& c->args[i][ft_strlen(c->args[i]) - 1] == '\'')
+			remove_cots(&c->args[i], &t, '\'');
+		else if (ft_isrdr(c->args[i]) > 0)
 		{
-			s = ft_strtrim(c->args[i], "\"");
-			free(c->args[i]);
-			c->args[i] = s;
+			remove_cots(&c->args[i], &t, '\'');
+			ft_bzero(&t, sizeof(t_tmp) * 1);
+			remove_cots(&c->args[i], &t, '"');
 		}
-		else if (c->args[i][0] == '\'')
-		{
-			s = ft_strtrim(c->args[i], "\'");
-			free(c->args[i]);
-			c->args[i] = s;
-		}
+		ft_bzero(&t, sizeof(t_tmp) * 1);
 		i++;
 	}
 }

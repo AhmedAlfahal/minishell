@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 01:36:32 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 03:46:26 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	malloc_rdrs(t_cmd *c);
 void	clean_rdrs(t_cmd *c, int i);
 void	init_pipes(t_ms *m);
 char	**add_rdr_spaces(char **tmp);
+void	remove_cots(char **s, t_tmp *t, char cot);
 
 /******************************Free_things*****************************/
 

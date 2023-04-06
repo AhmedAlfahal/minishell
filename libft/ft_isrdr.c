@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:26:06 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/06 05:57:47 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 02:51:02 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,35 +55,4 @@ int	crdr(char **s)
 		i++;
 	}
 	return (j);
-}
-
-char	*near_rdr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '<' || s[i] == '>')
-			return (&((char *)s)[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-int	next_rdr(char *s, int msg)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '<' || s[i] == '>')
-			return (i);
-		i++;
-	}
-	if (msg == 1)
-		return (0);
-	else
-		return (ft_strlen(s));
 }
