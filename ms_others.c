@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/06 05:21:52 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/07 02:10:03 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 int	other_fun(t_ms *data)
 {
-	char	**env;
-	char	*path;
-	int		id;
+	char		**env;
+	char		*path;
+	int			id;
 
 	env = dupper_lst(data->envd);
 	id = fork();
 	if (id == 0)
 	{
-		path = find_path(data, -1);
+		if (data->cmds->args[0][0] == '/' || data->cmds->args[0][0] == '.')
+			path = ft_strdup(data->cmds->args[0]);
+		else
+			path = find_path(data, -1);
 		if (execve(path, data->cmds->args, env) < -1)
 		{
 			write(2, "error\n", 6);
 			free(path);
 			exit(0);
 		}
-		err_file(data->cmds->args[0]);
+		err_file(data->cmds->args[0], 127);
 		exit(0);
 	}
 	wait(NULL);
@@ -55,9 +58,11 @@ char	*find_path(t_ms *data, int i)
 				break ;
 			free (ptmp);
 		}
+		if (j != 0)
+			err_file(data->cmds->args[0], 127);
 	}
 	else
-		err_file(data->cmds->args[0]);
+		err_file(data->cmds->args[0], 127);
 	if (path)
 		free_2d_array(path);
 	return (ptmp);
@@ -82,9 +87,30 @@ char	**gen_path(t_ms *data)
 	return (path);
 }
 
-void	err_file(char *str)
+void	err_file(char *str, int code)
 {
-	write(2, "minishell: ", 11);
-	perror(str);
-	exit(127);
+	struct stat	st;
+
+	if (str[0] == '/' || str[0] == '.')
+	{
+		if (stat(str, &st) != 0)
+		{
+			write(2, "minishell: ", 11);
+			perror(str);
+			exit(code);
+		}
+		else
+		{
+			write(2, "minishell: ", 11);
+			perror(str);
+			exit(code);
+		}
+	}
+	else
+	{
+		write(2, "minishell: ", 11);
+		ft_putstr_fd(str, 2);
+		write(2, ": command not found\n", 20);
+		exit(code);
+	}
 }

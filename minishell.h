@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/06 03:43:35 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/07 01:55:15 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include<fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+ #include <sys/stat.h>
 
 typedef struct s_list
 {
@@ -119,6 +120,6 @@ char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
 char	*find_path(t_ms *data, int i);
 char	**gen_path(t_ms *data);
-void	err_file(char *str);
+void	err_file(char *str, int code);
 
 #endif
