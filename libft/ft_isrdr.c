@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:26:06 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 23:04:13 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/06 05:57:47 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	ft_isrdr(char *s)
 	while (s[i])
 	{
 		if ((s[i] == '>' && s[i + 1] == '>') \
-		|| (s[i] == '<' && s[i + 1] == '<'))
+		|| (s[i] == '<' && s[i + 1] == '<') \
+		|| (s[i] == '<' && s[i + 1] == '>') \
+		|| (s[i] == '>' && s[i + 1] == '<'))
 		{
 			j++;
 			i = i + 2;
@@ -69,7 +71,7 @@ char	*near_rdr(char *s)
 	return (NULL);
 }
 
-int	next_rdr(char *s)
+int	next_rdr(char *s, int msg)
 {
 	int	i;
 
@@ -80,5 +82,8 @@ int	next_rdr(char *s)
 			return (i);
 		i++;
 	}
-	return (ft_strlen(s));
+	if (msg == 1)
+		return (0);
+	else
+		return (ft_strlen(s));
 }

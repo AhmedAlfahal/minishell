@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/05 02:49:08 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/05 21:46:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	ft_strlen(const char *s);
 int		ft_isrdr(char *s);
 int		crdr(char **s);
 char	*near_rdr(char *s);
-int		next_rdr(char *s);
+int		next_rdr(char *s, int msg);
 int		ft_strlen_2d(char **s);
 
 /*********************************--Part Two--*********************************/

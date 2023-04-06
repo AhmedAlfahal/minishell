@@ -6,63 +6,67 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/05 03:09:00 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/06 05:55:00 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	rdr_condition5(t_cmd *c, int *rdr, int *i)
+static void	condition(t_tmp *t, char **tmp)
 {
-	char	*tmp;
-	int		j;
-	int		k;
-	char	**tmp2;
+	char	*local;
 
-	j = 0;
-	k = 0;
-	tmp = ft_substr(c->rdr[*rdr].file_name, \
-	next_rdr(c->rdr[*rdr].file_name), ft_strlen(c->rdr[*rdr].file_name));
-	// ft_bnzero(c->rdr[*rdr].file_name, next_rdr(c->rdr[*rdr].file_name),
-	// ft_strlen(c->rdr[*rdr].file_name));
-	tmp2 = malloc(sizeof(char *) * (ft_strlen_2d(c->args) + 2));
-	ft_bzero(tmp2, sizeof(char *) * (ft_strlen_2d(c->args) + 2));
-	while (c->args[k])
+	local = *tmp;
+	if (t->s[t->i] == t->a && t->s[t->i + 1] == t->a)
 	{
-		if (j - 1 == *i && j != 0)
-			tmp2[j++] = tmp;
-		else if (j == 0 && *i == 0)
-			tmp2[1] = tmp;
-		tmp2[j++] = ft_strdup(c->args[k++]);
+		local[t->j++] = ' ';
+		local[t->j++] = t->a;
+		local[t->j++] = t->a;
+		local[t->j++] = ' ';
 	}
-	free_2d_array(c->args);
-	c->args = tmp2;
-	print_2d_array(tmp2);
-	printf("\n");
-	free(tmp);
+	else if (t->s[t->i] == t->a && t->s[t->i + 1] == t->b)
+	{
+		local[t->j++] = ' ';
+		local[t->j++] = '<';
+		local[t->j++] = '>';
+		local[t->j++] = ' ';
+	}
+	else if (t->s[t->i] == t->a)
+	{
+		local[t->j++] = ' ';
+		local[t->j++] = t->a;
+		local[t->j++] = ' ';
+		t->i++;
+	}
 }
 
-void	rdr_condition4(t_cmd *c, int rdr, int i)
+char	*malloc_rdr_space(char *s)
 {
-	if (ft_strchr(c->args[i], '>') \
-	&& ft_strchr(c->args[i], '>')[1] == '>')
+	t_tmp	t;
+	char	*tmp;
+
+	tmp = malloc(ft_strlen(s) + ft_isrdr(s) + ft_isrdr(s) + 1);
+	ft_bzero(&t, sizeof(t_tmp) * 1);
+	t.s = s;
+	while (s[t.i])
 	{
-		c->rdr[rdr].rdr_type = append;
-		c->rdr[rdr].file_name = ft_substr(ft_strchr(c->args[i], '>') \
-		, 2, ft_strlen(ft_strchr(c->args[i], '>')));
+		if (s[t.i] == '>' || s[t.i] == '<')
+			t.a = s[t.i];
+		if (t.a == '>')
+			t.b = '<';
+		else if (t.a == '<')
+			t.b = '>';
+		condition(&t, &tmp);
+		if ((s[t.i] == t.a && s[t.i + 1] == t.a) \
+		|| (s[t.i] == t.a && s[t.i + 1] == t.a))
+			t.i = t.i + 2;
+		if (s[t.i] == '\0')
+			break ;
+		tmp[t.j++] = s[t.i++];
 	}
-	else if (ft_strchr(c->args[i], '>'))
-	{
-		c->rdr[rdr].rdr_type = output;
-		c->rdr[rdr].file_name = ft_substr(ft_strchr(c->args[i], '>') \
-		, 1, ft_strlen(ft_strchr(c->args[i], '>')));
-	}
-	else if (ft_strchr(c->args[i], '<'))
-	{
-		c->rdr[rdr].rdr_type = input;
-		c->rdr[rdr].file_name = ft_substr(ft_strchr(c->args[i], '<') \
-		, 1, ft_strlen(ft_strchr(c->args[i], '<')));
-	}
+	tmp[t.j] = 0;
+	free(s);
+	return (tmp);
 }
 
 static void	count_all_helper(char *rdln, int *i, t_c *counter)

@@ -6,38 +6,23 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 23:56:14 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/06 06:05:39 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-static void	rdr_condition3(t_cmd *c, int *rdr, int *i)
+char	**add_rdr_spaces(char **tmp)
 {
-	if ((c->args[*i][0] == '"' \
-	&& c->args[*i][ft_strlen(c->args[*i]) - 1] == '"') \
-	|| (c->args[*i][0] == '\'' \
-	&& c->args[*i][ft_strlen(c->args[*i]) - 1] == '\''))
-		return ;
-	if (near_rdr(c->args[*i])[0] == '<' && near_rdr(c->args[*i])[1] == '<')
+	int		i;
+
+	i = 0;
+	while (tmp[i])
 	{
-		c->rdr[*rdr].rdr_type = herdock;
-		c->rdr[*rdr].file_name = ft_substr(near_rdr(c->args[*i]) \
-		, 2, ft_strlen(near_rdr(c->args[*i])));
+		tmp[i] = malloc_rdr_space(tmp[i]);
+		i++;
 	}
-	else
-		rdr_condition4(c, *rdr, *i);
-	if (c->rdr[*rdr].rdr_type != 0 \
-	&& (c->rdr[*rdr].rdr_type == input || c->rdr[*rdr].rdr_type == herdock))
-		ft_bzero(ft_strchr(c->args[*i], '<'), \
-		ft_strlen(ft_strchr(c->args[*i], '<')));
-	else if (c->rdr[*rdr].rdr_type != 0 \
-	&& (c->rdr[*rdr].rdr_type == output || c->rdr[*rdr].rdr_type == append))
-		ft_bzero(ft_strchr(c->args[*i], '>'), \
-		ft_strlen(ft_strchr(c->args[*i], '>')));
-	if (ft_isrdr(c->rdr[*rdr].file_name) > 0)
-		rdr_condition5(c, rdr, i);
-	*rdr = *rdr + 1;
+	return (tmp);
 }
 
 static void	rdr_remove(t_cmd *c, int k, int j, char **tmp)
@@ -128,8 +113,6 @@ void	clean_rdrs(t_cmd *c, int i)
 		{
 			rdr_condition1(c, &rdr, &i);
 			rdr_condition2(c, &rdr, &i);
-			if (ft_strlen(c->args[i]) > 2)
-				rdr_condition3(c, &rdr, &i);
 		}
 		i++;
 	}

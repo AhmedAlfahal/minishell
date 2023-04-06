@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 23:47:04 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/06 06:10:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef struct s_counters
 	int	append;
 }		t_c;
 
+typedef struct s_tmprdr
+{
+	char	*s;
+	char	a;
+	char	b;
+	int		i;
+	int		x;
+	int		j;
+}			t_tmp;
+
 typedef struct s_redirection
 {
 	int		rdr_type;
@@ -54,6 +64,7 @@ typedef struct s_commands
 typedef struct s_minishell
 {
 	char	**env;
+	char	**tmp;
 	char	*rdln;
 	t_cmd	*cmds;
 	int		c_cmds;
@@ -68,11 +79,12 @@ int		cots_check(char *s, int start, int end);
 void	count(t_c *counter, char *rdln);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
-void	rdr_condition4(t_cmd *c, int rdr, int i);
-void	rdr_condition5(t_cmd *c, int *rdr, int *i);
 void	check_rdr_error(char *s, t_c *counter);
 void	malloc_rdrs(t_cmd *c);
 void	clean_rdrs(t_cmd *c, int i);
+void	init_pipes(t_ms *m);
+char	**add_rdr_spaces(char **tmp);
+char	*malloc_rdr_space(char *s);
 
 /******************************Free_things*****************************/
 

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 06:10:26 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/06 06:10:47 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,12 @@ void	pars(t_ms *m)
 {
 	char	**tmp;
 
-	m->c_cmds = 0;
 	tmp = ft_split(m->rdln, '|');
 	while (tmp[m->c_cmds] && m->counters->error != 1)
 		check_rdr_error(tmp[m->c_cmds++], m->counters);
-	m->c_cmds = 0;
-	m->cmds = malloc(sizeof(t_cmd) * (m->counters->pipes + 3));
-	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 3));
+	if (m->counters->error != 1)
+		tmp = add_rdr_spaces(tmp);
+	init_pipes(m);
 	while (tmp[m->c_cmds] && m->counters->error != 1)
 	{
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
