@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:47:14 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/03 00:46:52 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:10:45 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	find_unsetxpx(t_list **data, char *name)
 	t_list	*tmp;
 
 	temp = *data;
-	while (temp)
+	while (temp->next)
 	{
 		if (ft_strncmp(temp->next->name, name, ft_strlen(name)) == 0)
 		{

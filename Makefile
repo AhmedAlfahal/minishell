@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/02 23:48:01 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/06 02:58:17 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC = ms_main.c 				\
 			ms_export.c				\
 			ms_exportex.c			\
 			ms_unset.c 				\
+			ms_others.c 			\
 			
 OBJ = $(SRC:.c=.o)
 CC = cc 
