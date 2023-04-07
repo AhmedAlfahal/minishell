@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 19:38:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/02 23:36:29 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/07 23:27:28 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ int	export_fun(t_ms *data)
 		while (temp)
 		{
 			if (temp->value)
-				printf("declare -x %s=\"%s\"\n", temp->name, temp->value);
+				printf("declare -x %s=\"%s\"\n",
+					(char *)temp->name, (char *)temp->value);
 			else
-				printf("declare -x %s\n", temp->name);
+				printf("declare -x %s\n", (char *)temp->name);
 			temp = temp->next;
 		}
 	}
@@ -92,10 +93,8 @@ int	check_envpath(char *s)
 int	find_upnv(t_ms *data, char *name, char *value)
 {
 	t_list	*temp;
-	int		i;
 
 	temp = data->envd;
-	i = 0;
 	while (temp)
 	{
 		if (ft_strncmp(temp->name, name, ft_strlen(temp->name)) == 0)

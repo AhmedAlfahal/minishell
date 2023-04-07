@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/06 02:59:24 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/07 23:27:03 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	exce(t_ms	*data)
 {
-	int		i;
-
-	i = 0;
 	if (builtin_fun(data) != 0 && data->c_cmds == 1)
 		other_fun(data);
 	return (0);

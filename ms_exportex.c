@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:23:33 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/02 03:27:22 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/08 01:54:25 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	find_upxp(t_ms *data, char *name, char *value)
 {
 	t_list	*temp;
-	int		i;
 
 	temp = data->expd;
-	i = 0;
 	while (temp)
 	{
 		if (ft_strncmp(temp->name, name, ft_strlen(name)) == 0)
@@ -36,7 +34,6 @@ int	find_upxp(t_ms *data, char *name, char *value)
 		find_updatexpx(data, name, value);
 	return (0);
 }
-
 
 int	find_updatexpx(t_ms *data, char *name, char *value)
 {

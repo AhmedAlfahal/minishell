@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/06 01:06:09 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/08 02:06:38 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
-size_t	ft_strlen_2d(char **s);
+int		ft_isrdr(char *s);
+int		crdr(char **s);
+int		ft_strlen_2d(char **s);
 
 /*********************************--Part Two--*********************************/
 

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:02:20 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/06 01:37:33 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/07 23:26:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ int	cd_fun(t_ms *data)
 {
 	t_cmd	*cm;
 	t_list	*temp;
-	int		i;
 
-	i = 0;
 	temp = data->envd;
 	cm = data->cmds;
 	if (cm->args[1] == NULL)
@@ -95,7 +93,7 @@ int	env_fun(t_ms *data)
 	while (temp)
 	{
 		if (temp->err == 0)
-			printf("%s=%s\n", temp->name, temp->value);
+			printf("%s=%s\n", (char *)temp->name, (char *)temp->value);
 		temp = temp->next;
 	}
 	return (0);

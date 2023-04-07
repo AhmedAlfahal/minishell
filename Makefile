@@ -6,17 +6,18 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/06 02:58:17 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/08 02:04:25 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 SRC = ms_main.c 				\
 			ms_builtins.c 		\
-		pars/counters_dupper.c		\
+			pars/helper_utils.c		\
 			pars/free_utils.c		\
-			pars/pars_utils.c		\
 			pars/pipes.c			\
+			pars/rdr_errors.c		\
+			pars/rdr.c				\
 			tmp_printers.c			\
 			ms_excute.c				\
 			ms_init_exc.c			\
@@ -34,7 +35,7 @@ SRC = ms_main.c 				\
 			
 OBJ = $(SRC:.c=.o)
 CC = cc 
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 LIBFT = ./libft/libft.a
 
 all: $(NAME)

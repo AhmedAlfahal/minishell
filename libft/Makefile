@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/01 23:25:34 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/08 02:06:19 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ OBJ		= 	ft_strdup.c		\
 			ft_toupper.c	\
 			ft_strchr.c 	\
 			ft_strncmp.c	\
+			ft_isrdr.c		\
 			ft_strjoin.c	\
 			ft_substr.c		\
 			ft_strtrim.c	\

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:47:14 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/06 03:10:45 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/08 01:54:08 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,12 @@ int	check_unsetpath(char *s)
 	return (0);
 }
 
-
 int	find_unsetxp(t_list **data, char *name)
 {
 	t_list	*temp;
 	t_list	*tmp;
-	int		i;
 
 	temp = *data;
-	i = 0;
 	if (ft_strncmp(temp->name, name, ft_strlen(name)) == 0)
 	{
 		tmp = temp;
@@ -69,7 +66,6 @@ int	find_unsetxp(t_list **data, char *name)
 	find_unsetxpx(data, name);
 	return (0);
 }
-
 
 int	find_unsetxpx(t_list **data, char *name)
 {

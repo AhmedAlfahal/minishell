@@ -6,11 +6,21 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/07 02:10:03 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/08 02:09:24 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	err_file2(char *str, t_ms *data)
+{
+	write(2, "minishell: ", 11);
+	ft_putstr_fd(str, 2);
+	write(2, ": command not found\n", 20);
+	free_all(data, 2);
+	f_free(data);
+	exit(g_code);
+}
 
 int	other_fun(t_ms *data)
 {
@@ -18,22 +28,23 @@ int	other_fun(t_ms *data)
 	char		*path;
 	int			id;
 
-	env = dupper_lst(data->envd);
+	env = NULL;
 	id = fork();
 	if (id == 0)
 	{
+		env = dupper_lst(data->envd);
 		if (data->cmds->args[0][0] == '/' || data->cmds->args[0][0] == '.')
 			path = ft_strdup(data->cmds->args[0]);
 		else
 			path = find_path(data, -1);
-		if (execve(path, data->cmds->args, env) < -1)
+		if (path && execve(path, data->cmds->args, env) < -1)
 		{
 			write(2, "error\n", 6);
 			free(path);
-			exit(0);
+			g_code = 127;
 		}
-		err_file(data->cmds->args[0], 127);
-		exit(0);
+		free_2d_array(env);
+		err_file(data->cmds->args[0], data);
 	}
 	wait(NULL);
 	return (0);
@@ -48,23 +59,23 @@ char	*find_path(t_ms *data, int i)
 	path = gen_path(data);
 	j = 0;
 	ptmp = NULL;
-	if (path)
+	if (!path)
 	{
-		while (path[++i])
-		{
-			ptmp = ft_strjoin3(path[i], data->cmds->args[0]);
-			j = access(ptmp, F_OK);
-			if (j == 0)
-				break ;
-			free (ptmp);
-		}
-		if (j != 0)
-			err_file(data->cmds->args[0], 127);
+		g_code = 127;
+		return (ptmp);
 	}
-	else
-		err_file(data->cmds->args[0], 127);
-	if (path)
-		free_2d_array(path);
+	while (path[++i])
+	{
+		ptmp = ft_strjoin3(path[i], data->cmds->args[0]);
+		j = access(ptmp, F_OK);
+		if (j == 0)
+			break ;
+		free (ptmp);
+		ptmp = NULL;
+	}
+	if (j != 0)
+		g_code = 127;
+	free_2d_array(path);
 	return (ptmp);
 }
 
@@ -87,7 +98,7 @@ char	**gen_path(t_ms *data)
 	return (path);
 }
 
-void	err_file(char *str, int code)
+void	err_file(char *str, t_ms *data)
 {
 	struct stat	st;
 
@@ -97,20 +108,19 @@ void	err_file(char *str, int code)
 		{
 			write(2, "minishell: ", 11);
 			perror(str);
-			exit(code);
+			free_all(data, 2);
+			f_free(data);
+			exit(g_code);
 		}
 		else
 		{
 			write(2, "minishell: ", 11);
 			perror(str);
-			exit(code);
+			free_all(data, 2);
+			f_free(data);
+			exit(g_code);
 		}
 	}
 	else
-	{
-		write(2, "minishell: ", 11);
-		ft_putstr_fd(str, 2);
-		write(2, ": command not found\n", 20);
-		exit(code);
-	}
+		err_file2(str, data);
 }
