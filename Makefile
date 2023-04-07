@@ -6,11 +6,11 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/07 02:00:41 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/07 21:55:40 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS	=	-g3 #-Wall -Wextra -Werror #-fsanitize=address
 
 NAME	=	minishell
 
@@ -22,6 +22,21 @@ SRC		=	pars/minishell.c		\
 			pars/pipes.c			\
 			pars/rdr_errors.c		\
 			pars/rdr.c				\
+			exec/ms_builtins.c		\
+			exec/ms_excute.c		\
+			exec/ms_export.c		\
+			exec/ms_exportex.c		\
+			exec/ms_init_exc.c		\
+			exec/ms_main.c			\
+			exec/ms_others.c		\
+			exec/ms_unset.c			\
+			lists/ft_lstnew.c		\
+			lists/ft_lstsize.c		\
+			lists/ft_lstlast.c		\
+			lists/ft_lstadd_back.c	\
+			lists/ft_lstadd_front.c	\
+			lists/ft_lstdelone.c 	\
+			lists/ft_lstclear.c		\
 			tmp_printers.c
 
 SRCS	=	$(SRC:%.c=%.o)

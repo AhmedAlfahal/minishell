@@ -6,11 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:29:55 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/03 02:49:52 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:47:55 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pars/minishell.h"
+#include"minishell.h"
 
 void	print_counters(t_c *counter)
 {

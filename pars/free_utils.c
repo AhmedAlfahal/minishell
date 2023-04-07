@@ -6,11 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 21:12:37 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:52:46 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static void	free_rdr(t_cmd s)
 {
@@ -59,7 +59,6 @@ void	free_all(t_ms *m, int exit)
 	else if (exit == 1)
 	{
 		free(m->counters);
-		free_2d_array(m->env);
 		return ;
 	}
 }

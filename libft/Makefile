@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/03 00:29:43 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/07 21:50:04 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,7 @@ OBJ		= 	ft_strdup.c				\
 			ft_strmapi.c			\
 			ft_striteri.c			\
 			ft_isrdr.c				\
-			ft_lstmap.c				\
-			ft_lstnew.c				\
-			ft_lstsize.c			\
-			ft_lstlast.c			\
-			ft_lstiter.c			\
-			ft_lstadd_back.c		\
-			ft_lstadd_front.c		\
+			ft_isalpha.c
 			
 OBJS 	= $(OBJ:%.c=%.o)
 
