@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 04:29:16 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:11:53 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	pars(t_ms *m)
 {
 	char	**tmp;
 
+	count(m->counters, m->rdln);
 	tmp = ft_split(m->rdln, '|');
 	while (tmp[m->c_cmds] && m->counters->error != 1)
 		check_rdr_error(tmp[m->c_cmds++], m->counters);

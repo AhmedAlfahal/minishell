@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/06 06:11:10 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:12:20 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@ void	init_pipes(t_ms *m)
 	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 2));
 }
 
-static void	init_counter(t_ms *m)
+static void	init_counter(t_ms *m, char **env)
 {
 	m->counters = malloc(sizeof(t_c));
 	ft_bzero(m->counters, sizeof(t_c));
+	dupper_2d(m, env);
 	m->c_cmds = 0;
 }
+
+// void	handler(int SIG)
+// {
+// 	if (SIG )
+// }
 
 int	main(int ac, char **av, char **env)
 {
@@ -32,20 +38,16 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	dupper_2d(&m, env);
-	init_counter(&m);
+	init_counter(&m, env);
 	while (1)
 	{
 		m.rdln = readline("minishell$:");
 		add_history(m.rdln);
 		if (ft_strlen(m.rdln) == 4 && !ft_strncmp("exit", m.rdln, 4))
 			break ;
-		count(m.counters, m.rdln);
 		pars(&m);
-		m.c_cmds = 0;
 		free_all(&m, 0);
 	}
-	free(m.counters);
-	free_2d_array(m.env);
+	free_all(&m, 1);
 	return (0);
 }

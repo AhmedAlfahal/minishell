@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/04 02:53:24 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:12:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ void	free_all(t_ms *m, int exit)
 	{
 		free_cmds(m);
 		ft_bzero(m->counters, sizeof(t_c));
+		m->c_cmds = 0;
+		return ;
+	}
+	else if (exit == 1)
+	{
+		free(m->counters);
+		free_2d_array(m->env);
 		return ;
 	}
 }
