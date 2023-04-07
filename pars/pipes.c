@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 03:56:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/07 04:29:16 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,9 @@ void	pars(t_ms *m)
 	while (tmp[m->c_cmds] && m->counters->error != 1)
 	{
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
+		clean_cots(&m->cmds[m->c_cmds], 0);
 		malloc_rdrs(&m->cmds[m->c_cmds]);
 		clean_rdrs(&m->cmds[m->c_cmds], 0);
-		clean_cots(&m->cmds[m->c_cmds], 0);
 		m->c_cmds++;
 	}
 	print_pipes(m);
