@@ -1,0 +1,14 @@
+-la
+Makefile
+cases.txt
+exec
+l
+libft
+lists
+minishell
+minishell.h
+pars
+readline_supp
+sh
+tmp_printers.c
+tmp_printers.o

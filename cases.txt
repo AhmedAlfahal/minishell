@@ -10,3 +10,8 @@ ls > a | <b >c
 ------Segfault-----
 >>f<<a
 ------Solved-------
+<a | ls >| k
+||||||||||||||||| >l <l
+"<<" ls ">" cat ">"
+'<<' ls '>' cat '>'
+file names in redirictions

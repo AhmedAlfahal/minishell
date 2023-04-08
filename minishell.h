@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 21:47:42 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:31:21 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
+# include <sys/wait.h>
+
+int	g_code;
 
 typedef enum redirection_flags
 {
@@ -68,6 +71,8 @@ typedef struct s_commands
 	char	**args;
 	t_rdr	*rdr;
 	int		c_rdr;
+	t_list	*envd;
+	t_list	*expd;
 }			t_cmd;
 
 typedef struct s_minishell
@@ -99,6 +104,7 @@ char	**add_rdr_spaces(char **tmp);
 void	check_rdr_error(char *s, t_c *counter);
 void	malloc_rdrs(t_cmd *c);
 void	clean_rdrs(t_cmd *c, int i);
+void	clean_expantion(t_cmd *c, t_ms *m);
 
 /******************************Free_things*******************************/
 
@@ -124,6 +130,7 @@ char	*env_name(char *path);
 char	*env_value(char *path);
 
 /******************************Exce_utils_builtins***********************/
+
 int		echo_fun(t_ms *data);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data);
@@ -148,6 +155,7 @@ char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
 char	*find_path(t_ms *data, int i);
 char	**gen_path(t_ms *data);
-void	err_file(char *str, int code);
+void	err_file(char *str, t_ms *data);
+void	f_free(t_ms *m);
 
 #endif

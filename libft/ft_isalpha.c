@@ -3,21 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 14:28:36 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/02 17:22:48 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
+/*   Updated: 2023/04/08 05:05:00 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+int	ft_isalpha(int s)
 {
-	int	re;
+	if ((s >= 'a' && s <= 'z')
+		|| (s >= 'A' && s <= 'Z'))
+		return (1);
+	else
+		return (0);
+}
 
-	re = 1;
-	if (c < 'A' || (c > 'Z' && c < 'a') || c > 'z')
-		re = 0;
-	return (re);
+int	ft_is_expn(char *c)
+{
+	int	i;
+
+	i = 0;
+	if (!c)
+		return (0);
+	while (c[i])
+	{
+		if (c[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	next_isalnum(char *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == '$')
+		{
+			while (s[i])
+			{
+				j++;
+				i++;
+			}
+			return (j);
+		}
+		i++;
+	}
+	return (i);
+}
+
+int	index_expn(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == '$')
+			return (i);
+		i++;
+	}
+	return (i);
 }
