@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 02:12:14 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/08 05:36:07 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,22 +136,15 @@ int		init_envlist(t_ms *data, char **env);
 int		env_fun(t_ms *data);
 int		export_fun(t_ms *data);
 int		sort_env(t_ms *data);
-int		set_exp(t_ms *data);
-int		find_upnv(t_ms *data, char *name, char *value);
-int		check_envpath(char *s);
 int		check_expath(char *s);
 int		find_upxp(t_ms *data, char *name, char *value);
-int		find_updatexpx(t_ms *data, char *name, char *value);
-int		check_expcmd(t_cmd *cm, t_ms *data, int i);
-int		find_unsetxp(t_list **data, char *name);
-int		find_unsetxpx(t_list **data, char *name);
 int		unset_fun(t_ms *data);
-int		check_unsetpath(char *s);
 char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
 char	*find_path(t_ms *data, int i);
 char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
+int		check_namepath(char *s);
 
 #endif

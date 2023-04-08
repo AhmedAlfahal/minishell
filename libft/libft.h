@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 02:06:38 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/08 05:29:41 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 int		ft_tolower(int s);
 int		ft_isalpha(int c);
+int		ft_isdigit(int c);
 char	*ft_stolower(char *str);
 int		ft_toupper(int s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
