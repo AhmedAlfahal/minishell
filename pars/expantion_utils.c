@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 05:01:48 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:56:10 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ static void	find_expan(char **s, t_ms *m)
 	local = *s;
 	tmp_name = NULL;
 	tmp = ft_substr(local, index_expn(local) + 1, next_isalnum(local));
+	printf("[%s]\n", tmp);
 	while (e)
 	{
-		if (ft_strncmp((char *)e->name, tmp, ft_strlen(tmp)) == 0)
+		if (ft_strncmp((char *)e->name, tmp, ft_strlen(tmp)) == 0 \
+		&& ft_strlen((char *)e->name) == ft_strlen(tmp))
 		{
 			tmp_name = ft_strjoin("$", (char *)e->name);
 			replace_expan(s, e->value, tmp);

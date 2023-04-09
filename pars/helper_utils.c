@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/09 05:00:00 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 06:11:35 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	rdr_remove_helper(t_cmd *c, t_ms *m, int i, int rdr)
 		write(2, "minishell: ", 12);
 		perror(" ");
 		m->counters->error = 1;
+		m->error = 1;
 	}
 }
 

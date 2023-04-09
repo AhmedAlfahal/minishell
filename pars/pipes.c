@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/09 04:52:49 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 06:16:18 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	pars(t_ms *m)
 	char	**tmp;
 
 	count(m->counters, m->rdln);
-	check_rdr_error(m->rdln, m->counters);
+	check_rdr_error(m, m->rdln);
 	tmp = ft_split(m->rdln, '|');
 	if (m->counters->error != 1)
 		tmp = add_rdr_spaces(tmp);

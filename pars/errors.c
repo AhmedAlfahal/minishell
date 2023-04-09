@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/09 01:42:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 06:17:36 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	rdr_condition(char *tmp, int i, int len, int *error)
 		*error = 1;
 }
 
-void	check_rdr_error(char *s, t_c *counter)
+void	check_rdr_error(t_ms *m, char *s)
 {
 	int			i;
 	size_t		len;
@@ -108,15 +108,16 @@ void	check_rdr_error(char *s, t_c *counter)
 	tmp = clone_wo_space(s);
 	len = ft_strlen(tmp);
 	if (cots_check(tmp, 0, ft_strlen(tmp)) != 0)
-		counter->error = 1;
+		m->counters->error = 1;
 	while (tmp[i])
 	{
-		rdr_condition(tmp, i, len, &counter->error);
-		pipes_condition(tmp, i, len, &counter->error);
-		if (counter->error == 1)
+		rdr_condition(tmp, i, len, &m->counters->error);
+		pipes_condition(tmp, i, len, &m->counters->error);
+		if (m->counters->error == 1)
 		{
 			write(2, "minishell: ", 12);
 			write(2, "syntax error near unexpected token\n", 36);
+			m->error = 258;
 			break ;
 		}
 		i++;

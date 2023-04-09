@@ -6,13 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/09 05:00:31 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 06:14:30 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	g_code = 0;
 
 void	init_pipes(t_ms *m)
 {
@@ -23,6 +21,7 @@ void	init_pipes(t_ms *m)
 
 static void	init_counter(t_ms *m, char **env)
 {
+	m->error = 0;
 	m->counters = malloc(sizeof(t_c));
 	ft_bzero(m->counters, sizeof(t_c));
 	dupper_2d(m, env);
@@ -50,8 +49,8 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(m.rdln) == 4 && !ft_strncmp("exit", m.rdln, 4))
 			break ;
 		pars(&m);
-		if (m.counters->error != 1)
-			exce(&m);
+		// if (m.error == 0)
+		// 	exce(&m);
 		free_all(&m, 0);
 	}
 	f_free(&m);
