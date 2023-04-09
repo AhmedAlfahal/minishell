@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 21:42:16 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 04:56:05 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void	rdr_remove(t_cmd *c, int k, int j, char **tmp)
 	c->args = tmp;
 }
 
-void	clean_rdrs(t_cmd *c, int i)
+void	clean_rdrs(t_ms *m, t_cmd *c, int i)
 {
 	int		rdr;
 
@@ -122,7 +122,7 @@ void	clean_rdrs(t_cmd *c, int i)
 		else if (c->args[i][0] == '<')
 			c->rdr[rdr].rdr_type = input;
 		if (c->rdr[rdr].rdr_type != 0)
-			c->rdr[rdr++].file_name = ft_strdup(c->args[i + 1]);
+			rdr_remove_helper(c, m, i, rdr++);
 		i++;
 	}
 	rdr_remove(c, 0, 0, NULL);

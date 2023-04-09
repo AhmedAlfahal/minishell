@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rdr_errors.c                                       :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/07 21:42:07 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:42:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,6 @@ void	malloc_rdrs(t_cmd *c)
 	}
 }
 
-static int	ft_wospace_len(char *s)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (!s || *s == 0)
-		return (0);
-	while (s[i] != '\0')
-	{
-		if (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13))
-			i++;
-		else
-		{
-			j++;
-			i++;
-		}
-	}
-	return (j);
-}
-
 static char	*clone_wo_space(char *s)
 {
 	char	*tmp;
@@ -75,20 +53,40 @@ static char	*clone_wo_space(char *s)
 	return (tmp);
 }
 
-static void	condition(char *tmp, int i, int len, int *error)
+static void	pipes_condition(char *tmp, int i, int len, int *error)
 {
-	if (tmp[i] == '<' && tmp[i + 1] == '<')
+	if (tmp[i] == '|' && (tmp[i + 1] == '|') && cots_check(tmp, 0, i) == 0)
 	{
 		if (len - i == 2)
 			*error = 1;
-		else if (tmp[i + 2] == '<' || tmp[i + 2] == '>')
+		*error = 1;
+	}
+	else if (tmp[i] == '|' && len - i == 1)
+		*error = 1;
+	else if (tmp[i] == '|' && i == 0)
+		*error = 1;
+	if (i > 0)
+		if (tmp[i] == '|' && (tmp[i - 1] == '<' || tmp[i - 1] == '>') \
+		&& cots_check(tmp, 0, i) == 0)
+			*error = 1;
+}
+
+static void	rdr_condition(char *tmp, int i, int len, int *error)
+{
+	if (tmp[i] == '<' && tmp[i + 1] == '<' && cots_check(tmp, 0, i) == 0)
+	{
+		if (len - i == 2)
+			*error = 1;
+		else if ((tmp[i + 2] == '<' || tmp[i + 2] == '>') \
+		&& cots_check(tmp, 0, i) == 0)
 			*error = 1;
 	}
 	else if (tmp[i] == '>' && tmp[i + 1] == '>')
 	{
 		if (len - i == 2)
 			*error = 1;
-		else if (tmp[i + 2] == '<' || tmp[i + 2] == '>')
+		else if ((tmp[i + 2] == '<' || tmp[i + 2] == '>') \
+		&& cots_check(tmp, 0, i) == 0)
 			*error = 1;
 	}
 	else if (((tmp[i] == '>' || tmp[i] == '<') \
@@ -109,11 +107,15 @@ void	check_rdr_error(char *s, t_c *counter)
 	i = 0;
 	tmp = clone_wo_space(s);
 	len = ft_strlen(tmp);
+	if (cots_check(tmp, 0, ft_strlen(tmp)) != 0)
+		counter->error = 1;
 	while (tmp[i])
 	{
-		condition(tmp, i, len, &counter->error);
+		rdr_condition(tmp, i, len, &counter->error);
+		pipes_condition(tmp, i, len, &counter->error);
 		if (counter->error == 1)
 		{
+			write(2, "minishell: ", 12);
 			write(2, "syntax error near unexpected token\n", 36);
 			break ;
 		}

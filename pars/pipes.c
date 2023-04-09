@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 05:21:14 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 04:52:49 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	clean_cots(t_cmd *c, int i)
 		else if (c->args[i][0] == '\'' \
 		&& c->args[i][ft_strlen(c->args[i]) - 1] == '\'')
 			remove_cots(&c->args[i], &t, '\'');
-		else if (ft_isrdr(c->args[i]) > 0)
+		else if (ft_cotlen(c->args[i]) > 0)
 		{
 			remove_cots(&c->args[i], &t, '\'');
 			remove_cots(&c->args[i], &t, '"');
@@ -90,36 +90,13 @@ static void	clean_cots(t_cmd *c, int i)
 	}
 }
 
-static void	pipes_error(t_ms *m)
-{
-	int	i;
-
-	i = 0;
-	m->error = 0;
-	if ((m->c_cmds == m->counters->pipes && m->c_cmds != 0) \
-	|| (ft_strlen(m->rdln) == 1 && m->rdln[0] == '|') \
-	|| cots_check(m->rdln, 0, ft_strlen(m->rdln)))
-		m->error = 1;
-	while (m->cmds[i].args != NULL && i + 1 != m->c_cmds)
-	{
-		if ((m->cmds[i].args[0] == 0 && m->cmds[i + 1].args[0] != 0 \
-		&& m->cmds[i].c_rdr == 0) || (m->cmds[m->c_cmds - 1].args[0] == 0 \
-		&& m->cmds[m->c_cmds - 1].c_rdr == 0))
-			m->error = 1;
-		i++;
-	}
-	if (m->error == 1)
-		write(2, "syntax error near unexpected token\n", 36);
-}
-
 void	pars(t_ms *m)
 {
 	char	**tmp;
 
 	count(m->counters, m->rdln);
+	check_rdr_error(m->rdln, m->counters);
 	tmp = ft_split(m->rdln, '|');
-	while (tmp[m->c_cmds] && m->counters->error != 1)
-		check_rdr_error(tmp[m->c_cmds++], m->counters);
 	if (m->counters->error != 1)
 		tmp = add_rdr_spaces(tmp);
 	init_pipes(m);
@@ -128,7 +105,7 @@ void	pars(t_ms *m)
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
 		clean_expantion(&m->cmds[m->c_cmds], m);
 		malloc_rdrs(&m->cmds[m->c_cmds]);
-		clean_rdrs(&m->cmds[m->c_cmds], 0);
+		clean_rdrs(m, &m->cmds[m->c_cmds], 0);
 		clean_cots(&m->cmds[m->c_cmds], 0);
 		m->c_cmds++;
 	}
@@ -138,6 +115,5 @@ void	pars(t_ms *m)
 		free_2d_array(tmp);
 		return ;
 	}
-	pipes_error(m);
 	free_2d_array(tmp);
 }

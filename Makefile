@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/08 04:30:48 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/09 04:18:25 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC		=	pars/minishell.c		\
 			pars/helper_utils.c		\
 			pars/free_utils.c		\
 			pars/pipes.c			\
-			pars/rdr_errors.c		\
+			pars/errors.c			\
 			pars/rdr.c				\
 			pars/expantion_utils.c	\
 			exec/ms_builtins.c		\

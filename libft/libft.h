@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 02:26:54 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/09 03:03:10 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	ft_bnzero(void *s, size_t start, size_t end);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
+int		ft_wospace_len(char *s);
+int		ft_cotlen(char *s);
+int		ft_strlen_2d(char **s);
 int		ft_isrdr(char *s);
 int		crdr(char **s);
-char	*near_rdr(char *s);
-int		next_rdr(char *s, int msg);
-int		ft_strlen_2d(char **s);
 
 /*********************************--Part Two--*********************************/
 
