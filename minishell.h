@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 05:36:07 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/09 06:16:57 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define MINISHELL_H
 
 # include "libft/libft.h"
-# include<stdio.h>
-# include<fcntl.h>
+# include <stdio.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
@@ -69,6 +70,8 @@ typedef struct s_commands
 	char	**args;
 	t_rdr	*rdr;
 	int		c_rdr;
+	t_list	*envd;
+	t_list	*expd;
 }			t_cmd;
 
 typedef struct s_minishell
@@ -79,8 +82,8 @@ typedef struct s_minishell
 	t_cmd	*cmds;
 	int		c_cmds;
 	t_c		*counters;
-	int		error;
 	int		i;
+	int		error;
 	t_list	*envd;
 	t_list	*expd;
 }			t_ms;
@@ -126,7 +129,7 @@ t_list	*ft_lstlast(t_list *lst);
 char	*env_name(char *path);
 char	*env_value(char *path);
 
-/******************************Exce_utils_builtins*****************************/
+/******************************Exce_utils_builtins***********************/
 
 int		echo_fun(t_ms *data);
 int		exce(t_ms	*data);
@@ -137,9 +140,6 @@ int		init_envlist(t_ms *data, char **env);
 int		env_fun(t_ms *data);
 int		export_fun(t_ms *data);
 int		sort_env(t_ms *data);
-int		check_expath(char *s);
-int		find_upxp(t_ms *data, char *name, char *value);
-int		unset_fun(t_ms *data);
 int		set_exp(t_ms *data);
 int		find_upnv(t_ms *data, char *name, char *value);
 int		check_envpath(char *s);
@@ -157,6 +157,5 @@ char	*find_path(t_ms *data, int i);
 char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
-int		check_namepath(char *s);
 
 #endif

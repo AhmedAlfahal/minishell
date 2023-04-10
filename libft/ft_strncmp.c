@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:19:34 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/03/30 23:47:54 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/08 05:07:56 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

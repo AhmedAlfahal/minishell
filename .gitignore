@@ -1,11 +1,12 @@
 .vs/
 *.o
 *.out
-pars/
 .vscode/
 .DS_Store
 *.a
 *.so
 libft/a.out.dSYM/Contents/Info.plist
 a.out.dSYM/
-
+minishell
+exec/
+lists/
