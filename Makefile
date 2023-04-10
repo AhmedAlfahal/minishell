@@ -36,9 +36,11 @@ SRC		=	pars/minishell.c		\
 			lists/ft_lstadd_back.c	\
 			lists/ft_lstadd_front.c	\
 			lists/ft_lstdelone.c 	\
-			lists/ft_lstclear.c		\
-			tmp_printers.c
-
+			lists/ft_lstclear.c		 \
+			ms_export.c				\
+			ms_exportex.c			\
+      ms_unset.c 				\
+			ms_others.c 			\
 SRCS	=	$(SRC:%.c=%.o)
 
 all : $(NAME)
@@ -54,5 +56,3 @@ clean:
 fclean: clean
 	make fclean -C ./libft
 	rm -fr $(NAME)
-
-re: fclean all
