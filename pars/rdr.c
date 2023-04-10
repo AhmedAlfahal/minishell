@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/09 04:56:05 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:10:11 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ static char	*add_space_rdr(char *s)
 	t.s = s;
 	while (s[t.i])
 	{
-		if ((s[t.i] == '>' || s[t.i] == '<') && !cots_check(s, 0, t.i))
+		if ((s[t.i] == '>' || s[t.i] == '<') && cots_check(s, 0, t.i) == 0)
 			t.a = s[t.i];
-		if (t.a == '>' && !cots_check(s, 0, t.i))
+		if (t.a == '>' && cots_check(s, 0, t.i) == 0)
 			t.b = '<';
-		else if (t.a == '<' && !cots_check(s, 0, t.i))
+		else if (t.a == '<' && cots_check(s, 0, t.i) == 0)
 			t.b = '>';
-		if (!cots_check(s, 0, t.i))
+		if (cots_check(s, 0, t.i) == 0)
 			condition(&t, &tmp);
-		if (s[t.i] == t.a && s[t.i + 1] == t.a)
+		if (s[t.i] == t.a && s[t.i + 1] == t.a && cots_check(s, 0, t.i) == 0)
 			t.i = t.i + 2;
 		if (s[t.i] == '\0')
 			break ;
@@ -104,7 +104,7 @@ static void	rdr_remove(t_cmd *c, int k, int j, char **tmp)
 	c->args = tmp;
 }
 
-void	clean_rdrs(t_ms *m, t_cmd *c, int i)
+void	clean_rdrs(t_cmd *c, int i)
 {
 	int		rdr;
 
@@ -122,7 +122,7 @@ void	clean_rdrs(t_ms *m, t_cmd *c, int i)
 		else if (c->args[i][0] == '<')
 			c->rdr[rdr].rdr_type = input;
 		if (c->rdr[rdr].rdr_type != 0)
-			rdr_remove_helper(c, m, i, rdr++);
+			rdr_remove_helper(c, i, rdr++);
 		i++;
 	}
 	rdr_remove(c, 0, 0, NULL);

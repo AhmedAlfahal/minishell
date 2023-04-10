@@ -21,4 +21,10 @@ file names in redirictions
 ls> ''"  | >l"''
 ls" | "''> k
 ------Solved-------
+>">>"
+<"<<'<    "
+<"<<<    "
+------Solved-------
+>         >''
+------Solved-------
 $USER__$?

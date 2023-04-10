@@ -6,13 +6,13 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/09 06:11:35 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/10 23:56:43 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	rdr_remove_helper(t_cmd *c, t_ms *m, int i, int rdr)
+void	rdr_remove_helper(t_cmd *c, int i, int rdr)
 {
 	t_tmp	t;
 
@@ -25,13 +25,6 @@ void	rdr_remove_helper(t_cmd *c, t_ms *m, int i, int rdr)
 	{
 		remove_cots(&c->rdr[rdr].file_name, &t, '"');
 		remove_cots(&c->rdr[rdr].file_name, &t, '\'');
-	}
-	if (c->rdr[rdr].file_name[0] == 0)
-	{
-		write(2, "minishell: ", 12);
-		perror(" ");
-		m->counters->error = 1;
-		m->error = 1;
 	}
 }
 

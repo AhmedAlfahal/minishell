@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/10 01:38:26 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/10 22:31:11 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,26 @@ int	ft_isalpha(int s)
 
 int	ft_is_expn(char *c)
 {
-	int	i;
+	int		i;
+	char	cot;
+	int		flag;
 
+	flag = 0;
+	cot = 0;
 	i = 0;
 	if (!c)
 		return (0);
 	while (c[i])
 	{
-		if (c[i] == '$')
+		if (c[i] == '"' || c[i] == '\'')
+		{
+			cot = c[i];
+			if (flag == 0)
+				flag = 1;
+			else if (flag == 1)
+				flag = 0;
+		}
+		if (c[i] == '$' && flag == 1 && cot == '\'')
 			return (1);
 		i++;
 	}
