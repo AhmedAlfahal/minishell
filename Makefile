@@ -3,24 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/08 02:04:25 by hmohamed         ###   ########.fr        #
+#    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
+#    Updated: 2023/04/09 04:18:25 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
-SRC = ms_main.c 				\
-			ms_builtins.c 		\
+CFLAGS	=	-g3 -Wall -Wextra -Werror #-fsanitize=address
+
+NAME	=	minishell
+
+LIBFT	=	libft/libft.a
+
+SRC		=	pars/minishell.c		\
 			pars/helper_utils.c		\
 			pars/free_utils.c		\
 			pars/pipes.c			\
-			pars/rdr_errors.c		\
+			pars/errors.c			\
 			pars/rdr.c				\
-			tmp_printers.c			\
-			ms_excute.c				\
-			ms_init_exc.c			\
+			pars/expantion_utils.c	\
+			exec/ms_builtins.c		\
+			exec/ms_excute.c		\
+			exec/ms_export.c		\
+			exec/ms_exportex.c		\
+			exec/ms_init_exc.c		\
+			exec/ms_others.c		\
+			exec/ms_unset.c			\
 			lists/ft_lstnew.c		\
 			lists/ft_lstsize.c		\
 			lists/ft_lstlast.c		\
@@ -30,26 +39,20 @@ SRC = ms_main.c 				\
 			lists/ft_lstclear.c		 \
 			ms_export.c				\
 			ms_exportex.c			\
-			ms_unset.c 				\
+      ms_unset.c 				\
 			ms_others.c 			\
-			
-OBJ = $(SRC:.c=.o)
-CC = cc 
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
-LIBFT = ./libft/libft.a
+SRCS	=	$(SRC:%.c=%.o)
 
-all: $(NAME)
+all : $(NAME)
 
-$(NAME) : $(OBJ)
-	make -C libft/
-	$(CC) $(CFLAGS) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline $(LIBFT) -o $(NAME) 
+$(NAME) : $(SRCS)
+	make -C ./libft
+	$(CC) $(CFLAGS) $(SRCS) -L/usr/local/lib -I/usr/local/include -lreadline $(LIBFT) -o $(NAME)
 
 clean:
-		rm -f *.o */*.o
-		make fclean -C \libft
+	make clean -C ./libft
+	rm -fr $(SRCS)
 
 fclean: clean
-		rm -f minishell
-		make fclean -C \libft
-		
-re: fclean all
+	make fclean -C ./libft
+	rm -fr $(NAME)

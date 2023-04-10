@@ -1,0 +1,24 @@
+ls > w | ls "><"
+ls>> | "| ls >| <s
+ls | ">>"
+------Syntax Error need to fix-----
+"asdasd>asdasd"''
+------Solved-------
+------Syntax Error need to fix-----
+ls > a | <b >c
+------Solved-------
+------Segfault-----
+>>f<<a
+------Solved-------
+<a | ls >| k
+||||||||||||||||| >l <l
+"<<" ls ">" cat ">"
+'<<' ls '>' cat '>'
+">><"
+"<>>"
+file names in redirictions
+------Solved-------
+ls> ''"  | >l"''
+ls" | "''> k
+------Solved-------
+$USER__$?

@@ -56,3 +56,21 @@ int	crdr(char **s)
 	}
 	return (j);
 }
+
+int	ft_cotlen(char *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == '\'' || s[i] == '"')
+			j++;
+		i++;
+	}
+	return (j);
+}

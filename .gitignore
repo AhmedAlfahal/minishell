@@ -8,5 +8,4 @@ pars/
 *.so
 libft/a.out.dSYM/Contents/Info.plist
 a.out.dSYM/
-tmp_printers.c
-minishell
+

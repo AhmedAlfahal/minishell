@@ -21,8 +21,6 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 
-int	g_code;
-
 typedef enum redirection_flags
 {
 	input = 1,
@@ -99,9 +97,11 @@ void	remove_cots(char **s, t_tmp *t, char cot);
 /******************************Redirections******************************/
 
 char	**add_rdr_spaces(char **tmp);
-void	check_rdr_error(char *s, t_c *counter);
+void	check_rdr_error(t_ms *m, char *s);
 void	malloc_rdrs(t_cmd *c);
-void	clean_rdrs(t_cmd *c, int i);
+void	clean_rdrs(t_ms *m, t_cmd *c, int i);
+void	clean_expantion(t_cmd *c, t_ms *m);
+void	rdr_remove_helper(t_cmd *c, t_ms *m, int i, int rdr);
 
 /******************************Free_things*******************************/
 
@@ -114,7 +114,7 @@ void	print_counters(t_c *counter);
 void	print_pipes(t_ms *m);
 void	print_2d_array(char **d);
 
-/******************************lists*****************************/
+/******************************Lists*************************************/
 
 t_list	*ft_lstnew(void *name, void *value, int err);
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -127,6 +127,7 @@ char	*env_name(char *path);
 char	*env_value(char *path);
 
 /******************************Exce_utils_builtins*****************************/
+
 int		echo_fun(t_ms *data);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data);
@@ -139,6 +140,17 @@ int		sort_env(t_ms *data);
 int		check_expath(char *s);
 int		find_upxp(t_ms *data, char *name, char *value);
 int		unset_fun(t_ms *data);
+int		set_exp(t_ms *data);
+int		find_upnv(t_ms *data, char *name, char *value);
+int		check_envpath(char *s);
+int		check_expath(char *s);
+int		find_upxp(t_ms *data, char *name, char *value);
+int		find_updatexpx(t_ms *data, char *name, char *value);
+int		check_expcmd(t_cmd *cm, t_ms *data, int i);
+int		find_unsetxp(t_list **data, char *name);
+int		find_unsetxpx(t_list **data, char *name);
+int		unset_fun(t_ms *data);
+int		check_unsetpath(char *s);
 char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
 char	*find_path(t_ms *data, int i);
