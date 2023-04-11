@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/11 13:16:24 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:26:35 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,38 @@ int	ft_isalpha(int s)
 		return (0);
 }
 
+static void	ft_is_expn_helper(t_vars *t, char *c)
+{
+	if (c[t->i] == '"' || c[t->i] == '\'')
+	{
+		if (t->flag == 0)
+		{
+			t->cot = c[t->i];
+			t->flag = 1;
+		}
+		else if (t->flag == 1 && t->cot == c[t->i])
+		{
+			t->cot = 0;
+			t->flag = 0;
+		}
+	}
+}
+
 int	ft_is_expn(char *c)
 {
-	int		i;
-	char	cot;
-	int		flag;
+	t_vars	t;
 
-	flag = 0;
-	cot = 0;
-	i = 0;
+	ft_bzero(&t, sizeof(t_vars));
 	if (!c)
 		return (0);
-	while (c[i])
+	while (c[t.i])
 	{
-		if (c[i] == '"' || c[i] == '\'')
-		{
-			if (flag == 0)
-			{
-				cot = c[i];
-				flag = 1;
-			}
-			else if (flag == 1 && cot == c[i])
-			{
-				cot = 0;
-				flag = 0;
-			}
-		}
-		if (c[i] == '$' && flag == 1 && cot == '"')
+		ft_is_expn_helper(&t, c);
+		if (c[t.i] == '$' && t.flag == 1 && t.cot == '"')
 			return (1);
-		else if (c[i] == '$' && flag != 1)
+		else if (c[t.i] == '$' && t.flag != 1)
 			return (1);
-		i++;
+		t.i++;
 	}
 	return (0);
 }
@@ -101,8 +102,3 @@ int	index_expn(char *s)
 	}
 	return (i);
 }
-
-// int	main(void)
-// {
-// 	printf("[%d]\n", next_isalnum("$USER....$USER"));
-// }

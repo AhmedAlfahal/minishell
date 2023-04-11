@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/09 03:03:10 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:26:18 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # include<stdlib.h>
 # include<unistd.h>
 # include<stdint.h>
+
+/*********************************--Structs--**********************************/
+
+typedef struct s_tmp_vars
+{
+	int		i;
+	char	cot;
+	int		flag;
+}			t_vars;
 
 /*********************************--Part One--*********************************/
 
