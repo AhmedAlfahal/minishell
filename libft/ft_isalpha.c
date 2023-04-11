@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/10 22:31:11 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:16:24 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,20 @@ int	ft_is_expn(char *c)
 	{
 		if (c[i] == '"' || c[i] == '\'')
 		{
-			cot = c[i];
 			if (flag == 0)
+			{
+				cot = c[i];
 				flag = 1;
-			else if (flag == 1)
+			}
+			else if (flag == 1 && cot == c[i])
+			{
+				cot = 0;
 				flag = 0;
+			}
 		}
-		if (c[i] == '$' && flag == 1 && cot == '\'')
+		if (c[i] == '$' && flag == 1 && cot == '"')
+			return (1);
+		else if (c[i] == '$' && flag != 1)
 			return (1);
 		i++;
 	}
@@ -66,8 +73,8 @@ int	next_isalnum(char *s)
 			i++;
 			j++;
 			while (s[i] \
-			&& (s[i] == '?' || ft_isalpha(s[i]) == 1 \
-			|| ft_isdigit(s[i]) == 1 || s[i] == '_'))
+			&& (s[i] == '?' || ft_isalpha(s[i]) == 1 || ft_isdigit(s[i]) == 1 \
+			|| s[i] == '_' || s[i] == '"' || s[i] == '\''))
 			{
 				j++;
 				i++;
