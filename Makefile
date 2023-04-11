@@ -6,11 +6,11 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/10 22:46:16 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/11 01:12:02 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS	=	-g3 -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	=	-g3 -Wall -Wextra -Werror #-fsanitize=address
 
 NAME	=	minishell
 
