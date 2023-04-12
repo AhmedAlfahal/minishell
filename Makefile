@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/08 23:16:15 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/13 00:28:59 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = ms_main.c 				\
 			ms_unset.c 				\
 			ms_others.c 			\
 			ms_pipes.c 				\
+			ms_pipes2.c 			\
 			
 OBJ = $(SRC:.c=.o)
 CC = cc 

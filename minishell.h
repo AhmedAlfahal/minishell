@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/10 00:19:13 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:02:08 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_minishell
 	t_c		*counters;
 	int		error;
 	int		i;
+	int		fd[2][2];
 	t_list	*envd;
 	t_list	*expd;
 }			t_ms;
@@ -129,7 +130,7 @@ char	*env_value(char *path);
 /******************************Exce_utils_builtins*****************************/
 int		echo_fun(t_ms *data);
 int		exce(t_ms	*data);
-int		builtin_fun(t_ms *data);
+int		builtin_fun(t_ms *data, int i);
 int		pwd_fun(t_ms *data);
 int		cd_fun(t_ms *data);
 int		init_envlist(t_ms *data, char **env);
@@ -147,5 +148,7 @@ void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
 int		check_namepath(char *s);
 int		pipe_fun(t_ms *data);
+void	exec_ve(t_ms *data, int i);
+void	med_cmd(t_ms *data, int i);
 
 #endif
