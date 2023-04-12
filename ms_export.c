@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 19:38:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/08 05:38:13 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:16:28 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,55 +47,55 @@ static int	find_upnv(t_ms *data, char *name, char *value)
 	return (0);
 }
 
-static int	check_expcmd(t_cmd *cm, t_ms *data, int i)
+static int	check_expcmd(t_cmd *cm, t_ms *data, int i, int k)
 {
-	if ((ft_isalpha(cm->args[i][0]) || cm->args[i][0] == '_')
-		&& check_namepath(cm->args[i]))
+	if ((ft_isalpha(cm[k].args[i][0]) || cm[k].args[i][0] == '_')
+		&& check_namepath(cm[k].args[i]))
 	{
-		if (check_envpath(cm->args[i]))
+		if (check_envpath(cm[k].args[i]))
 		{	
-			find_upnv(data, env_name(cm->args[i]), env_value(cm->args[i]));
-			find_upxp(data, env_name(cm->args[i]), env_value(cm->args[i]));
+			find_upnv(data, env_name(cm[k].args[i]), env_value(cm[k].args[i]));
+			find_upxp(data, env_name(cm[k].args[i]), env_value(cm[k].args[i]));
 		}
 		else if (check_expath(cm->args[i]))
 		{
-			find_upxp(data, env_name(cm->args[i]), "");
-			find_upnv(data, env_name(cm->args[i]), "");
+			find_upxp(data, env_name(cm[k].args[i]), "");
+			find_upnv(data, env_name(cm[k].args[i]), "");
 		}
 		else
-			find_upxp(data, env_name(cm->args[i]), NULL);
+			find_upxp(data, env_name(cm[k].args[i]), NULL);
 	}
 	else
 	{
 		write(2, "minishell: export: `", 20);
-		write(2, cm->args[i], ft_strlen(cm->args[i]));
+		write(2, cm[k].args[i], ft_strlen(cm[k].args[i]));
 		write(2, "\': not a valid identifier\n", 26);
 	}
 	return (0);
 }
 
-static int	set_exp(t_ms *data)
+static int	set_exp(t_ms *data, int k)
 {
 	t_cmd	*cm;
 	int		i;
 
 	cm = data->cmds;
 	i = 0;
-	while (cm->args[++i])
+	while (cm[k].args[++i])
 	{
-		check_expcmd(cm, data, i);
+		check_expcmd(cm, data, i, k);
 	}
 	return (0);
 }
 
-int	export_fun(t_ms *data)
+int	export_fun(t_ms *data, int k)
 {
 	t_list	*temp;
 	t_cmd	*cm;
 
 	temp = data->expd;
 	cm = data->cmds;
-	if (!cm->args[1])
+	if (!cm[k].args[1])
 	{
 		while (temp)
 		{
@@ -109,7 +109,7 @@ int	export_fun(t_ms *data)
 	}
 	else
 	{
-		set_exp(data);
+		set_exp(data, k);
 	}
 	return (0);
 }

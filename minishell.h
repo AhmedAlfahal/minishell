@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 01:02:08 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:20:05 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,18 +128,18 @@ char	*env_name(char *path);
 char	*env_value(char *path);
 
 /******************************Exce_utils_builtins*****************************/
-int		echo_fun(t_ms *data);
+int		echo_fun(t_ms *data, int k);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data, int i);
-int		pwd_fun(t_ms *data);
-int		cd_fun(t_ms *data);
+int		pwd_fun(t_ms *data, int k);
+int		cd_fun(t_ms *data, int k);
 int		init_envlist(t_ms *data, char **env);
-int		env_fun(t_ms *data);
-int		export_fun(t_ms *data);
+int		env_fun(t_ms *data, int k);
+int		export_fun(t_ms *data, int k);
 int		sort_env(t_ms *data);
 int		check_expath(char *s);
 int		find_upxp(t_ms *data, char *name, char *value);
-int		unset_fun(t_ms *data);
+int		unset_fun(t_ms *data, int k);
 char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
 char	*find_path(t_ms *data, int i, int ij);

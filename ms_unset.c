@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:47:14 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/08 04:21:27 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:32:46 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,25 @@ static int	find_unsetxp(t_list **data, char *name)
 	return (0);
 }
 
-int	unset_fun(t_ms *data)
+int	unset_fun(t_ms *data, int k)
 {
 	t_cmd	*cm;
 	int		i;
 
 	cm = data->cmds;
 	i = 0;
-	while (cm->args[++i])
+	while (cm[k].args[++i])
 	{
-		if ((ft_isalpha(cm->args[i][0]) || cm->args[i][0] == '_')
-			&& !check_unsetpath(cm->args[i]))
+		if ((ft_isalpha(cm[k].args[i][0]) || cm[k].args[i][0] == '_')
+			&& !check_unsetpath(cm[k].args[i]))
 		{
-			find_unsetxp(&data->envd, env_name(cm->args[i]));
-			find_unsetxp(&data->expd, env_name(cm->args[i]));
+			find_unsetxp(&data->envd, env_name(cm[k].args[i]));
+			find_unsetxp(&data->expd, env_name(cm[k].args[i]));
 		}
 		else
 		{
 			write(2, "minishell: unset: `", 19);
-			write(2, cm->args[i], ft_strlen(cm->args[i]));
+			write(2, cm[k].args[i], ft_strlen(cm[k].args[i]));
 			write(2, "\': not a valid identifier\n", 26);
 		}
 	}
