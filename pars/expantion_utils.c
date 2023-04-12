@@ -6,13 +6,13 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/11 13:26:57 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:27:59 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	replace_expan(char **s, char *val, char *name)
+static void	replace_expan(char **s, char *val, char *name, int *done)
 {
 	char	*local;
 	char	*tmp;
@@ -36,33 +36,34 @@ static void	replace_expan(char **s, char *val, char *name)
 	tmp[t.j] = 0;
 	free(*s);
 	*s = tmp;
+	*done = 1;
 }
 
 static void	find_expan(char **s, t_ms *m)
 {
-	char	*local;
-	char	*tmp;
-	int		found;
+	t_tmp	t;
 	t_list	*e;
 
+	ft_bzero(&t, sizeof(t_tmp));
 	e = m->expd;
-	local = *s;
-	found = 0;
-	tmp = ft_substr(local, index_expn(local) + 1, next_isalnum(local));
+	t.s = *s;
+	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, next_isalnum(t.s));
+	printf("[%s]\n", t.tmp);
 	while (e)
 	{
-		if (ft_strncmp((char *)e->name, tmp, ft_strlen(tmp)) == 0 \
-		&& ft_strlen((char *)e->name) == ft_strlen(tmp))
+		if (ft_strncmp((char *)e->name, t.tmp, ft_strlen(t.tmp)) == 0 \
+		&& ft_strlen((char *)e->name) == ft_strlen(t.tmp))
+			replace_expan(s, e->value, t.tmp, &t.x);
+		else if (ft_strncmp("?", t.tmp, 1) == 0 && ft_strlen(t.tmp) == 1)
 		{
-			replace_expan(s, e->value, tmp);
-			found = 1;
+			t.malloced = ft_itoa(m->error);
+			replace_expan(s, t.malloced, t.tmp, &t.x);
+			free(t.malloced);
 		}
-		else if (ft_strncmp("?", tmp, 1) == 0)
-			replace_expan(s, ft_itoa(m->error), tmp);
 		e = e->next;
 	}
-	free(tmp);
-	if (ft_is_expn(*s) == 1 && found == 1)
+	free(t.tmp);
+	if (ft_is_expn(*s) == 1 && t.x == 1)
 		find_expan(s, m);
 }
 
@@ -76,7 +77,9 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 	while (c->args[i])
 	{
 		if (ft_is_expn(c->args[i]) == 1)
+		{
 			find_expan(&c->args[i], m);
+		}
 		i++;
 	}
 }

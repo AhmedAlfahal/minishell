@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/10 22:47:27 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:23:46 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_counters
 typedef struct s_tmprdr
 {
 	char	*s;
+	char	*tmp;
+	char	*malloced;
 	char	a;
 	char	b;
 	int		i;
