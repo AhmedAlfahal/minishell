@@ -10,3 +10,5 @@ libft/a.out.dSYM/Contents/Info.plist
 a.out.dSYM/
 tmp_printers.c
 minishell
+check_leaks.sh
+readline_supp
