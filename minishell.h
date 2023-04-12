@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 05:36:07 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/10 00:19:13 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,10 +141,11 @@ int		find_upxp(t_ms *data, char *name, char *value);
 int		unset_fun(t_ms *data);
 char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
-char	*find_path(t_ms *data, int i);
+char	*find_path(t_ms *data, int i, int ij);
 char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
 int		check_namepath(char *s);
+int		pipe_fun(t_ms *data);
 
 #endif

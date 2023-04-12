@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/08 02:09:24 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/10 00:19:05 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	other_fun(t_ms *data)
 		if (data->cmds->args[0][0] == '/' || data->cmds->args[0][0] == '.')
 			path = ft_strdup(data->cmds->args[0]);
 		else
-			path = find_path(data, -1);
+			path = find_path(data, -1, 0);
 		if (path && execve(path, data->cmds->args, env) < -1)
 		{
 			write(2, "error\n", 6);
@@ -50,7 +50,7 @@ int	other_fun(t_ms *data)
 	return (0);
 }
 
-char	*find_path(t_ms *data, int i)
+char	*find_path(t_ms *data, int i, int ij)
 {
 	char	**path;
 	char	*ptmp;
@@ -66,7 +66,7 @@ char	*find_path(t_ms *data, int i)
 	}
 	while (path[++i])
 	{
-		ptmp = ft_strjoin3(path[i], data->cmds->args[0]);
+		ptmp = ft_strjoin3(path[i], data->cmds[ij].args[0]);
 		j = access(ptmp, F_OK);
 		if (j == 0)
 			break ;
