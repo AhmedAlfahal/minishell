@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 22:07:57 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/14 01:21:38 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 	*done = 1;
 }
 
-static void	find_expan(char **s, t_ms *m)
+static void	find_expan(char **s, t_ms *m, int ig)
 {
 	t_tmp	t;
 	t_list	*e;
@@ -47,8 +47,8 @@ static void	find_expan(char **s, t_ms *m)
 	ft_bzero(&t, sizeof(t_tmp));
 	e = m->expd;
 	t.s = *s;
-	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, next_isalnum(t.s));
-	printf("[%s]\n", t.tmp);
+	t.tmp = ft_substr(t.s, index_expn(t.s, ig) + 1, next_isalnum(t.s, ig));
+	printf("[%d]	[%d]\n", index_expn(t.s, ig) + 1, next_isalnum(t.s, ig));
 	while (e)
 	{
 		if (ft_strncmp((char *)e->name, t.tmp, ft_strlen(t.tmp)) == 0 \
@@ -63,8 +63,17 @@ static void	find_expan(char **s, t_ms *m)
 		e = e->next;
 	}
 	free(t.tmp);
-	if (ft_is_expn(*s) == 1 && t.x == 1)
-		find_expan(s, m);
+	printf("[%s]	[%d]\n", *s, ft_is_expn(*s));
+	if (ft_is_expn(*s) == 1 && t.x == 0)
+	{
+		ft_cut(s, index_expn(t.s, ig), next_isalnum(t.s, ig));
+		find_expan(s, m, ig);
+	}
+	else if (ft_is_expn(*s) == 1 && t.x == 1)
+	{
+		printf("HELLLO\n");
+		find_expan(s, m, ig++);
+	}
 }
 
 void	clean_expantion(t_cmd *c, t_ms *m)
@@ -78,7 +87,7 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 	{
 		if (ft_is_expn(c->args[i]) == 1)
 		{
-			find_expan(&c->args[i], m);
+			find_expan(&c->args[i], m, 0);
 		}
 		i++;
 	}

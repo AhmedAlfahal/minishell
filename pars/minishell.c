@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 22:12:45 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:41:38 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(m.rdln) == 4 && !ft_strncmp("exit", m.rdln, 4))
 			break ;
 		pars(&m);
-		if (m.error == 0)
-			exce(&m);
+		// if (m.error == 0)
+		// 	exce(&m);
 		free_all(&m, 0);
 	}
 	f_free(&m);

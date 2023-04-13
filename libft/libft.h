@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/11 13:26:18 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/14 01:20:08 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 typedef struct s_tmp_vars
 {
 	int		i;
+	int		j;
+	int		k;
 	char	cot;
 	int		flag;
 }			t_vars;
@@ -32,9 +34,9 @@ int		ft_tolower(int s);
 int		ft_toupper(int s);
 int		ft_isdigit(int s);
 int		ft_isalpha(int c);
-int		next_isalnum(char *s);
+int		next_isalnum(char *s, int ignored);
 int		ft_is_expn(char *c);
-int		index_expn(char *s);
+int		index_expn(char *s, int ignored);
 char	*ft_stolower(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);
@@ -42,7 +44,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	ft_bzero(void *s, size_t n);
-void	ft_bnzero(void *s, size_t start, size_t end);
+void	ft_cut(char **s, int start, int end);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
