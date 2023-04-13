@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/12 14:23:46 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:12:16 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft/libft.h"
 # include <stdio.h>
-# include <errno.h>
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -84,8 +83,10 @@ typedef struct s_minishell
 	t_cmd	*cmds;
 	int		c_cmds;
 	t_c		*counters;
-	int		i;
+	int		error_code;
 	int		error;
+	int		i;
+	int		fd[2][2];
 	t_list	*envd;
 	t_list	*expd;
 }			t_ms;
@@ -133,24 +134,27 @@ char	*env_value(char *path);
 
 /******************************Exce_utils_builtins***********************/
 
-int		echo_fun(t_ms *data);
+int		echo_fun(t_ms *data, int k);
 int		exce(t_ms	*data);
-int		builtin_fun(t_ms *data);
-int		pwd_fun(t_ms *data);
-int		cd_fun(t_ms *data);
+int		builtin_fun(t_ms *data, int i);
+int		pwd_fun(t_ms *data, int k);
+int		cd_fun(t_ms *data, int k);
 int		init_envlist(t_ms *data, char **env);
-int		env_fun(t_ms *data);
-int		export_fun(t_ms *data);
+int		env_fun(t_ms *data, int k);
+int		export_fun(t_ms *data, int k);
 int		sort_env(t_ms *data);
 int		check_expath(char *s);
 int		find_upxp(t_ms *data, char *name, char *value);
-int		unset_fun(t_ms *data);
+int		unset_fun(t_ms *data, int k);
 char	**dupper_lst(t_list *lst);
 int		other_fun(t_ms *data);
-char	*find_path(t_ms *data, int i);
+char	*find_path(t_ms *data, int i, int ij);
 char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
 int		check_namepath(char *s);
+int		pipe_fun(t_ms *data);
+void	exec_ve(t_ms *data, int i);
+void	med_cmd(t_ms *data, int i);
 
 #endif

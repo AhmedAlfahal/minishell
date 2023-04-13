@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/11 13:01:47 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:14:03 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ void	check_rdr_error(t_ms *m, char *s)
 		{
 			write(2, "minishell: ", 12);
 			write(2, "syntax error near unexpected token\n", 36);
-			m->error = 258;
+			m->error_code = 258;
+			m->error = 1;
 			break ;
 		}
 		t.i++;

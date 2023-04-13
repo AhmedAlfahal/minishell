@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/12 14:27:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:07:57 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	find_expan(char **s, t_ms *m)
 			replace_expan(s, e->value, t.tmp, &t.x);
 		else if (ft_strncmp("?", t.tmp, 1) == 0 && ft_strlen(t.tmp) == 1)
 		{
-			t.malloced = ft_itoa(m->error);
+			t.malloced = ft_itoa(m->error_code);
 			replace_expan(s, t.malloced, t.tmp, &t.x);
 			free(t.malloced);
 		}
