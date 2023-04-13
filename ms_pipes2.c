@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/13 00:49:34 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:31:09 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	exec_ve(t_ms *data, int i)
 	{
 		write(2, "error\n", 6);
 		free(path);
-		g_code = 127;
+		data->error_code = 127;
 	}
 	free_2d_array(env);
 	err_file(data->cmds[i].args[0], data);

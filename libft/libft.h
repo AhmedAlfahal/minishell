@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/08 05:29:41 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:37:00 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,26 @@
 # include<unistd.h>
 # include<stdint.h>
 
+/*********************************--Structs--**********************************/
+
+typedef struct s_tmp_vars
+{
+	int		i;
+	char	cot;
+	int		flag;
+}			t_vars;
+
 /*********************************--Part One--*********************************/
 
 int		ft_tolower(int s);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
+int		next_isalnum(char *s);
+int		ft_is_expn(char *c);
+int		index_expn(char *s);
 char	*ft_stolower(char *str);
+int		ft_cotlen(char *s);
+int		ft_wospace_len(char *s);
 int		ft_toupper(int s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);

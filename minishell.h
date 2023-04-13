@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 01:20:05 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:12:16 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 # define MINISHELL_H
 
 # include "libft/libft.h"
-# include<stdio.h>
-# include<fcntl.h>
+# include <stdio.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-
-int	g_code;
 
 typedef enum redirection_flags
 {
@@ -53,6 +51,8 @@ typedef struct s_counters
 typedef struct s_tmprdr
 {
 	char	*s;
+	char	*tmp;
+	char	*malloced;
 	char	a;
 	char	b;
 	int		i;
@@ -71,6 +71,8 @@ typedef struct s_commands
 	char	**args;
 	t_rdr	*rdr;
 	int		c_rdr;
+	t_list	*envd;
+	t_list	*expd;
 }			t_cmd;
 
 typedef struct s_minishell
@@ -81,6 +83,7 @@ typedef struct s_minishell
 	t_cmd	*cmds;
 	int		c_cmds;
 	t_c		*counters;
+	int		error_code;
 	int		error;
 	int		i;
 	int		fd[2][2];
@@ -100,9 +103,11 @@ void	remove_cots(char **s, t_tmp *t, char cot);
 /******************************Redirections******************************/
 
 char	**add_rdr_spaces(char **tmp);
-void	check_rdr_error(char *s, t_c *counter);
+void	check_rdr_error(t_ms *m, char *s);
 void	malloc_rdrs(t_cmd *c);
 void	clean_rdrs(t_cmd *c, int i);
+void	clean_expantion(t_cmd *c, t_ms *m);
+void	rdr_remove_helper(t_cmd *c, int i, int rdr);
 
 /******************************Free_things*******************************/
 
@@ -115,7 +120,7 @@ void	print_counters(t_c *counter);
 void	print_pipes(t_ms *m);
 void	print_2d_array(char **d);
 
-/******************************lists*****************************/
+/******************************Lists*************************************/
 
 t_list	*ft_lstnew(void *name, void *value, int err);
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -127,7 +132,8 @@ t_list	*ft_lstlast(t_list *lst);
 char	*env_name(char *path);
 char	*env_value(char *path);
 
-/******************************Exce_utils_builtins*****************************/
+/******************************Exce_utils_builtins***********************/
+
 int		echo_fun(t_ms *data, int k);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data, int i);

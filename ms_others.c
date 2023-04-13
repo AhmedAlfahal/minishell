@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/10 00:19:05 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:31:01 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	err_file2(char *str, t_ms *data)
 	write(2, ": command not found\n", 20);
 	free_all(data, 2);
 	f_free(data);
-	exit(g_code);
+	exit(data->error_code);
 }
 
 int	other_fun(t_ms *data)
@@ -41,7 +41,7 @@ int	other_fun(t_ms *data)
 		{
 			write(2, "error\n", 6);
 			free(path);
-			g_code = 127;
+			data->error_code = 127;
 		}
 		free_2d_array(env);
 		err_file(data->cmds->args[0], data);
@@ -61,7 +61,7 @@ char	*find_path(t_ms *data, int i, int ij)
 	ptmp = NULL;
 	if (!path)
 	{
-		g_code = 127;
+		data->error_code = 127;
 		return (ptmp);
 	}
 	while (path[++i])
@@ -74,7 +74,7 @@ char	*find_path(t_ms *data, int i, int ij)
 		ptmp = NULL;
 	}
 	if (j != 0)
-		g_code = 127;
+		data->error_code = 127;
 	free_2d_array(path);
 	return (ptmp);
 }
@@ -110,7 +110,7 @@ void	err_file(char *str, t_ms *data)
 			perror(str);
 			free_all(data, 2);
 			f_free(data);
-			exit(g_code);
+			exit(data->error_code);
 		}
 		else
 		{
@@ -118,7 +118,7 @@ void	err_file(char *str, t_ms *data)
 			perror(str);
 			free_all(data, 2);
 			f_free(data);
-			exit(g_code);
+			exit(data->error_code);
 		}
 	}
 	else
