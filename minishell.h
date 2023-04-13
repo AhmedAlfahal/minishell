@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 22:12:16 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/14 01:53:45 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,7 @@ int		check_namepath(char *s);
 int		pipe_fun(t_ms *data);
 void	exec_ve(t_ms *data, int i);
 void	med_cmd(t_ms *data, int i);
+int		check_red(t_cmd *tcheck, int type);
+int		redir_fun(t_ms *data);
 
 #endif

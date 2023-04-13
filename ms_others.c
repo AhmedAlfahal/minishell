@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/13 22:31:01 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/14 01:51:06 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	other_fun(t_ms *data)
 	id = fork();
 	if (id == 0)
 	{
+		if (data->cmds->c_rdr > 0)
+			redir_fun(data);
 		env = dupper_lst(data->envd);
 		if (data->cmds->args[0][0] == '/' || data->cmds->args[0][0] == '.')
 			path = ft_strdup(data->cmds->args[0]);
