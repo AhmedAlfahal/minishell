@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/14 01:06:48 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/14 10:10:50 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	next_isalnum_helper(t_vars *t, char *s)
 	while (s[t->i] \
 	&& (s[t->i] == '?' || ft_isalpha(s[t->i]) == 1 \
 	|| ft_isdigit(s[t->i]) == 1 \
-	|| s[t->i] == '_' || s[t->i] == '"' || s[t->i] == '\''))
+	|| s[t->i] == '_' || s[t->i + 1] == '"' || s[t->i + 1] == '\''))
 	{
 		t->j++;
 		t->i++;
@@ -79,6 +79,8 @@ int	next_isalnum(char *s, int ignored)
 		else if (s[t.i] == '$' && t.k == ignored)
 		{
 			next_isalnum_helper(&t, s);
+			if (s[t.i] == '"' || s[t.i] == '\'')
+				t.i--;
 			return (t.i);
 		}
 		t.i++;

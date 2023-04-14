@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/14 01:21:38 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/14 09:50:20 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 	{
 		if (local[t.i + 1] == *name && t.x != 1)
 		{
-			while (*val)
+			while (*val)	
 				tmp[t.j++] = *val++;
 			t.i = t.i + ft_strlen(name) + 1;
 			t.x = 1;
@@ -49,6 +49,7 @@ static void	find_expan(char **s, t_ms *m, int ig)
 	t.s = *s;
 	t.tmp = ft_substr(t.s, index_expn(t.s, ig) + 1, next_isalnum(t.s, ig));
 	printf("[%d]	[%d]\n", index_expn(t.s, ig) + 1, next_isalnum(t.s, ig));
+	printf("[%s]\n", t.tmp);
 	while (e)
 	{
 		if (ft_strncmp((char *)e->name, t.tmp, ft_strlen(t.tmp)) == 0 \
@@ -66,7 +67,7 @@ static void	find_expan(char **s, t_ms *m, int ig)
 	printf("[%s]	[%d]\n", *s, ft_is_expn(*s));
 	if (ft_is_expn(*s) == 1 && t.x == 0)
 	{
-		ft_cut(s, index_expn(t.s, ig), next_isalnum(t.s, ig));
+		ft_cut(s, index_expn(t.s, ig), next_isalnum(t.s, ig) - 1);
 		find_expan(s, m, ig);
 	}
 	else if (ft_is_expn(*s) == 1 && t.x == 1)
