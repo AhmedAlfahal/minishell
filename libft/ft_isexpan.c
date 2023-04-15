@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/14 10:10:50 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/15 02:44:54 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ int	ft_is_expn(char *c)
 	while (c[t.i])
 	{
 		ft_is_expn_helper(&t, c);
-		if (c[t.i] == '$' && t.flag == 1 && t.cot == '"')
+		if (c[t.i] == '$' && c[t.i + 1] == '$' && t.flag == 1 && t.cot == '"')
+			return (2);
+		else if (c[t.i] == '$' && c[t.i + 1] == '$' && t.flag != 1)
+			return (2);
+		else if (c[t.i] == '$' && t.flag == 1 && t.cot == '"')
 			return (1);
 		else if (c[t.i] == '$' && t.flag != 1)
 			return (1);
@@ -48,21 +52,33 @@ int	ft_is_expn(char *c)
 	return (0);
 }
 
-static void	next_isalnum_helper(t_vars *t, char *s)
+int	next_isalnum(char *s)
 {
-	t->i++;
-	t->j++;
-	while (s[t->i] \
-	&& (s[t->i] == '?' || ft_isalpha(s[t->i]) == 1 \
-	|| ft_isdigit(s[t->i]) == 1 \
-	|| s[t->i] == '_' || s[t->i + 1] == '"' || s[t->i + 1] == '\''))
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
 	{
-		t->j++;
-		t->i++;
+		if (s[i] == '$')
+		{
+			i++;
+			if (s[i] == '?')
+				return (++i);
+			while (s[i] && (ft_isalpha(s[i]) == 1 || ft_isdigit(s[i]) == 1 \
+			|| s[i] == '_'))
+				i++;
+			if (s[i - 1] == '"' || s[i - 1] == '\'')
+				i--;
+			return (i);
+		}
+		i++;
 	}
+	return (i);
 }
 
-int	next_isalnum(char *s, int ignored)
+int	index_expn(char *s)
 {
 	t_vars	t;
 
@@ -71,38 +87,7 @@ int	next_isalnum(char *s, int ignored)
 		return (0);
 	while (s[t.i])
 	{
-		if (s[t.i] == '$' && t.k != ignored)
-		{
-			t.i++;
-			t.k++;
-		}
-		else if (s[t.i] == '$' && t.k == ignored)
-		{
-			next_isalnum_helper(&t, s);
-			if (s[t.i] == '"' || s[t.i] == '\'')
-				t.i--;
-			return (t.i);
-		}
-		t.i++;
-	}
-	return (t.i);
-}
-
-int	index_expn(char *s, int ignored)
-{
-	t_vars	t;
-
-	ft_bzero(&t, sizeof(t_vars));
-	if (!s)
-		return (0);
-	while (s[t.i])
-	{
-		if (s[t.i] == '$' && t.j != ignored)
-		{
-			t.i++;
-			t.j++;
-		}
-		else if (s[t.i] == '$')
+		if (s[t.i] == '$')
 			return (t.i);
 		t.i++;
 	}

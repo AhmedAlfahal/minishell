@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/14 01:20:08 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/15 01:05:11 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int		ft_tolower(int s);
 int		ft_toupper(int s);
 int		ft_isdigit(int s);
 int		ft_isalpha(int c);
-int		next_isalnum(char *s, int ignored);
+int		next_isalnum(char *s);
 int		ft_is_expn(char *c);
-int		index_expn(char *s, int ignored);
+int		index_expn(char *s);
 char	*ft_stolower(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);

@@ -28,4 +28,5 @@ ls" | "''> k
 >         >''
 ------Solved-------
 $USER__$?
-"$USER $USER $USER"
+"$USER$USER$USER$$?"
+------Solved-------

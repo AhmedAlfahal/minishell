@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/14 09:21:49 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/15 03:43:05 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	count(t_c *counter, char *rdln);
 void	init_pipes(t_ms *m);
 int		cots_check(char *s, int start, int end);
 void	remove_cots(char **s, t_tmp *t, char cot);
+void	replace_expantion(char **s, t_ms *m, int ig);
 
 /******************************Redirections******************************/
 
