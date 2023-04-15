@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/14 09:20:33 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/16 02:07:53 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ all : $(NAME)
 
 $(NAME) : $(SRCS)
 	make -C ./libft
-	$(CC) $(CFLAGS) $(SRCS) -L/usr/local/lib -I/usr/local/include -lreadline $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -lreadline -I/usr/local/opt/readline/include -L/usr/local/opt/readline/lib $(LIBFT) -o $(NAME)
 
 clean:
 	make clean -C ./libft

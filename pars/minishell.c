@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/15 03:34:59 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/16 02:09:31 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,28 @@ static void	init_counter(t_ms *m, char **env)
 	m->c_cmds = 0;
 }
 
-void	f_free(t_ms *m)
+static void	exiting(t_ms *m)
 {
-	ft_lstclear(&m->envd);
-	ft_lstclear(&m->expd);
+	if (!m->rdln)
+		printf(" exit\n");
+	else if (ft_strlen(m->rdln) == 4 && !ft_strncmp("exit", m->rdln, 4))
+		printf("exit\n");
+	free_all(m, 1);
+	exit(0);
+}
+
+void	handler(int signal)
+{
+	if (signal == SIGINT)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		return ;
+	}
+	if (signal == SIGQUIT)
+		return ;
 }
 
 int	main(int ac, char **av, char **env)
@@ -44,19 +62,19 @@ int	main(int ac, char **av, char **env)
 	init_counter(&m, env);
 	while (1)
 	{
+		signal(SIGINT, handler);
+		signal(SIGQUIT, handler);
 		m.error = 0;
 		m.rdln = readline("minishell$:");
-		if (!m.rdln)
-			return (printf("exit\n"), 0);
 		add_history(m.rdln);
-		if (ft_strlen(m.rdln) == 4 && !ft_strncmp("exit", m.rdln, 4))
-			break ;
+		if ((ft_strlen(m.rdln) == 4 && !ft_strncmp("exit", m.rdln, 4)) \
+		|| !m.rdln)
+			exiting(&m);
 		pars(&m);
-		// if (m.error == 0)
-		// 	exce(&m);
+		if (m.error == 0)
+			exce(&m);
 		free_all(&m, 0);
 	}
-	f_free(&m);
 	free_all(&m, 1);
 	return (0);
 }

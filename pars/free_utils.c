@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 22:26:05 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/15 21:33:01 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,14 @@ void	free_all(t_ms *m, int exit)
 	}
 	else if (exit == 1)
 	{
+		f_free(m);
 		free(m->counters);
 		return ;
 	}
+}
+
+void	f_free(t_ms *m)
+{
+	ft_lstclear(&m->envd);
+	ft_lstclear(&m->expd);
 }

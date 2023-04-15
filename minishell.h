@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/15 03:43:05 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/16 02:09:04 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_minishell
 
 /******************************Pars_utils********************************/
 
+void	rl_replace_line(const char *text, int clear_undo);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
 void	count(t_c *counter, char *rdln);
