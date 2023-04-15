@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/14 21:56:04 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/16 01:44:54 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,6 @@ void	med_cmd(t_ms *data, int i);
 int		check_red(t_cmd *tcheck, int type, int k);
 int		redir_fun(t_ms *data, int k);
 void	red_check(t_ms *data, int i);
+char	*get_hd(t_cmd *hdoc, int k);
 
 #endif

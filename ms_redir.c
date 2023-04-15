@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 23:39:32 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/15 22:27:48 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/16 01:26:53 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	get_append(t_cmd *appnd, int k)
 
 static int	redir_fun_ex(t_cmd	*cm, int *i, int fd, int k)
 {
-	if (i[0] > i[1])
+	if (i[0] == cm[k].c_rdr)
 	{
 		fd = get_output(cm, k);
 		if (fd == -1 || get_append(cm, k) == -1)
@@ -82,7 +82,7 @@ static int	redir_fun_ex(t_cmd	*cm, int *i, int fd, int k)
 			perror("dup2");
 		close(fd);
 	}
-	else if (i[0] < i[1])
+	else if (i[1] == cm[k].c_rdr)
 	{
 		fd = get_append(cm, k);
 		if (fd == -1 || get_output(cm, k) == -1)

@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/15 22:12:23 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/16 01:41:14 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC = ms_main.c 				\
 			ms_redir.c 				\
 			ms_redir2.c 			\
 			ms_utils.c 				\
+			ms_heredoc.c 			\
 			
 OBJ = $(SRC:.c=.o)
 CC = cc 

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/15 22:31:48 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/16 03:17:03 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ static void	err_file2(char *str, t_ms *data)
 
 void	red_check(t_ms *data, int i)
 {
+	char	*s;
+
+	if (check_red(data->cmds, herdock, i))
+	{
+		s = get_hd(data->cmds, i);
+		if (!data->cmds[i].args[1])
+		{
+			free (data->cmds[i].args);
+			data->cmds[i].args = ft_split(s, ' ');
+		}
+		write(1, s, ft_strlen(s));
+	}
 	if (data->cmds[i].c_rdr > 0)
 	{
 		if (!data->cmds[i].args[0])
