@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/14 01:51:06 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:31:48 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,30 @@ static void	err_file2(char *str, t_ms *data)
 	exit(data->error_code);
 }
 
+void	red_check(t_ms *data, int i)
+{
+	if (data->cmds[i].c_rdr > 0)
+	{
+		if (!data->cmds[i].args[0])
+		{
+			if (redir_fun(data, i) == -1)
+			{
+				write(2, "minishell: ", 11);
+				perror(data->cmds[i].rdr->file_name);
+				data->error_code = 1;
+				exit(data->error_code);
+			}
+		}
+		if (redir_fun(data, i) == -1)
+		{
+			write(2, "minishell: ", 11);
+			perror(data->cmds[i].rdr->file_name);
+			data->error_code = 1;
+			exit(data->error_code);
+		}
+	}
+}
+
 int	other_fun(t_ms *data)
 {
 	char		**env;
@@ -32,8 +56,7 @@ int	other_fun(t_ms *data)
 	id = fork();
 	if (id == 0)
 	{
-		if (data->cmds->c_rdr > 0)
-			redir_fun(data);
+		red_check(data, 0);
 		env = dupper_lst(data->envd);
 		if (data->cmds->args[0][0] == '/' || data->cmds->args[0][0] == '.')
 			path = ft_strdup(data->cmds->args[0]);
@@ -50,54 +73,6 @@ int	other_fun(t_ms *data)
 	}
 	wait(NULL);
 	return (0);
-}
-
-char	*find_path(t_ms *data, int i, int ij)
-{
-	char	**path;
-	char	*ptmp;
-	int		j;
-
-	path = gen_path(data);
-	j = 0;
-	ptmp = NULL;
-	if (!path)
-	{
-		data->error_code = 127;
-		return (ptmp);
-	}
-	while (path[++i])
-	{
-		ptmp = ft_strjoin3(path[i], data->cmds[ij].args[0]);
-		j = access(ptmp, F_OK);
-		if (j == 0)
-			break ;
-		free (ptmp);
-		ptmp = NULL;
-	}
-	if (j != 0)
-		data->error_code = 127;
-	free_2d_array(path);
-	return (ptmp);
-}
-
-char	**gen_path(t_ms *data)
-{
-	char	**path;
-	t_list	*tmp;
-
-	tmp = data->envd;
-	path = NULL;
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->name, "PATH", 5) == 0)
-		{
-			path = ft_split(tmp->value, ':');
-			break ;
-		}
-		tmp = tmp->next;
-	}
-	return (path);
 }
 
 void	err_file(char *str, t_ms *data)

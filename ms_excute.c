@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/13 01:20:25 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:25:03 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int	exce(t_ms	*data)
 {
-	if (data->c_cmds == 1)
+	if (data->c_cmds == 1 && data->cmds->args[0])
 	{
 		if (builtin_fun(data, 0) != 0)
 			other_fun(data);
 	}
+	if (data->c_cmds == 1 && !data->cmds->args[0])
+		other_fun(data);
 	if (data->c_cmds >= 2)
 		pipe_fun(data);
 	return (0);

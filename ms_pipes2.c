@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/13 22:31:09 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:47:44 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static void	pipe_init2(t_ms *data, int i)
 	}
 }
 
-
 void	exec_ve(t_ms *data, int i)
 {
 	char	**env;
 	char	*path;
 
+	red_check(data, i);
 	env = dupper_lst(data->envd);
 	if (data->cmds[i].args[0][0] == '/' || data->cmds[i].args[0][0] == '.')
 		path = ft_strdup(data->cmds[i].args[0]);
@@ -56,7 +56,6 @@ void	exec_ve(t_ms *data, int i)
 	free_2d_array(env);
 	err_file(data->cmds[i].args[0], data);
 }
-
 
 void	med_cmd(t_ms *data, int i)
 {
