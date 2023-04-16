@@ -6,11 +6,39 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/15 03:43:29 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 01:48:53 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	add_2d_in_2d(t_ms *m, t_cmd *c, char **add)
+{
+	char	**tmp;
+	int		j;
+	int		k;
+	int		l;
+
+	tmp = malloc(sizeof(char *) * \
+	(ft_strlen_2d(c->args) - 1 + ft_strlen_2d(add) + 1));
+	j = 0;
+	k = 0;
+	l = 0;
+	while (c->args[k])
+	{
+		if (j == m->i)
+		{
+			while (add[l])
+				tmp[j++] = add[l++];
+			k++;
+			continue ;
+		}
+		tmp[j++] = c->args[k++];
+	}
+	tmp[j] = 0;
+	free(c->args);
+	c->args = tmp;
+}
 
 static void	replace_expan(char **s, char *val, char *name, int *done)
 {
@@ -39,20 +67,33 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 	*done = 1;
 }
 
-static void	call_again(t_ms *m, int change, char **s, int ig)
+static void	call_again(t_ms *m, t_cmd *c, t_tmp *t, char **s)
 {
+	char	**tmp;
+
+	tmp = NULL;
 	if (ft_is_expn(*s) == 2)
 		ft_cut(s, index_expn(*s), index_expn(*s) + 1);
-	if (ft_is_expn(*s) == 1 && change == 0)
+	if (ft_is_expn(*s) == 1 && t->x == 0)
 	{
-		ft_cut(s, index_expn(*s), next_isalnum(*s) - 1);
-		replace_expantion(s, m, ig);
+		if (index_expn(*s) != next_isalnum(*s))
+		{
+			ft_cut(s, index_expn(*s), next_isalnum(*s) - 1);
+			replace_expantion(m, c, s, t->j);
+		}
 	}
-	else if (ft_is_expn(*s) == 1 && change == 1)
-		replace_expantion(s, m, ig++);
+	else if (ft_is_expn(*s) == 1 && t->x == 1)
+		replace_expantion(m, c, s, t->j++);
+	if (ft_is_expn(*s) == 0 && t->x == 1)
+	{
+		tmp = ft_split(*s, ' ');
+		free(*s);
+		add_2d_in_2d(m, c, tmp);
+		free(tmp);
+	}
 }
 
-void	replace_expantion(char **s, t_ms *m, int ig)
+void	replace_expantion(t_ms *m, t_cmd *c, char **s, int ig)
 {
 	t_tmp	t;
 	t_list	*e;
@@ -60,6 +101,7 @@ void	replace_expantion(char **s, t_ms *m, int ig)
 	ft_bzero(&t, sizeof(t_tmp));
 	e = m->expd;
 	t.s = *s;
+	t.j = ig;
 	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, next_isalnum(t.s));
 	while (e)
 	{
@@ -75,20 +117,22 @@ void	replace_expantion(char **s, t_ms *m, int ig)
 		e = e->next;
 	}
 	free(t.tmp);
-	call_again(m, t.x, s, ig);
+	call_again(m, c, &t, s);
 }
 
 void	clean_expantion(t_cmd *c, t_ms *m)
 {
-	int	i;
-
-	i = 0;
+	m->i = 0;
 	if (!c->args)
 		return ;
-	while (c->args[i])
+	while (c->args[m->i])
 	{
-		if (ft_is_expn(c->args[i]) == 1)
-			replace_expantion(&c->args[i], m, 0);
-		i++;
+		if (ft_is_expn(c->args[m->i]) == 1)
+		{
+			replace_expantion(m, c, &c->args[m->i], 0);
+			if (!c->args[m->i])
+				break ;
+		}
+		m->i++;
 	}
 }

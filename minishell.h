@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/16 21:32:55 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 00:49:27 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_commands
 	char	**args;
 	t_rdr	*rdr;
 	int		c_rdr;
+	int		current_arg;
 	t_list	*envd;
 	t_list	*expd;
 }			t_cmd;
@@ -100,7 +101,7 @@ void	count(t_c *counter, char *rdln);
 void	init_pipes(t_ms *m);
 int		cots_check(char *s, int start, int end);
 void	remove_cots(char **s, t_tmp *t, char cot);
-void	replace_expantion(char **s, t_ms *m, int ig);
+void	replace_expantion(t_ms *m, t_cmd *c, char **s, int ig);
 
 /******************************Redirections******************************/
 
