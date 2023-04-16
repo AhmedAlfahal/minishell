@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 01:48:53 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 02:19:49 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,27 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 static void	call_again(t_ms *m, t_cmd *c, t_tmp *t, char **s)
 {
 	char	**tmp;
+	char	*local;
 
 	tmp = NULL;
-	if (ft_is_expn(*s) == 2)
-		ft_cut(s, index_expn(*s), index_expn(*s) + 1);
-	if (ft_is_expn(*s) == 1 && t->x == 0)
+	local = *s;
+	if (ft_is_expn(local) == 2)
+		ft_cut(&local, index_expn(local), index_expn(local) + 1);
+	if (ft_is_expn(local) == 1 && t->x == 0)
 	{
-		if (index_expn(*s) != next_isalnum(*s))
+		if (index_expn(local) != next_isalnum(local))
 		{
-			ft_cut(s, index_expn(*s), next_isalnum(*s) - 1);
-			replace_expantion(m, c, s, t->j);
+			ft_cut(&local, index_expn(local), next_isalnum(local) - 1);
+			replace_expantion(m, c, &local, t->j);
 		}
 	}
-	else if (ft_is_expn(*s) == 1 && t->x == 1)
-		replace_expantion(m, c, s, t->j++);
-	if (ft_is_expn(*s) == 0 && t->x == 1)
+	else if (ft_is_expn(local) == 1 && t->x == 1)
+		replace_expantion(m, c, &local, t->j++);
+	if (ft_is_expn(local) == 0 && t->x == 1)
 	{
-		tmp = ft_split(*s, ' ');
-		free(*s);
+		tmp = ft_split(local, ' ');
 		add_2d_in_2d(m, c, tmp);
+		free(local);
 		free(tmp);
 	}
 }
