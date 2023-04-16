@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 05:25:53 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/16 02:07:53 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/16 22:04:05 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRC		=	pars/minishell.c		\
 			exec/ms_pipes2.c		\
 			exec/ms_redir.c			\
 			exec/ms_redir2.c		\
+			exec/ms_heredoc.c		\
+			exec/ms_utils.c			\
 			lists/ft_lstnew.c		\
 			lists/ft_lstsize.c		\
 			lists/ft_lstlast.c		\

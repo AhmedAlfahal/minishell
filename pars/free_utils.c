@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:38:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/15 21:33:01 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:56:17 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ void	free_all(t_ms *m, int exit)
 	if (exit == 2)
 	{
 		free_cmds(m);
-		ft_bzero(m->counters, sizeof(t_c));
 		free(m->counters);
-		m->c_cmds = 0;
 		return ;
 	}
 	else if (exit == 1)

@@ -30,3 +30,11 @@ ls" | "''> k
 $USER__$?
 "$USER$USER$USER$$?"
 ------Solved-------
+export a="ls -la"
+><">>>>>><<>'|||||''"
+     ''      |       "njanskjnask"
+$.....
+$
+_____Hash_Leaks______
+echo "$USER" > a <a | ls
+echo "dfsdgtotihjogjsdfgodsfg" | > a
