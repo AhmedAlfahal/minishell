@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 23:39:32 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/16 01:26:53 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/17 00:25:29 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,15 @@ static int	get_append(t_cmd *appnd, int k)
 
 static int	redir_fun_ex(t_cmd	*cm, int *i, int fd, int k)
 {
+	int	j;
+
+	j = 0;
 	if (i[0] == cm[k].c_rdr)
 	{
 		fd = get_output(cm, k);
-		if (fd == -1 || get_append(cm, k) == -1)
+		if (i[1] > 0)
+			j = get_append(cm, k);
+		if (fd == -1 || j == -1)
 			return (-1);
 		if (dup2(fd, STDOUT_FILENO) == -1)
 			perror("dup2");
@@ -85,10 +90,11 @@ static int	redir_fun_ex(t_cmd	*cm, int *i, int fd, int k)
 	else if (i[1] == cm[k].c_rdr)
 	{
 		fd = get_append(cm, k);
-		if (fd == -1 || get_output(cm, k) == -1)
+		if (i[0] > 0)
+			j = get_output(cm, k);
+		if (fd == -1 || j == -1)
 			return (-1);
-		if (dup2(fd, STDOUT_FILENO) == -1)
-			perror("dup2");
+		dup2(fd, STDOUT_FILENO);
 		close(fd);
 	}
 	return (0);

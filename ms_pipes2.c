@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/14 21:47:44 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/17 00:35:53 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ void	exec_ve(t_ms *data, int i)
 	char	*path;
 
 	red_check(data, i);
+	if (!data->cmds[i].args[0])
+		exit(0);
 	env = dupper_lst(data->envd);
 	if (data->cmds[i].args[0][0] == '/' || data->cmds[i].args[0][0] == '.')
 		path = ft_strdup(data->cmds[i].args[0]);
 	else
 		path = find_path(data, -1, i);
 	if (path && execve(path, data->cmds[i].args, env) < -1)
-	{
 		write(2, "error\n", 6);
-		free(path);
-		data->error_code = 127;
-	}
+	free(path);
+	data->error_code = 127;
 	free_2d_array(env);
 	err_file(data->cmds[i].args[0], data);
 }

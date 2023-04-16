@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/16 03:17:03 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/17 02:27:47 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,8 @@ static void	err_file2(char *str, t_ms *data)
 
 void	red_check(t_ms *data, int i)
 {
-	char	*s;
-
 	if (check_red(data->cmds, herdock, i))
-	{
-		s = get_hd(data->cmds, i);
-		if (!data->cmds[i].args[1])
-		{
-			free (data->cmds[i].args);
-			data->cmds[i].args = ft_split(s, ' ');
-		}
-		write(1, s, ft_strlen(s));
-	}
+		get_hd(data, i);
 	if (data->cmds[i].c_rdr > 0)
 	{
 		if (!data->cmds[i].args[0])
@@ -47,6 +37,9 @@ void	red_check(t_ms *data, int i)
 				data->error_code = 1;
 				exit(data->error_code);
 			}
+			free_all(data, 2);
+			f_free(data);
+			exit(data->error_code);
 		}
 		if (redir_fun(data, i) == -1)
 		{
@@ -77,9 +70,9 @@ int	other_fun(t_ms *data)
 		if (path && execve(path, data->cmds->args, env) < -1)
 		{
 			write(2, "error\n", 6);
-			free(path);
-			data->error_code = 127;
 		}
+		data->error_code = 127;
+		free(path);
 		free_2d_array(env);
 		err_file(data->cmds->args[0], data);
 	}
