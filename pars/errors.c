@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 22:14:03 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 23:33:40 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,10 @@ static void	rdr_condition(char *tmp, int i, int len, int *error)
 	else if ((tmp[i] == '>' || tmp[i] == '<') \
 	&& len - i == 1 && cots_check(tmp, 0, i) == 0)
 		*error = 1;
-	else if ((tmp[i] == '>' || tmp[i] == '<') && tmp[i + 1] == ' ' \
-	&& (tmp[i + 2] == '>' || tmp[i + 2] == '<') \
+	else if ((((tmp[i] == '>' || tmp[i] == '<') && tmp[i + 1] == ' ' \
+	&& (tmp[i + 2] == '>' || tmp[i + 2] == '<')) \
+	|| ((tmp[i] == '>' || tmp[i] == '<') \
+	&& (tmp[i + 1] == '>' || tmp[i + 1] == '<'))) \
 	&& cots_check(tmp, 0, i + 2) == 0)
 		*error = 1;
 }

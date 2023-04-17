@@ -32,7 +32,7 @@ $USER__$?
 ------Solved-------
 export a="ls -la"
 ><">>>>>><<>'|||||''"
-     ''      |       "njanskjnask"
+		''		|		"njanskjnask"
 $.....
 $
 $a $a $a $TERM $TERM

@@ -6,12 +6,19 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 22:24:32 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 23:51:51 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+static void	remove_white_space(char **s)
+{
+	char	**tmp;
+
+	tmp = NULL;
+}
+	
 static void	add_2d_in_2d(t_ms *m, t_cmd *c, char **add)
 {
 	char	**tmp;
@@ -119,4 +126,5 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 		}
 		m->i++;
 	}
+	remove_white_space(&c->args);
 }
