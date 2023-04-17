@@ -35,6 +35,7 @@ export a="ls -la"
      ''      |       "njanskjnask"
 $.....
 $
+$a $a $a $TERM $TERM
 _____Hash_Leaks______
 echo "$USER" > a <a | ls
 echo "dfsdgtotihjogjsdfgodsfg" | > a

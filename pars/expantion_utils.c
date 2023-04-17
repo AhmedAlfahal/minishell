@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 22:09:22 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 22:24:32 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	add_2d_in_2d(t_ms *m, t_cmd *c, char **add)
 			k++;
 			continue ;
 		}
-		tmp[j++] = c->args[k++];
+		tmp[j++] = ft_strdup(c->args[k++]);
 	}
 	tmp[j] = 0;
 	free_2d_array(c->args);
