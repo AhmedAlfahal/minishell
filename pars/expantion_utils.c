@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 02:19:49 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 22:09:22 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	add_2d_in_2d(t_ms *m, t_cmd *c, char **add)
 		tmp[j++] = c->args[k++];
 	}
 	tmp[j] = 0;
-	free(c->args);
+	free_2d_array(c->args);
 	c->args = tmp;
 }
 
@@ -67,35 +67,7 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 	*done = 1;
 }
 
-static void	call_again(t_ms *m, t_cmd *c, t_tmp *t, char **s)
-{
-	char	**tmp;
-	char	*local;
-
-	tmp = NULL;
-	local = *s;
-	if (ft_is_expn(local) == 2)
-		ft_cut(&local, index_expn(local), index_expn(local) + 1);
-	if (ft_is_expn(local) == 1 && t->x == 0)
-	{
-		if (index_expn(local) != next_isalnum(local))
-		{
-			ft_cut(&local, index_expn(local), next_isalnum(local) - 1);
-			replace_expantion(m, c, &local, t->j);
-		}
-	}
-	else if (ft_is_expn(local) == 1 && t->x == 1)
-		replace_expantion(m, c, &local, t->j++);
-	if (ft_is_expn(local) == 0 && t->x == 1)
-	{
-		tmp = ft_split(local, ' ');
-		add_2d_in_2d(m, c, tmp);
-		free(local);
-		free(tmp);
-	}
-}
-
-void	replace_expantion(t_ms *m, t_cmd *c, char **s, int ig)
+void	replace_expantion(char **s, t_ms *m)
 {
 	t_tmp	t;
 	t_list	*e;
@@ -103,7 +75,6 @@ void	replace_expantion(t_ms *m, t_cmd *c, char **s, int ig)
 	ft_bzero(&t, sizeof(t_tmp));
 	e = m->expd;
 	t.s = *s;
-	t.j = ig;
 	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, next_isalnum(t.s));
 	while (e)
 	{
@@ -119,11 +90,17 @@ void	replace_expantion(t_ms *m, t_cmd *c, char **s, int ig)
 		e = e->next;
 	}
 	free(t.tmp);
-	call_again(m, c, &t, s);
+	if (ft_is_expn(*s) == 2)
+		ft_cut(s, index_expn(*s), index_expn(*s) + 1);
+	if (ft_is_expn(*s) == 1 && t.x == 0)
+		ft_cut(s, index_expn(*s), next_isalnum(*s) - 1);
 }
 
 void	clean_expantion(t_cmd *c, t_ms *m)
 {
+	char	**tmp;
+
+	tmp = NULL;
 	m->i = 0;
 	if (!c->args)
 		return ;
@@ -131,9 +108,14 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 	{
 		if (ft_is_expn(c->args[m->i]) == 1)
 		{
-			replace_expantion(m, c, &c->args[m->i], 0);
-			if (!c->args[m->i])
-				break ;
+			replace_expantion(&c->args[m->i], m);
+			continue ;
+		}
+		if (ft_ispace(c->args[m->i]) == 1)
+		{
+			tmp = ft_split(c->args[m->i], ' ');
+			add_2d_in_2d(m, c, tmp);
+			free(tmp);
 		}
 		m->i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/16 21:35:03 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:46:55 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_tmp_vars
 int		ft_tolower(int s);
 int		ft_toupper(int s);
 int		ft_isdigit(int s);
+int		ft_ispace(char *s);
 int		ft_isalpha(int c);
 int		next_isalnum(char *s);
 int		ft_is_expn(char *c);
@@ -50,6 +51,7 @@ void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 int		ft_wospace_len(char *s);
 int		ft_cotlen(char *s);
+int		cotss_check(char *s, int start, int end);
 int		ft_strlen_2d(char **s);
 int		ft_isrdr(char *s);
 int		crdr(char **s);

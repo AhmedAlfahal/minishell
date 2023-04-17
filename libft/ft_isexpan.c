@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/15 02:44:54 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/17 22:11:44 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_is_expn(char *c)
 		if (c[t.i] == '$' && c[t.i + 1] == '$' && t.flag == 1 && t.cot == '"')
 			return (2);
 		else if (c[t.i] == '$' && c[t.i + 1] == '$' && t.flag != 1)
+			return (2);
+		else if (c[t.i] == '$' && index_expn(c) + 1 == next_isalnum(c))
 			return (2);
 		else if (c[t.i] == '$' && t.flag == 1 && t.cot == '"')
 			return (1);
