@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 02:27:47 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/18 00:01:17 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,22 @@ static void	err_file2(char *str, t_ms *data)
 	exit(data->error_code);
 }
 
+int	onecmd_fun(t_ms *data)
+{
+	int		id;
+
+	id = fork();
+	if (id == 0)
+	{
+		hd_mid_pp(data, 0);
+		red_check(data, 0);
+	}
+	wait(NULL);
+	return (0);
+}
+
 void	red_check(t_ms *data, int i)
 {
-	if (check_red(data->cmds, herdock, i))
-		get_hd(data, i);
 	if (data->cmds[i].c_rdr > 0)
 	{
 		if (!data->cmds[i].args[0])
@@ -68,9 +80,7 @@ int	other_fun(t_ms *data)
 		else
 			path = find_path(data, -1, 0);
 		if (path && execve(path, data->cmds->args, env) < -1)
-		{
 			write(2, "error\n", 6);
-		}
 		data->error_code = 127;
 		free(path);
 		free_2d_array(env);

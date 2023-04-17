@@ -6,11 +6,18 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 00:35:53 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:50:45 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	med_cmdex(t_ms *data, int i)
+{
+	if (check_red(data->cmds, herdock, i) || check_builtin(data, i))
+		exit (0);
+	exec_ve(data, i);
+}
 
 static void	pipe_init2(t_ms *data, int i)
 {
@@ -79,6 +86,9 @@ void	med_cmd(t_ms *data, int i)
 		close(data->fd[1][0]);
 		close(data->fd[1][1]);
 		close(data->fd[0][1]);
-		exec_ve(data, i);
+		med_cmdex(data, i);
 	}
+	if (id != 0 && (check_red(data->cmds, herdock, i)
+			|| check_builtin(data, i)))
+		hd_mid_pp(data, i);
 }

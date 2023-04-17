@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 02:39:58 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/17 23:43:09 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static char	*open_hdoc(t_rdr *hdoc, int i)
 				break ;
 			temp = str;
 			str = ft_strjoin4(temp, s, '\n');
-			if (temp)
-				free(temp);
+			free(temp);
 		}
+		if (!str)
+			return (NULL);
 		temp = str;
 		str = ft_strjoin(temp, "\n");
-		if (temp)
-			free(temp);
+		free(temp);
 	}
 	return (str);
 }
@@ -45,31 +45,30 @@ static int	ex_hd(t_ms *data, char *str, int k)
 {
 	int		fd[2];
 	int		id;
-	int		i;
 
 	pipe(fd);
-	i = 0;
 	id = fork();
 	if (id == 0)
 	{
-		write(fd[1], str, ft_strlen(str));
+		if (!data->cmds[k].args[1])
+		{
+			write(fd[1], str, ft_strlen(str));
+			dup2(fd[0], STDIN_FILENO);
+		}
 		free(str);
-		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
 		close(fd[1]);
 		if (data->cmds[k].args[0])
 			exec_ve(data, k);
+		exit(0);
 	}
-	else
-	{
-		close(fd[0]);
-		close(fd[1]);
-		wait(NULL);
-	}
+	close(fd[0]);
+	close(fd[1]);
+	wait(NULL);
 	return (0);
 }
 
-int	*get_hd(t_ms *data, int k)
+int	get_hd(t_ms *data, int k)
 {
 	char	*hd;
 	int		i;
@@ -86,6 +85,31 @@ int	*get_hd(t_ms *data, int k)
 		}
 		i++;
 	}
-	ex_hd(data, hd, k);
+	if (data->cmds[k].args[0] && builtin_fun(data, k) != 0)
+		ex_hd(data, hd, k);
+	if (hd)
+		free(hd);
+	return (0);
+}
+
+int	hd_mid_pp(t_ms *data, int k)
+{
+	char	*hd;
+	int		i;
+
+	i = 0;
+	hd = NULL;
+	while (i < data->cmds[k].c_rdr)
+	{
+		if (data->cmds[k].rdr[i].rdr_type == herdock)
+		{
+			if (hd)
+				free(hd);
+			hd = open_hdoc(data->cmds[k].rdr, i);
+		}
+		i++;
+	}
+	if (hd)
+		free(hd);
 	return (0);
 }
