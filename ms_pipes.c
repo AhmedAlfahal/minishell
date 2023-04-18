@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:37:03 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 21:49:19 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/18 22:02:27 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	first_cmd(t_ms *data, int i)
 		close(data->fd[1][0]);
 		close(data->fd[1][1]);
 		close(data->fd[0][1]);
-		if (check_red(data->cmds, herdock, i) >= 0 || check_builtin(data, i))
+		if (check_red(data->cmds, herdock, i) > 0 || check_builtin(data, i))
 			exit (0);
 		exec_ve(data, i);
 	}

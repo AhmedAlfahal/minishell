@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 23:51:06 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:46:43 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exce(t_ms	*data)
 		get_hd(data, 0);
 	}
 	if (data->c_cmds == 1 && !data->cmds->args[0])
-		onecmd_fun(data);
+		get_hd(data, 0);
 	if (data->c_cmds >= 2)
 		pipe_fun(data);
 	return (0);
@@ -44,6 +44,8 @@ int	builtin_fun(t_ms *data, int i)
 
 int	check_builtin(t_ms *data, int i)
 {
+	if (!data->cmds[i].args[0])
+		return (0);
 	if (ft_strncmp(ft_stolower(data->cmds[i].args[0]), "echo", 5) == 0)
 		return (1);
 	else if (ft_strncmp(ft_stolower(data->cmds[i].args[0]), "pwd", 4) == 0)

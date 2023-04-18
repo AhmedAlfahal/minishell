@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/18 00:01:17 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:57:21 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	onecmd_fun(t_ms *data)
 	if (id == 0)
 	{
 		hd_mid_pp(data, 0);
-		red_check(data, 0);
 	}
 	wait(NULL);
 	return (0);

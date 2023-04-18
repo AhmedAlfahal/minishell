@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 23:43:09 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:57:15 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ static int	ex_hd(t_ms *data, char *str, int k)
 		free(str);
 		close(fd[0]);
 		close(fd[1]);
-		if (data->cmds[k].args[0])
-			exec_ve(data, k);
+		exec_ve(data, k);
 		exit(0);
 	}
 	close(fd[0]);
@@ -85,8 +84,8 @@ int	get_hd(t_ms *data, int k)
 		}
 		i++;
 	}
-	if (data->cmds[k].args[0] && builtin_fun(data, k) != 0)
-		ex_hd(data, hd, k);
+	// if (data->cmds[k].args[0])
+	ex_hd(data, hd, k);
 	if (hd)
 		free(hd);
 	return (0);
@@ -111,5 +110,6 @@ int	hd_mid_pp(t_ms *data, int k)
 	}
 	if (hd)
 		free(hd);
+	red_check(data, k);
 	return (0);
 }

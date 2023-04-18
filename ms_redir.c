@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 23:39:32 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 22:56:05 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:38:25 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,32 +71,58 @@ static int	get_append(t_cmd *appnd, int k)
 	return (fd);
 }
 
-static int	redir_fun_ex(t_cmd	*cm, int *i, int fd, int k)
+// static int	redir_fun_ex(t_cmd	*cm, int *i, int fd, int k)
+// {
+// 	int	j;
+
+// 	j = 0;
+// 	if (i[0] == cm[k].c_rdr)
+// 	{
+// 		fd = get_output(cm, k);
+// 		if (i[1] > 0)
+// 			j = get_append(cm, k);
+// 		if (fd == -1 || j == -1)
+// 			return (-1);
+// 		if (dup2(fd, STDOUT_FILENO) == -1)
+// 			perror("dup2");
+// 		close(fd);
+// 	}
+// 	else if (i[1] == cm[k].c_rdr)
+// 	{
+// 		fd = get_append(cm, k);
+// 		if (i[0] > 0)
+// 			j = get_output(cm, k);
+// 		if (fd == -1 || j == -1)
+// 			return (-1);
+// 		dup2(fd, STDOUT_FILENO);
+// 		close(fd);
+// 	}
+// 	return (0);
+// }
+
+static int	redir_fun_ex(t_cmd	*cm, int *i, int k)
 {
+	int	o;
 	int	j;
 
-	j = 0;
+	o = get_output(cm, k);
+	j = get_append(cm, k);
+	if (o == -1 || j == -1)
+		return (-1);
 	if (i[0] == cm[k].c_rdr)
 	{
-		fd = get_output(cm, k);
-		if (i[1] > 0)
-			j = get_append(cm, k);
-		if (fd == -1 || j == -1)
-			return (-1);
-		if (dup2(fd, STDOUT_FILENO) == -1)
+		if (dup2(o, STDOUT_FILENO) == -1)
 			perror("dup2");
-		close(fd);
 	}
 	else if (i[1] == cm[k].c_rdr)
 	{
-		fd = get_append(cm, k);
-		if (i[0] > 0)
-			j = get_output(cm, k);
-		if (fd == -1 || j == -1)
-			return (-1);
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
+		if (dup2(j, STDOUT_FILENO) == -1)
+			perror("dup2");
 	}
+	if (i[0] > 0)
+		close(o);
+	if (i[1] > 0)
+		close(j);
 	return (0);
 }
 
@@ -120,7 +146,7 @@ int	redir_fun(t_ms *data, int k)
 	}
 	i[0] = check_red(cm, output, k);
 	i[1] = check_red(cm, append, k);
-	err = redir_fun_ex(cm, i, fd, k);
+	err = redir_fun_ex(cm, i, k);
 	if (err == -1)
 		return (-1);
 	return (0);

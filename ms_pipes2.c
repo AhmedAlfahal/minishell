@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/17 21:50:45 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/18 22:04:01 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	exec_ve(t_ms *data, int i)
 	char	*path;
 
 	red_check(data, i);
-	if (!data->cmds[i].args[0])
+	if (!data->cmds[i].args[0] || builtin_fun(data, i) == 0)
 		exit(0);
 	env = dupper_lst(data->envd);
 	if (data->cmds[i].args[0][0] == '/' || data->cmds[i].args[0][0] == '.')
