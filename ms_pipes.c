@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:37:03 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/18 22:02:27 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/19 01:51:28 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	first_cmd(t_ms *data, int i)
 {
 	int		id;
 
+
 	id = fork();
 	if (id == 0)
 	{
@@ -44,37 +45,37 @@ static void	first_cmd(t_ms *data, int i)
 		close(data->fd[1][0]);
 		close(data->fd[1][1]);
 		close(data->fd[0][1]);
-		if (check_red(data->cmds, herdock, i) > 0 || check_builtin(data, i))
-			exit (0);
+		if (check_red(data->cmds, herdock, i) > 0)
+			hd_mid_pp(data, i);
 		exec_ve(data, i);
 	}
-	if (id != 0 && (check_red(data->cmds, herdock, i)
-			|| check_builtin(data, i)))
-		hd_mid_pp(data, i);
 }
 
 static void	last_cmd(t_ms *data, int i)
 {
 	int		id;
 
-	id = fork();
-	if (id == 0)
-	{
-		if ((i + 1) % 2 == 0)
-			dup2(data->fd[0][0], STDIN_FILENO);
-		else if ((i + 1) % 2 != 0)
-			dup2(data->fd[1][0], STDIN_FILENO);
-		close(data->fd[0][0]);
-		close(data->fd[1][0]);
-		close(data->fd[1][1]);
-		close(data->fd[0][1]);
-		if (check_red(data->cmds, herdock, i) > 0 || check_builtin(data, i))
-			exit (0);
-		exec_ve(data, i);
-	}
-	if (id != 0 && (check_red(data->cmds, herdock, i)
-			|| check_builtin(data, i)))
+	if (check_red(data->cmds, herdock, i) > 0 || check_builtin(data, i))
 		get_hd(data, i);
+	else
+	{
+		id = fork();
+		if (id == 0)
+		{
+			if ((i + 1) % 2 == 0)
+				dup2(data->fd[0][0], STDIN_FILENO);
+			else if ((i + 1) % 2 != 0)
+				dup2(data->fd[1][0], STDIN_FILENO);
+			close(data->fd[0][0]);
+			close(data->fd[1][0]);
+			close(data->fd[1][1]);
+			close(data->fd[0][1]);
+			exec_ve(data, i);
+		}
+	}
+	// if (id != 0 && (check_red(data->cmds, herdock, i)
+	// 		|| check_builtin(data, i)))
+		
 }
 
 int	pipe_fun(t_ms *data)

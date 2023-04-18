@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/18 21:46:43 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/19 01:19:14 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	exce(t_ms	*data)
 
 int	builtin_fun(t_ms *data, int i)
 {
+	red_check(data, i);
 	if (ft_strncmp(ft_stolower(data->cmds[i].args[0]), "echo", 5) == 0)
 		return (echo_fun(data, i));
 	else if (ft_strncmp(ft_stolower(data->cmds[i].args[0]), "pwd", 4) == 0)

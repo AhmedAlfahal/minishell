@@ -6,18 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/18 22:04:01 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/19 01:52:36 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	med_cmdex(t_ms *data, int i)
-{
-	if (check_red(data->cmds, herdock, i) || check_builtin(data, i))
-		exit (0);
-	exec_ve(data, i);
-}
 
 static void	pipe_init2(t_ms *data, int i)
 {
@@ -43,6 +36,34 @@ static void	pipe_init2(t_ms *data, int i)
 	}
 }
 
+// static void	med_cmdex(t_ms *data, int i)
+// {
+// 	int		id;
+
+// 	pipe_init2(data, i);
+// 	id = fork();
+// 	if (id == 0)
+// 	{
+// 		if ((i + 1) % 2 == 0)
+// 		{
+// 			dup2(data->fd[0][0], STDIN_FILENO);
+// 			dup2(data->fd[1][1], STDOUT_FILENO);
+// 		}
+// 		else if ((i + 1) % 2 != 0)
+// 		{
+// 			dup2(data->fd[1][0], STDIN_FILENO);
+// 			dup2(data->fd[0][1], STDOUT_FILENO);
+// 		}
+// 		close(data->fd[0][0]);
+// 		close(data->fd[1][0]);
+// 		close(data->fd[1][1]);
+// 		close(data->fd[0][1]);
+// 		if (check_red(data->cmds, herdock, i) > 0)
+// 			hd_mid_pp(data, i);
+// 		exec_ve(data, i);
+// 	}
+// }
+
 void	exec_ve(t_ms *data, int i)
 {
 	char	**env;
@@ -50,7 +71,11 @@ void	exec_ve(t_ms *data, int i)
 
 	red_check(data, i);
 	if (!data->cmds[i].args[0] || builtin_fun(data, i) == 0)
-		exit(0);
+	{
+		free_all(data, 2);
+		f_free(data);
+		exit(data->error_code);
+	}
 	env = dupper_lst(data->envd);
 	if (data->cmds[i].args[0][0] == '/' || data->cmds[i].args[0][0] == '.')
 		path = ft_strdup(data->cmds[i].args[0]);
@@ -86,9 +111,8 @@ void	med_cmd(t_ms *data, int i)
 		close(data->fd[1][0]);
 		close(data->fd[1][1]);
 		close(data->fd[0][1]);
-		med_cmdex(data, i);
+		if (check_red(data->cmds, herdock, i) > 0)
+			hd_mid_pp(data, i);
+		exec_ve(data, i);
 	}
-	if (id != 0 && (check_red(data->cmds, herdock, i)
-			|| check_builtin(data, i)))
-		hd_mid_pp(data, i);
 }
