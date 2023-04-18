@@ -39,3 +39,7 @@ $a $a $a $TERM $TERM
 _____Hash_Leaks______
 echo "$USER" > a <a | ls
 echo "dfsdgtotihjogjsdfgodsfg" | > a
+------Solved-------
+$$.....$?
+$.....$?
+Dolar not showing at the begingig 

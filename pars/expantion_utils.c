@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 23:51:51 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/18 22:45:19 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,31 @@
 
 static void	remove_white_space(char **s)
 {
-	char	**tmp;
+	char	*local;
+	t_tmp	t;
 
-	tmp = NULL;
+	local = *s;
+	ft_bzero(&t, sizeof(t_tmp));
+	t.tmp = malloc(sizeof(char) * (ft_strlen(local) + 1));
+	while (local[t.i])
+	{
+		while ((local[t.i] == ' ' || (local[t.i] >= 9 && local[t.i] <= 13)) \
+		&& cots_check(local, 0, t.i) == 0)
+		{
+			t.i++;
+			if ((local[t.i] != ' ' || !(local[t.i] >= 9 && local[t.i] <= 13)) \
+			&& cots_check(local, 0, t.i) == 0)
+				t.tmp[t.j++] = ' ';
+		}
+		if (local[t.i] == '\0')
+			break ;
+		t.tmp[t.j++] = local[t.i++];
+	}
+	t.tmp[t.j] = 0;
+	free(*s);
+	*s = t.tmp;
 }
-	
+
 static void	add_2d_in_2d(t_ms *m, t_cmd *c, char **add)
 {
 	char	**tmp;
@@ -74,7 +94,7 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 	*done = 1;
 }
 
-void	replace_expantion(char **s, t_ms *m)
+static void	replace_expantion(char **s, t_ms *m)
 {
 	t_tmp	t;
 	t_list	*e;
@@ -99,7 +119,7 @@ void	replace_expantion(char **s, t_ms *m)
 	free(t.tmp);
 	if (ft_is_expn(*s) == 2)
 		ft_cut(s, index_expn(*s), index_expn(*s) + 1);
-	if (ft_is_expn(*s) == 1 && t.x == 0)
+	else if (ft_is_expn(*s) == 1 && t.x == 0)
 		ft_cut(s, index_expn(*s), next_isalnum(*s) - 1);
 }
 
@@ -113,18 +133,19 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 		return ;
 	while (c->args[m->i])
 	{
-		if (ft_is_expn(c->args[m->i]) == 1)
+		if (ft_is_expn(c->args[m->i]) > 0)
 		{
 			replace_expantion(&c->args[m->i], m);
 			continue ;
 		}
-		if (ft_ispace(c->args[m->i]) == 1)
+		if (ft_ispace(c->args[m->i]) > 0)
 		{
+			remove_white_space(&c->args[m->i]);
 			tmp = ft_split(c->args[m->i], ' ');
 			add_2d_in_2d(m, c, tmp);
 			free(tmp);
+			continue ;
 		}
 		m->i++;
 	}
-	remove_white_space(&c->args);
 }

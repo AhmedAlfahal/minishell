@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 21:47:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:12:26 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ int	ft_isalpha(int s)
 int	ft_ispace(char *s)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	if (!s)
 		return (0);
 	while (s[i])
 	{
 		if ((s[i] == ' ' || (s[i] >= 9 && s[i] <= 13)) \
 		&& cotss_check(s, 0, i) == 0)
-			return (1);
+			j++;
 		i++;
 	}
-	return (0);
+	return (j);
 }
