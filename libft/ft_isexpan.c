@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/18 22:52:37 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/19 06:22:07 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,15 @@ int	ft_is_expn(char *c)
 		ft_is_expn_helper(&t, c);
 		if ((c[t.i] == '$' && c[t.i + 1] == '$' && t.flag == 1 && t.cot == '"') \
 		|| (c[t.i] == '$' && c[t.i + 1] == '$' && t.flag != 1))
-			return (3);
+		{
+			t.i += 2;
+			continue ;
+		}
 		else if (c[t.i] == '$' && index_expn(c) + 1 == next_isalnum(c))
-			return (2);
+		{
+			t.i++;
+			continue ;
+		}
 		else if ((c[t.i] == '$' && t.flag == 1 && t.cot == '"') \
 		|| (c[t.i] == '$' && t.flag != 1))
 			return (1);
@@ -66,6 +72,11 @@ int	next_isalnum(char *s)
 			i++;
 			if (s[i] == '?')
 				return (++i);
+			else if (s[i] == '$')
+			{
+				i++;
+				continue ;
+			}
 			while (s[i] && (ft_isalpha(s[i]) == 1 || ft_isdigit(s[i]) == 1 \
 			|| s[i] == '_'))
 				i++;
