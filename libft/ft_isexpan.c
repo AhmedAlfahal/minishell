@@ -6,11 +6,12 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/19 06:22:07 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/20 05:28:51 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include<stdio.h>
 
 static void	ft_is_expn_helper(t_vars *t, char *c)
 {
@@ -45,7 +46,7 @@ int	ft_is_expn(char *c)
 			t.i += 2;
 			continue ;
 		}
-		else if (c[t.i] == '$' && index_expn(c) + 1 == next_isalnum(c))
+		else if (c[t.i] == '$' && next_isalnum(c) == t.i + 1 )
 		{
 			t.i++;
 			continue ;
@@ -56,6 +57,13 @@ int	ft_is_expn(char *c)
 		t.i++;
 	}
 	return (0);
+}
+
+static void	next_isalnum_helper(char *s, int *i)
+{
+	while (s[*i] && (ft_isalpha(s[*i]) == 1 || ft_isdigit(s[*i]) == 1 \
+	|| s[*i] == '_'))
+		*i = *i + 1;
 }
 
 int	next_isalnum(char *s)
@@ -72,14 +80,13 @@ int	next_isalnum(char *s)
 			i++;
 			if (s[i] == '?')
 				return (++i);
-			else if (s[i] == '$')
+			else if (s[i] == '$' \
+			&& !(ft_isalpha(s[i]) == 1 && ft_isdigit(s[i]) == 1 && s[i] == '_'))
 			{
 				i++;
 				continue ;
 			}
-			while (s[i] && (ft_isalpha(s[i]) == 1 || ft_isdigit(s[i]) == 1 \
-			|| s[i] == '_'))
-				i++;
+			next_isalnum_helper(s, &i);
 			if (s[i - 1] == '"' || s[i - 1] == '\'')
 				i--;
 			return (i);
@@ -101,6 +108,11 @@ int	index_expn(char *s)
 		if (s[t.i] == '$' && s[t.i + 1] == '$')
 		{
 			t.i += 2;
+			continue ;
+		}
+		else if (s[t.i] == '$' && next_isalnum(s) == t.i + 1)
+		{
+			t.i++;
 			continue ;
 		}
 		else if (s[t.i] == '$')

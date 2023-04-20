@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/19 04:23:52 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/20 05:25:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,6 @@ static void	replace_expantion(char **s, t_ms *m)
 		e = e->next;
 	}
 	free(t.tmp);
-	if (ft_is_expn(*s) == 2)
-		ft_cut(s, index_expn(*s), index_expn(*s) + 1);
-	else if (ft_is_expn(*s) == 1 && t.x == 0)
-		ft_cut(s, index_expn(*s), next_isalnum(*s) - 1);
 }
 
 void	clean_expantion(t_cmd *c, t_ms *m)
@@ -133,8 +129,9 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 		return ;
 	while (c->args[m->i])
 	{
-		if (ft_is_expn(c->args[m->i]) > 0)
+		if (ft_is_expn(c->args[m->i]) == 1)
 		{
+			printf("am herererer\n");
 			replace_expantion(&c->args[m->i], m);
 			continue ;
 		}
