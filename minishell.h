@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/18 21:27:34 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/20 05:17:02 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,6 @@ int		get_hd(t_ms *data, int k);
 int		onecmd_fun(t_ms *data);
 int		hd_mid_pp(t_ms *data, int k);
 int		check_builtin(t_ms *data, int i);
+int		get_hd_fd(t_ms *data, int k);
 
 #endif

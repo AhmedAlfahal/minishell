@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 23:02:33 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/16 02:52:08 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/20 05:13:28 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,3 @@ char	*ft_strjoin4(char const *s1, char const *s2, char c)
 	dup[i] = '\0';
 	return (dup);
 }
-
