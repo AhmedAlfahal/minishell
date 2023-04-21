@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/20 05:25:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/21 08:48:32 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ static void	replace_expantion(char **s, t_ms *m)
 	ft_bzero(&t, sizeof(t_tmp));
 	e = m->expd;
 	t.s = *s;
-	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, next_isalnum(t.s));
+	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, next_isalnum(&t.s[index_expn(t.s)]) + index_expn(t.s));
+	printf("[%s]	[%d]	[%d]\n", t.tmp, index_expn(t.s) + 1, next_isalnum(&t.s[index_expn(t.s) + 1]) + index_expn(t.s));
 	while (e)
 	{
 		if (ft_strncmp((char *)e->name, t.tmp, ft_strlen(t.tmp)) == 0 \
@@ -131,7 +132,6 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 	{
 		if (ft_is_expn(c->args[m->i]) == 1)
 		{
-			printf("am herererer\n");
 			replace_expantion(&c->args[m->i], m);
 			continue ;
 		}
