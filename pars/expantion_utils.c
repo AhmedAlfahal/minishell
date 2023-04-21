@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/21 08:48:32 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/21 09:13:48 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 	*done = 1;
 }
 
-static void	replace_expantion(char **s, t_ms *m)
+static void	replace_expantion(char **s, t_ms *m, int *wrong_expan)
 {
 	t_tmp	t;
 	t_list	*e;
@@ -102,8 +102,8 @@ static void	replace_expantion(char **s, t_ms *m)
 	ft_bzero(&t, sizeof(t_tmp));
 	e = m->expd;
 	t.s = *s;
-	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, next_isalnum(&t.s[index_expn(t.s)]) + index_expn(t.s));
-	printf("[%s]	[%d]	[%d]\n", t.tmp, index_expn(t.s) + 1, next_isalnum(&t.s[index_expn(t.s) + 1]) + index_expn(t.s));
+	t.tmp = ft_substr(t.s, index_expn(t.s) + 1, \
+	next_isalnum(&t.s[index_expn(t.s)]) + index_expn(t.s));
 	while (e)
 	{
 		if (ft_strncmp((char *)e->name, t.tmp, ft_strlen(t.tmp)) == 0 \
@@ -118,21 +118,25 @@ static void	replace_expantion(char **s, t_ms *m)
 		e = e->next;
 	}
 	free(t.tmp);
+	if (t.x == 0)
+		*wrong_expan = *wrong_expan + 1;
 }
 
 void	clean_expantion(t_cmd *c, t_ms *m)
 {
 	char	**tmp;
+	int		wrong_expan;
 
 	tmp = NULL;
 	m->i = 0;
+	wrong_expan = 0;
 	if (!c->args)
 		return ;
 	while (c->args[m->i])
 	{
 		if (ft_is_expn(c->args[m->i]) == 1)
 		{
-			replace_expantion(&c->args[m->i], m);
+			replace_expantion(&c->args[m->i], m, &wrong_expan);
 			continue ;
 		}
 		if (ft_ispace(c->args[m->i]) > 0)
