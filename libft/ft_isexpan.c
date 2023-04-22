@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/21 09:04:17 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:15:52 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ static void	ft_is_expn_helper(t_vars *t, char *c)
 			t->flag = 0;
 		}
 	}
+	if ((c[t->i] == '$' && c[t->i + 1] == '$' && t->flag == 1 && t->cot == '"') \
+	|| (c[t->i] == '$' && c[t->i + 1] == '$' && t->flag != 1))
+	{
+		t->i += 2;
+		t->j = 1;
+	}
 }
 
 int	ft_is_expn(char *c)
@@ -40,10 +46,9 @@ int	ft_is_expn(char *c)
 	while (c[t.i])
 	{
 		ft_is_expn_helper(&t, c);
-		if ((c[t.i] == '$' && c[t.i + 1] == '$' && t.flag == 1 && t.cot == '"') \
-		|| (c[t.i] == '$' && c[t.i + 1] == '$' && t.flag != 1))
+		if (t.j == 1)
 		{
-			t.i += 2;
+			t.j = 0;
 			continue ;
 		}
 		else if (c[t.i] == '$' && next_isalnum(&c[t.i]) == 1)
@@ -51,8 +56,8 @@ int	ft_is_expn(char *c)
 			t.i++;
 			continue ;
 		}
-		else if ((c[t.i] == '$' && t.flag == 1 && t.cot == '"') \
-		|| (c[t.i] == '$' && t.flag != 1))
+		else if (((c[t.i] == '$' && t.flag == 1 && t.cot == '"') \
+		|| (c[t.i] == '$' && t.flag != 1)))
 			return (1);
 		t.i++;
 	}

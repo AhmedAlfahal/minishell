@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/21 08:44:13 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:54:10 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ static void	exiting(t_ms *m)
 	exit(0);
 }
 
-// void	handler(int signal)
-// {
-// 	if (signal == SIGINT)
-// 	{
-// 		printf("\n");
-// 		rl_on_new_line();
-// 		rl_replace_line("", 0);
-// 		rl_redisplay();
-// 		return ;
-// 	}
-// 	if (signal == SIGQUIT)
-// 		return ;
-// }
+void	handler(int signal)
+{
+	if (signal == SIGINT)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		return ;
+	}
+	if (signal == SIGQUIT)
+		return ;
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -62,8 +62,8 @@ int	main(int ac, char **av, char **env)
 	init_counter(&m, env);
 	while (1)
 	{
-		// signal(SIGINT, handler);
-		// signal(SIGQUIT, handler);
+		signal(SIGINT, handler);
+		signal(SIGQUIT, handler);
 		m.error = 0;
 		m.rdln = readline("minishell$:");
 		add_history(m.rdln);
@@ -71,8 +71,8 @@ int	main(int ac, char **av, char **env)
 		|| !m.rdln)
 			exiting(&m);
 		pars(&m);
-		// if (m.error == 0)
-		// 	exce(&m);
+		if (m.error == 0)
+			exce(&m);
 		free_all(&m, 0);
 	}
 	free_all(&m, 1);
