@@ -43,3 +43,7 @@ echo "dfsdgtotihjogjsdfgodsfg" | > a
 $$.....$?
 $.....$?
 Dolar not showing at the begingig 
+------Solved-------
+>> ' <><><">>"'
+ls > file1 > file2 << ">>'<<'<>'><><'<<>'" -la |     |ls (tab)
+------Solved-------

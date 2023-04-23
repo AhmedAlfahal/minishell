@@ -6,13 +6,13 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:00:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 21:47:09 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:17:52 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	cotss_check(char *s, int start, int end)
+int	cots_check(char *s, int start, int end)
 {
 	int		l;
 	char	p;
@@ -50,7 +50,7 @@ static int	sep_count(char *s, char c)
 	while (s[j])
 	{
 		if (s[j] != c && (s[j + 1] == c || s[j + 1] == '\0') \
-		&& cotss_check(s, 0, j + 1) == 0)
+		&& cots_check(s, 0, j + 1) == 0)
 			i++;
 		j++;
 	}
@@ -61,7 +61,7 @@ static size_t	next_sep(char *s, char c, int i)
 {
 	while (s[i])
 	{
-		if (s[i] == c && cotss_check(s, 0, i) == 0)
+		if (s[i] == c && cots_check(s, 0, i) == 0)
 			return (i);
 		i++;
 	}

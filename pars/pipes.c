@@ -6,88 +6,74 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 23:42:11 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:02:38 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	remove_cots(char **s, t_tmp *t, char cot)
-{
-	char	*tmp;
-	char	*c;
-
-	tmp = NULL;
-	ft_bzero(t, sizeof(t_tmp) * 1);
-	c = *s;
-	while (c[t->j])
-	{
-		if (c[t->j] == cot)
-			t->x++;
-		t->j++;
-	}
-	tmp = malloc(sizeof(char) * (ft_strlen(c) - t->x + 1));
-	ft_bzero(tmp, sizeof(char) * (ft_strlen(c) - t->x + 1));
-	t->j = 0;
-	t->x = 0;
-	while (c[t->j])
-	{
-		if (c[t->j] != cot)
-			tmp[t->x++] = c[t->j];
-		t->j++;
-	}
-	tmp[t->x] = 0;
-	free(*s);
-	*s = tmp;
-}
-
-int	cots_check(char *s, int start, int end)
-{
-	int		l;
-	char	p;
-
-	if (!s)
-		return (0);
-	l = 0;
-	p = 0;
-	while (start < end)
-	{
-		if ((s[start] == '"' || s[start] == '\'') && l == 0)
-		{
-			p = s[start];
-			start++;
-			l = 1;
-		}
-		if (s[start] == p)
-		{
-			if (l == 1)
-				l = 0;
-			p = 0;
-		}
-		start++;
-	}
-	return (l);
-}
-
-static void	clean_cots(t_cmd *c, int i)
+static void	remove_cots(char *s)
 {
 	t_tmp	t;
 
+	ft_bzero(&t, sizeof(t_tmp));
+	while (s[t.i])
+	{
+		if (s[t.i] == '\'' || s[t.i] == '"')
+		{
+			if (!t.a)
+				t.a = s[t.i];
+			else if (t.a == s[t.i])
+				t.a = 0;
+			else
+				s[t.j++] = s[t.i];
+		}
+		else
+			s[t.j++] = s[t.i];
+		t.i++;
+	}
+	s[t.j] = '\0';
+}
+
+static void	clean_cots(t_cmd *c)
+{
+	int	i;
+
+	i = 0;
 	while (c->args[i])
 	{
-		if (c->args[i][0] == '"' \
-		&& c->args[i][ft_strlen(c->args[i]) - 1] == '"')
-			remove_cots(&c->args[i], &t, '"');
-		else if (c->args[i][0] == '\'' \
-		&& c->args[i][ft_strlen(c->args[i]) - 1] == '\'')
-			remove_cots(&c->args[i], &t, '\'');
-		else if (ft_cotlen(c->args[i]) > 0)
+		remove_cots(c->args[i]);
+		i++;
+	}
+}
+
+static void	clean_rdrs(t_cmd *c)
+{
+	int		i;
+	int		rdr;
+
+	i = 0;
+	rdr = 0;
+	if (!c->args)
+		return ;
+	while (c->args[i] && crdr(c->args) > 0)
+	{
+		if (c->args[i][0] == '<' && c->args[i][1] == '<')
+			c->rdr[rdr].rdr_type = herdock;
+		else if (c->args[i][0] == '>' && c->args[i][1] == '>')
+			c->rdr[rdr].rdr_type = append;
+		else if (c->args[i][0] == '>')
+			c->rdr[rdr].rdr_type = output;
+		else if (c->args[i][0] == '<')
+			c->rdr[rdr].rdr_type = input;
+		if (c->rdr[rdr].rdr_type != 0)
 		{
-			remove_cots(&c->args[i], &t, '\'');
-			remove_cots(&c->args[i], &t, '"');
+			c->rdr[rdr].file_name = ft_strdup(c->args[i + 1]);
+			remove_cots(c->rdr[rdr++].file_name);
 		}
 		i++;
 	}
+	rdr_remove(c);
 }
 
 void	pars(t_ms *m)
@@ -105,8 +91,8 @@ void	pars(t_ms *m)
 		m->cmds[m->c_cmds].args = ft_split(tmp[m->c_cmds], ' ');
 		clean_expantion(&m->cmds[m->c_cmds], m);
 		malloc_rdrs(&m->cmds[m->c_cmds]);
-		clean_rdrs(&m->cmds[m->c_cmds], 0);
-		clean_cots(&m->cmds[m->c_cmds], 0);
+		clean_rdrs(&m->cmds[m->c_cmds]);
+		clean_cots(&m->cmds[m->c_cmds]);
 		m->c_cmds++;
 	}
 	print_pipes(m);

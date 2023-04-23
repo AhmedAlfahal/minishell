@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 02:07:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 23:51:48 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:02:39 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,48 +82,31 @@ char	**add_rdr_spaces(char **tmp)
 	return (tmp);
 }
 
-static void	rdr_remove(t_cmd *c, int k, int j, char **tmp)
+void	rdr_remove(t_cmd *c)
 {
+	int		i;
+	int		j;
+	char	**tmp;
+
+	i = 0;
+	j = 0;
+	tmp = NULL;
 	if (!c->args || *c->args == NULL)
 		return ;
 	tmp = malloc(sizeof(char *) * (ft_strlen_2d(c->args) - crdr(c->args) + 1));
 	ft_bzero(tmp, sizeof(char *) * (ft_strlen_2d(c->args) - crdr(c->args) + 1));
-	while (c->args[k])
+	while (c->args[i])
 	{
-		if ((c->args[k][0] == '>' || c->args[k][0] == '<') \
-		&& (c->args[k][1] != '>' || c->args[k][1] != '<'))
+		if ((c->args[i][0] == '>' || c->args[i][0] == '<') \
+		&& (c->args[i][1] != '>' || c->args[i][1] != '<'))
 		{
-			k = k + 2;
-			if (k - 2 == ft_strlen_2d(c->args) - 1)
-				k--;
+			i = i + 2;
+			if (i - 2 == ft_strlen_2d(c->args) - 1)
+				i--;
 			continue ;
 		}
-		tmp[j++] = ft_strdup(c->args[k++]);
+		tmp[j++] = ft_strdup(c->args[i++]);
 	}
 	free_2d_array(c->args);
 	c->args = tmp;
-}
-
-void	clean_rdrs(t_cmd *c, int i)
-{
-	int		rdr;
-
-	rdr = 0;
-	if (!c->args)
-		return ;
-	while (c->args[i] && crdr(c->args) > 0)
-	{
-		if (c->args[i][0] == '<' && c->args[i][1] == '<')
-			c->rdr[rdr].rdr_type = herdock;
-		else if (c->args[i][0] == '>' && c->args[i][1] == '>')
-			c->rdr[rdr].rdr_type = append;
-		else if (c->args[i][0] == '>')
-			c->rdr[rdr].rdr_type = output;
-		else if (c->args[i][0] == '<')
-			c->rdr[rdr].rdr_type = input;
-		if (c->rdr[rdr].rdr_type != 0)
-			rdr_remove_helper(c, i, rdr++);
-		i++;
-	}
-	rdr_remove(c, 0, 0, NULL);
 }

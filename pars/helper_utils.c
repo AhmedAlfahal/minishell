@@ -6,27 +6,11 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/10 23:56:43 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:15:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	rdr_remove_helper(t_cmd *c, int i, int rdr)
-{
-	t_tmp	t;
-
-	c->rdr[rdr].file_name = ft_strdup(c->args[i + 1]);
-	if (c->rdr[rdr].file_name[0] == '\'')
-		remove_cots(&c->rdr[rdr].file_name, &t, '\'');
-	if (c->rdr[rdr].file_name[0] == '"')
-		remove_cots(&c->rdr[rdr].file_name, &t, '"');
-	else if (ft_cotlen(c->rdr[rdr].file_name) > 0)
-	{
-		remove_cots(&c->rdr[rdr].file_name, &t, '"');
-		remove_cots(&c->rdr[rdr].file_name, &t, '\'');
-	}
-}
 
 static void	count_all_helper(char *rdln, int *i, t_c *counter)
 {

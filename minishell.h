@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/21 09:09:02 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:04:33 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,14 @@ void	pars(t_ms *m);
 void	count(t_c *counter, char *rdln);
 void	init_pipes(t_ms *m);
 int		cots_check(char *s, int start, int end);
-void	remove_cots(char **s, t_tmp *t, char cot);
 
 /******************************Redirections******************************/
 
 char	**add_rdr_spaces(char **tmp);
 void	check_rdr_error(t_ms *m, char *s);
 void	malloc_rdrs(t_cmd *c);
-void	clean_rdrs(t_cmd *c, int i);
+void	rdr_remove(t_cmd *c);
 void	clean_expantion(t_cmd *c, t_ms *m);
-void	rdr_remove_helper(t_cmd *c, int i, int rdr);
 
 /******************************Free_things*******************************/
 

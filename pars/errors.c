@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 23:33:40 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/23 13:50:53 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ static void	pipes_condition(char *tmp, int i, int len, int *error)
 		*error = 1;
 	else if (tmp[i] == '|' && i == 0)
 		*error = 1;
+	else if (ft_strlen(&tmp[i]) >= 3)
+		if (tmp[i] == '|' && tmp[i + 1] == ' ' && tmp[i + 2] == '|')
+			*error = 1;
 	if (i > 0)
 		if (tmp[i] == '|' && (tmp[i - 1] == '<' || tmp[i - 1] == '>') \
 		&& cots_check(tmp, 0, i) == 0)
