@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/20 05:16:37 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:43 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static char	*open_hdoc(t_rdr *hdoc, int i)
 {
@@ -84,41 +84,29 @@ int	get_hd(t_ms *data, int k)
 		}
 		i++;
 	}
-	// if (data->cmds[k].args[0])
-	ex_hd(data, hd, k);
+	if (check_builtin_perent(data, k))
+		builtin_fun(data, k);
+	else
+		ex_hd(data, hd, k);
 	if (hd)
 		free(hd);
 	return (0);
 }
 
-int	get_hd_fd(t_ms *data, int k)
+int	get_hd_fd(t_ms *data, int k, char *hd)
 {
-	char	*hd;
-	int		i;
-
-	i = 0;
-	hd = NULL;
-	while (i < data->cmds[k].c_rdr)
-	{
-		if (data->cmds[k].rdr[i].rdr_type == herdock)
-		{
-			if (hd)
-				free(hd);
-			hd = open_hdoc(data->cmds[k].rdr, i);
-		}
-		i++;
-	}
 	close(data->fd[0][0]);
 	close(data->fd[1][0]);
 	close(data->fd[1][1]);
 	close(data->fd[0][1]);
-	ex_hd(data, hd, k);
-	if (hd)
-		free(hd);
+	if (check_builtin_perent(data, k))
+		builtin_fun(data, k);
+	else
+		ex_hd(data, hd, k);
 	return (0);
 }
 
-int	hd_mid_pp(t_ms *data, int k)
+char	*hd_herstr(t_ms *data, int k)
 {
 	char	*hd;
 	int		i;
@@ -135,8 +123,5 @@ int	hd_mid_pp(t_ms *data, int k)
 		}
 		i++;
 	}
-	if (hd)
-		free(hd);
-	red_check(data, k);
-	return (0);
+	return (hd);
 }

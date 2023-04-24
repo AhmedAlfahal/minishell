@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:30:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/05 00:47:43 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:46 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	init_envlist(t_ms *data, char **env)
 {

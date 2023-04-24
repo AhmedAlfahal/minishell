@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 20:12:10 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/14 20:13:49 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:51:17 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*find_path(t_ms *data, int i, int ij)
 {

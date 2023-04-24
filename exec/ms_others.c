@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/20 05:32:16 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:52 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static void	err_file2(char *str, t_ms *data)
 {
@@ -20,19 +20,6 @@ static void	err_file2(char *str, t_ms *data)
 	free_all(data, 2);
 	f_free(data);
 	exit(data->error_code);
-}
-
-int	onecmd_fun(t_ms *data)
-{
-	int		id;
-
-	id = fork();
-	if (id == 0)
-	{
-		hd_mid_pp(data, 0);
-	}
-	wait(NULL);
-	return (0);
 }
 
 void	red_check(t_ms *data, int i)

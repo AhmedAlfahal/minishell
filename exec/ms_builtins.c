@@ -6,11 +6,31 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:02:20 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/13 01:11:59 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:17 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
+static int	c_nes(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s[i] != '-')
+		return (0);
+	i++;
+	if (s[i] != 'n')
+		return (0);
+	i++;
+	while (s[i])
+	{
+		if (s[i] != 'n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	echo_fun(t_ms *data, int k)
 {
@@ -23,7 +43,7 @@ int	echo_fun(t_ms *data, int k)
 	cm = data->cmds;
 	if (ft_strncmp(ft_stolower(cm[k].args[i]), "echo", 4) == 0)
 		i++;
-	if (cm[k].args[i] && ft_strncmp(cm[k].args[i], "-n", 3) == 0)
+	while (cm[k].args[i] && c_nes(cm[k].args[i]))
 	{
 		j = 1;
 		i++;

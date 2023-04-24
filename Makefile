@@ -6,13 +6,12 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/18 22:40:12 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/24 16:52:28 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-SRC = ms_main.c 				\
-			ms_builtins.c 		\
+SRC = exec/ms_main.c 				\
 			pars/helper_utils.c		\
 			pars/free_utils.c		\
 			pars/pipes.c			\
@@ -20,8 +19,6 @@ SRC = ms_main.c 				\
 			pars/rdr.c				\
 			pars/expantion_utils.c	\
 			tmp_printers.c			\
-			ms_excute.c				\
-			ms_init_exc.c			\
 			lists/ft_lstnew.c		\
 			lists/ft_lstsize.c		\
 			lists/ft_lstlast.c		\
@@ -29,20 +26,24 @@ SRC = ms_main.c 				\
 			lists/ft_lstadd_front.c	\
 			lists/ft_lstdelone.c 	\
 			lists/ft_lstclear.c		 \
-			ms_export.c				\
-			ms_exportex.c			\
-			ms_unset.c 				\
-			ms_others.c 			\
-			ms_pipes.c 				\
-			ms_pipes2.c 			\
-			ms_redir.c 				\
-			ms_redir2.c 			\
-			ms_utils.c 				\
-			ms_heredoc.c 			\
+			exec/ms_excute.c				\
+			exec/ms_init_exc.c			\
+			exec/ms_builtins.c 		\
+			exec/ms_export.c				\
+			exec/ms_exportex.c			\
+			exec/ms_unset.c 				\
+			exec/ms_others.c 			\
+			exec/ms_pipes.c 				\
+			exec/ms_pipes2.c 			\
+			exec/ms_redir.c 				\
+			exec/ms_redir2.c 			\
+			exec/ms_utils.c 				\
+			exec/ms_heredoc.c 			\
+			exec/ms_hdoc2.c 				\
 			
 OBJ = $(SRC:.c=.o)
 CC = cc 
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 LIBFT = ./libft/libft.a
 
 all: $(NAME)

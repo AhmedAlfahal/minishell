@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_redir2.c                                        :+:      :+:    :+:   */
+/*   ms_hdoc2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 01:35:11 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/18 22:47:43 by hmohamed         ###   ########.fr       */
+/*   Created: 2023/04/24 14:43:29 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/24 16:50:40 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	check_red(t_cmd *tcheck, int type, int k)
+char	*get_hd_last(t_ms *data, int k)
 {
-	int	i;
+	char	*hd;
 
-	i = tcheck[k].c_rdr - 1;
-	while (i >= 0)
+	hd = NULL;
+	while (k < data->c_cmds)
 	{
-		if (tcheck[k].rdr[i].rdr_type == type)
-			return (i + 1);
-		i--;
+		if (hd)
+			free(hd);
+		hd = hd_herstr(data, k);
+		k++;
 	}
-	return (0);
+	return (hd);
 }

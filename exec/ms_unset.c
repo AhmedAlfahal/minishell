@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:47:14 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/13 01:32:46 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:51:14 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	check_unsetpath(char *s)
 {

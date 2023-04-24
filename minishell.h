@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/20 05:17:02 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:43:22 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,16 +153,17 @@ char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
 int		check_namepath(char *s);
-int		pipe_fun(t_ms *data);
+int		pipe_fun(t_ms *data, char *hd);
 void	exec_ve(t_ms *data, int i);
 void	med_cmd(t_ms *data, int i);
 int		check_red(t_cmd *tcheck, int type, int k);
 int		redir_fun(t_ms *data, int k);
 void	red_check(t_ms *data, int i);
 int		get_hd(t_ms *data, int k);
-int		onecmd_fun(t_ms *data);
-int		hd_mid_pp(t_ms *data, int k);
 int		check_builtin(t_ms *data, int i);
-int		get_hd_fd(t_ms *data, int k);
+char	*hd_herstr(t_ms *data, int k);
+int		get_hd_fd(t_ms *data, int k, char *hd);
+int		check_builtin_perent(t_ms *data, int i);
+char	*get_hd_last(t_ms *data, int k);
 
 #endif

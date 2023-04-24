@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 19:38:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/13 01:16:28 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:36 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	check_envpath(char *s)
 {

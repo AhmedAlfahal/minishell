@@ -6,11 +6,11 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:23:33 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/08 05:41:40 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:38 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	find_updatexpx(t_ms *data, char *name, char *value)
 {
@@ -18,12 +18,12 @@ static int	find_updatexpx(t_ms *data, char *name, char *value)
 	t_list	*tmp;
 
 	temp = data->expd;
-	if (ft_strncmp(temp->name, name, ft_strlen(temp->name)) >= 0)
+	if (temp && ft_strncmp(temp->name, name, ft_strlen(temp->name)) >= 0)
 	{
 		ft_lstadd_front(&temp, ft_lstnew(name, value, 0));
 		return (0);
 	}
-	while (temp->next)
+	while (temp && temp->next)
 	{
 		if (ft_strncmp(temp->next->name, name,
 				ft_strlen(temp->name)) >= 0)
