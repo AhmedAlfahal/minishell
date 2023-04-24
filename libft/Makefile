@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/13 22:37:19 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/24 17:00:06 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ OBJ		= 	ft_strdup.c		\
 			ft_bzero.c		\
 			ft_strrchr.c	\
 			ft_calloc.c		\
+			ft_isexpan.c	\
 			ft_memset.c		\
 			ft_tolower.c	\
 			ft_strlen.c		\

@@ -6,24 +6,24 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:43 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:29:01 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static char	*open_hdoc(t_rdr *hdoc, int i)
+static char	*open_hdoc(t_rdr *hdoc, int i, char *str, char *s)
 {
-	char	*s;
-	char	*str;
 	char	*temp;
 
-	str = NULL;
 	if (hdoc[i].rdr_type == herdock)
 	{
 		while (1)
 		{
+			signal(SIGINT, SIG_IGN);
 			s = readline("> ");
+			if (!s)
+				break ;
 			if (ft_strncmp(hdoc[i].file_name,
 					s, ft_strlen(hdoc[i].file_name)) == 0 && ft_strncmp
 				(hdoc[i].file_name, s, ft_strlen(s)) == 0)
@@ -80,7 +80,7 @@ int	get_hd(t_ms *data, int k)
 		{
 			if (hd)
 				free(hd);
-			hd = open_hdoc(data->cmds[k].rdr, i);
+			hd = open_hdoc(data->cmds[k].rdr, i, NULL, NULL);
 		}
 		i++;
 	}
@@ -119,7 +119,7 @@ char	*hd_herstr(t_ms *data, int k)
 		{
 			if (hd)
 				free(hd);
-			hd = open_hdoc(data->cmds[k].rdr, i);
+			hd = open_hdoc(data->cmds[k].rdr, i, NULL, NULL);
 		}
 		i++;
 	}

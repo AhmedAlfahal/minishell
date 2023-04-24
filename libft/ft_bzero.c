@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal < aalfahal@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:05:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2022/11/02 17:07:26 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:01:20 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,29 @@ void	ft_bzero(void *s, size_t n)
 		str[i] = 0;
 		i++;
 	}
+}
+
+void	ft_cut(char **s, int start, int end)
+{
+	char	*str;
+	int		i;
+	int		j;
+	char	*local;
+
+	str = malloc(sizeof(char) * (end - start + ft_strlen(*s) + 1));
+	local = *s;
+	i = 0;
+	j = 0;
+	while (local[i])
+	{
+		if (i >= start && i <= end)
+		{
+			i++;
+			continue ;
+		}
+		str[j++] = local[i++];
+	}
+	str[j] = 0;
+	free(*s);
+	*s = str;
 }

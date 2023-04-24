@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/24 16:52:28 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/24 17:05:24 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ all: $(NAME)
 
 $(NAME) : $(OBJ)
 	make -C libft/
-	$(CC) $(CFLAGS) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline $(LIBFT) -o $(NAME) 
+	$(CC) $(CFLAGS) $(OBJ) -lreadline -I/usr/local/opt/readline/include -L/usr/local/opt/readline/lib $(LIBFT) -o $(NAME) 
 
 clean:
 		rm -f *.o */*.o

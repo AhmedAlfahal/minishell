@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/16 02:52:17 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:00:29 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 typedef struct s_tmp_vars
 {
 	int		i;
+	int		j;
+	int		k;
 	char	cot;
 	int		flag;
 }			t_vars;
@@ -31,11 +33,13 @@ typedef struct s_tmp_vars
 int		ft_tolower(int s);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
+int		ft_ispace(char *s);
 int		next_isalnum(char *s);
 int		ft_is_expn(char *c);
 int		index_expn(char *s);
 char	*ft_stolower(char *str);
 int		ft_cotlen(char *s);
+void	ft_cut(char **s, int start, int end);
 int		ft_wospace_len(char *s);
 int		ft_toupper(int s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -49,6 +53,7 @@ void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 int		ft_isrdr(char *s);
 int		crdr(char **s);
+int		cots_check(char *s, int start, int end);
 int		ft_strlen_2d(char **s);
 
 /*********************************--Part Two--*********************************/

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/24 15:43:22 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:04:35 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
@@ -93,26 +94,26 @@ typedef struct s_minishell
 
 /******************************Pars_utils********************************/
 
+void	rl_replace_line(const char *text, int clear_undo);
 void	dupper_2d(t_ms *m, char **source);
 void	pars(t_ms *m);
 void	count(t_c *counter, char *rdln);
 void	init_pipes(t_ms *m);
 int		cots_check(char *s, int start, int end);
-void	remove_cots(char **s, t_tmp *t, char cot);
 
 /******************************Redirections******************************/
 
 char	**add_rdr_spaces(char **tmp);
 void	check_rdr_error(t_ms *m, char *s);
 void	malloc_rdrs(t_cmd *c);
-void	clean_rdrs(t_cmd *c, int i);
+void	rdr_remove(t_cmd *c);
 void	clean_expantion(t_cmd *c, t_ms *m);
-void	rdr_remove_helper(t_cmd *c, int i, int rdr);
 
 /******************************Free_things*******************************/
 
 void	free_all(t_ms *m, int exit);
 void	free_2d_array(char **s);
+void	f_free(t_ms *m);
 
 /******************************Tmp_printers******************************/
 
