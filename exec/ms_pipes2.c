@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 13:28:08 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:16:00 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	exec_ve(t_ms *data, int i)
 	{
 		free_all(data, 2);
 		f_free(data);
-		exit(data->error_code);
+		exit(0);
 	}
 	env = dupper_lst(data->envd);
 	if (data->cmds[i].args[0][0] == '/' || data->cmds[i].args[0][0] == '.')
@@ -82,11 +82,11 @@ void	exec_ve(t_ms *data, int i)
 	if (path && execve(path, data->cmds[i].args, env) < -1)
 		write(2, "error\n", 6);
 	free(path);
-	data->error_code = 127;
+	data->error_code = 0;
 	free_2d_array(env);
 	free_all(data, 2);
 	f_free(data);
-	//err_file(data->cmds[i].args[0], data);
+	exit(10);
 }
 
 void	med_cmd(t_ms *data, int i)

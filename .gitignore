@@ -12,3 +12,4 @@ tmp_printers.c
 minishell
 check_leaks.sh
 readline_supp
+tester/

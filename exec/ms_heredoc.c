@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 13:43:53 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:14:22 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,11 @@ static int	ex_hd(t_ms *data, char *str, int k)
 		close(fd[0]);
 		close(fd[1]);
 		exec_ve(data, k);
-		exit(10);
 	}
 	close(fd[0]);
 	close(fd[1]);
 	wait(&status);
-	if (WIFEXITED(status) && WEXITSTATUS(status) == 10)
-		err_file(data->cmds[k].args[0], data);
+	h_status(data, k, WEXITSTATUS(status));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:43:29 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 17:27:03 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:21:09 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,14 @@ char	*get_hd_last(t_ms *data, int k)
 		k++;
 	}
 	return (hd);
+}
+
+void	h_status(t_ms *data, int k, int sts)
+{
+	if (sts == 0)
+		data->error_code = 0;
+	else if (sts == 2)
+		data->error_code = 1;
+	else if (sts == 10)
+		err_file(data->cmds[k].args[0], data);
 }

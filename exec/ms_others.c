@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 13:29:43 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:18:31 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,18 @@ void	red_check(t_ms *data, int i)
 			{
 				write(2, "minishell: ", 11);
 				perror(data->cmds[i].rdr->file_name);
-				data->error_code = 1;
 			}
 			free_all(data, 2);
 			f_free(data);
-			exit(data->error_code);
+			exit(2);
 		}
 		if (redir_fun(data, i) == -1)
 		{
 			write(2, "minishell: ", 11);
 			perror(data->cmds[i].rdr->file_name);
-			data->error_code = 1;
 			free_all(data, 2);
 			f_free(data);
-			exit(data->error_code);
+			exit(2);
 		}
 	}
 }
