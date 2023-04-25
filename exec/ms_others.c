@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 14:18:31 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:14:36 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ void	err_file(char *str, t_ms *data)
 		else
 		{
 			write(2, "minishell: ", 11);
-			perror(str);
-			data->error_code = 1;
+			ft_putstr_fd(str, 2);
+			ft_putstr_fd(": is a directory\n", 2);
+			data->error_code = 126;
 		}
 	}
 	else

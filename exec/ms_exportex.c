@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:23:33 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:38 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:48:05 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,22 @@ int	check_namepath(char *s)
 		i++;
 	}
 	return (1);
+}
+
+int	env_fun(t_ms *data, int k)
+{
+	t_list	*temp;
+	t_cmd	*cm;
+
+	temp = data->envd;
+	cm = data->cmds;
+	if (cm[k].args[1])
+		return (1);
+	while (temp)
+	{
+		if (temp->err == 0)
+			printf("%s=%s\n", (char *)temp->name, (char *)temp->value);
+		temp = temp->next;
+	}
+	return (0);
 }

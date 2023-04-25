@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:02:20 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:17 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:48:39 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ static int	c_nes(char *s)
 		i++;
 	}
 	return (1);
+}
+
+static int	cd_check(t_ms *data, char *str)
+{
+	if (chdir(str) < 0)
+	{
+		perror("minishell: cd");
+		data->error_code = 1;
+		return (0);
+	}
+	data->error_code = 0;
+	return (0);
 }
 
 int	echo_fun(t_ms *data, int k)
@@ -88,33 +100,11 @@ int	cd_fun(t_ms *data, int k)
 		{
 			if (ft_strncmp(temp->name, "HOME", 4) == 0)
 			{
-				if (chdir(temp->value) < 0)
-					perror("minishell: cd");
-				return (0);
+				return (cd_check(data, temp->value));
 			}
 			temp = temp->next;
 		}
 		write(2, "minishell: cd: HOME not set\n", 28);
 	}
-	else if (chdir(cm[k].args[1]) < 0)
-		perror("minishell: cd");
-	return (0);
-}
-
-int	env_fun(t_ms *data, int k)
-{
-	t_list	*temp;
-	t_cmd	*cm;
-
-	temp = data->envd;
-	cm = data->cmds;
-	if (cm[k].args[1])
-		return (1);
-	while (temp)
-	{
-		if (temp->err == 0)
-			printf("%s=%s\n", (char *)temp->name, (char *)temp->value);
-		temp = temp->next;
-	}
-	return (0);
+	return (cd_check(data, cm[k].args[1]));
 }

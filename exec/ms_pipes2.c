@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 14:16:00 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:25:03 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	exec_ve(t_ms *data, int i)
 	if (path && execve(path, data->cmds[i].args, env) < -1)
 		write(2, "error\n", 6);
 	free(path);
-	data->error_code = 0;
 	free_2d_array(env);
 	free_all(data, 2);
 	f_free(data);

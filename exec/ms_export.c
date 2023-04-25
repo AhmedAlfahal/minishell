@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 19:38:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:36 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:28:43 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static int	check_expcmd(t_cmd *cm, t_ms *data, int i, int k)
 		write(2, "minishell: export: `", 20);
 		write(2, cm[k].args[i], ft_strlen(cm[k].args[i]));
 		write(2, "\': not a valid identifier\n", 26);
+		return (2);
 	}
 	return (0);
 }
@@ -78,14 +79,17 @@ static int	set_exp(t_ms *data, int k)
 {
 	t_cmd	*cm;
 	int		i;
+	int		c;
 
 	cm = data->cmds;
 	i = 0;
+	c = 0;
 	while (cm[k].args[++i])
 	{
-		check_expcmd(cm, data, i, k);
+		if (check_expcmd(cm, data, i, k) == 2)
+			c = 2;
 	}
-	return (0);
+	return (c);
 }
 
 int	export_fun(t_ms *data, int k)
@@ -109,7 +113,10 @@ int	export_fun(t_ms *data, int k)
 	}
 	else
 	{
-		set_exp(data, k);
+		if (set_exp(data, k) == 2)
+			data->error_code = 1;
+		else
+			data->error_code = 0;
 	}
 	return (0);
 }
