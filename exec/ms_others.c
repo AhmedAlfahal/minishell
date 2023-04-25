@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:52 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:29:43 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ static void	err_file2(char *str, t_ms *data)
 	write(2, "minishell: ", 11);
 	ft_putstr_fd(str, 2);
 	write(2, ": command not found\n", 20);
-	free_all(data, 2);
-	f_free(data);
-	exit(data->error_code);
+	data->error_code = 127;
 }
 
 void	red_check(t_ms *data, int i)
@@ -87,17 +85,13 @@ void	err_file(char *str, t_ms *data)
 		{
 			write(2, "minishell: ", 11);
 			perror(str);
-			free_all(data, 2);
-			f_free(data);
-			exit(data->error_code);
+			data->error_code = 1;
 		}
 		else
 		{
 			write(2, "minishell: ", 11);
 			perror(str);
-			free_all(data, 2);
-			f_free(data);
-			exit(data->error_code);
+			data->error_code = 1;
 		}
 	}
 	else

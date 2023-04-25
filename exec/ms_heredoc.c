@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 17:29:01 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:43:53 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	ex_hd(t_ms *data, char *str, int k)
 {
 	int		fd[2];
 	int		id;
+	int		status;
 
 	pipe(fd);
 	id = fork();
@@ -59,11 +60,13 @@ static int	ex_hd(t_ms *data, char *str, int k)
 		close(fd[0]);
 		close(fd[1]);
 		exec_ve(data, k);
-		exit(0);
+		exit(10);
 	}
 	close(fd[0]);
 	close(fd[1]);
-	wait(NULL);
+	wait(&status);
+	if (WIFEXITED(status) && WEXITSTATUS(status) == 10)
+		err_file(data->cmds[k].args[0], data);
 	return (0);
 }
 

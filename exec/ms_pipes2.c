@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:51:06 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:28:08 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ void	exec_ve(t_ms *data, int i)
 	free(path);
 	data->error_code = 127;
 	free_2d_array(env);
-	err_file(data->cmds[i].args[0], data);
+	free_all(data, 2);
+	f_free(data);
+	//err_file(data->cmds[i].args[0], data);
 }
 
 void	med_cmd(t_ms *data, int i)
