@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/26 16:34:47 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:21:17 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
 int		check_namepath(char *s);
-int		pipe_fun(t_ms *data, char *hd);
+int		pipe_fun(t_ms *data, char *hd, int i);
 void	exec_ve(t_ms *data, int i);
 void	med_cmd(t_ms *data, int i);
 int		check_red(t_cmd *tcheck, int type, int k);

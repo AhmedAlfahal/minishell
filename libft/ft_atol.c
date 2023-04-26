@@ -6,11 +6,17 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:20:34 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/26 15:26:52 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:12:23 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	message(void)
+{
+	write(2, " numeric argument required\n", 27);
+	return (255);
+}
 
 long	ft_atol(const char *str)
 {
@@ -30,10 +36,10 @@ long	ft_atol(const char *str)
 	{
 		num = num * 10 + (str[i] - '0');
 		if (num > 2147483648)
-			return (255);
+			return (message());
 		i++;
 	}
 	if (str[i] != '\0')
-		return (255);
+		return (message());
 	return (c * num);
 }

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/26 17:09:49 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:21:31 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@ int	exce(t_ms	*data)
 	char	*hd;
 
 	hd = NULL;
-	if (data->c_cmds == 1 && !ft_strncmp("exit", data->cmds->args[0], 5))
+	if (data->c_cmds == 1 && data->cmds->args[0]
+		&& !ft_strncmp("exit", data->cmds->args[0], 5))
 		exiting_arg(data);
-	if (data->c_cmds == 1 && data->cmds->args[0])
+	else if (data->c_cmds == 1 && data->cmds->args[0])
 	{
 		get_hd(data, 0);
 	}
-	if (data->c_cmds == 1 && !data->cmds->args[0])
+	else if (data->c_cmds == 1 && !data->cmds->args[0])
 		get_hd(data, 0);
-	if (data->c_cmds >= 2)
+	else if (data->c_cmds >= 2)
 	{
 		hd = get_hd_last(data, 0);
-		pipe_fun(data, hd);
+		pipe_fun(data, hd, 0);
 	}
 	return (0);
 }
@@ -92,11 +93,15 @@ void	exiting_arg(t_ms *m)
 	if (m->cmds->args[0] && m->cmds->args[1])
 	{
 		if (!m->cmds->args[2])
+		{
 			code = ft_atol(m->cmds->args[1]) % 256;
-		free_all(m, 2);
-		f_free(m);
-		printf("exit\n");
-		exit(code);
+			free_all(m, 2);
+			f_free(m);
+			printf("exit\n");
+			exit(code);
+		}
+		write(2, " too many arguments\n", 20);
+		m->error_code = 1;
 	}
 	else
 		m->error_code = 1;
