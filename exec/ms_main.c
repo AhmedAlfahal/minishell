@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:32:00 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 17:10:20 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:40:42 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ static void	init_counter(t_ms *m, char **env)
 
 static void	exiting(t_ms *m)
 {
+	int	code;
+
+	code = m->error_code;
 	if (!m->rdln)
 		printf("exit\n");
 	else if (ft_strlen(m->rdln) == 4 && !ft_strncmp("exit", m->rdln, 4))
 		printf("exit\n");
 	free_all(m, 1);
-	exit(0);
+	exit(code);
 }
 
 void	handler(int signal)

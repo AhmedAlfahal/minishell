@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/25 17:25:11 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:34:47 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ char	*env_value(char *path);
 
 /******************************Exce_utils_builtins***********************/
 
+void	exiting_arg(t_ms *m);
 int		echo_fun(t_ms *data, int k);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data, int i);

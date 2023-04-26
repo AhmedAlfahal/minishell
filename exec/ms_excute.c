@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:33 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:09:49 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	exce(t_ms	*data)
 	char	*hd;
 
 	hd = NULL;
+	if (data->c_cmds == 1 && !ft_strncmp("exit", data->cmds->args[0], 5))
+		exiting_arg(data);
 	if (data->c_cmds == 1 && data->cmds->args[0])
 	{
 		get_hd(data, 0);
@@ -80,4 +82,22 @@ int	check_builtin_perent(t_ms *data, int i)
 	else if (ft_strncmp(data->cmds[i].args[0], "unset", 6) == 0)
 		return (1);
 	return (0);
+}
+
+void	exiting_arg(t_ms *m)
+{
+	int	code;
+
+	code = m->error_code;
+	if (m->cmds->args[0] && m->cmds->args[1])
+	{
+		if (!m->cmds->args[2])
+			code = ft_atol(m->cmds->args[1]) % 256;
+		free_all(m, 2);
+		f_free(m);
+		printf("exit\n");
+		exit(code);
+	}
+	else
+		m->error_code = 1;
 }

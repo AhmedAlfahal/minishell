@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:15:57 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/24 17:00:29 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:22:47 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		ft_strlen_2d(char **s);
 
 /*********************************--Part Two--*********************************/
 
+long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);

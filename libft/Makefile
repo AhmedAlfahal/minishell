@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/24 17:00:06 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/26 14:23:08 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ OBJ		= 	ft_strdup.c		\
 			ft_strmapi.c	\
 			ft_striteri.c	\
 			ft_isalpha.c 	\
+			ft_atol.c 		\
 
 			
 OBJS 	= $(OBJ:%.c=%.o)
