@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 17:25:03 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:00:32 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	exec_ve(t_ms *data, int i)
 		write(2, "error\n", 6);
 	free(path);
 	free_2d_array(env);
+	err_file(data->cmds[i].args[0], data);
 	free_all(data, 2);
 	f_free(data);
 	exit(10);
@@ -90,8 +91,5 @@ void	exec_ve(t_ms *data, int i)
 
 void	med_cmd(t_ms *data, int i)
 {
-	// if (check_red(data->cmds, herdock, i) > 0)
-	// 	get_hd_fd(data, i, NULL);
-	// else
-		med_cmdex(data, i);
+	med_cmdex(data, i);
 }

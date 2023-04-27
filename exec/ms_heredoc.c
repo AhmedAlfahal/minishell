@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 14:14:22 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:01:13 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	get_hd_fd(t_ms *data, int k, char *hd)
 		builtin_fun(data, k);
 	else
 		ex_hd(data, hd, k);
+	if (hd)
+		free(hd);
 	return (0);
 }
 

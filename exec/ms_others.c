@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:58:31 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 18:14:36 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:04:04 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 static void	err_file2(char *str, t_ms *data)
 {
-	write(2, "minishell: ", 11);
-	ft_putstr_fd(str, 2);
-	write(2, ": command not found\n", 20);
-	data->error_code = 127;
+	if (str[0] == '/' || str[0] == '.')
+	{
+		perror(str);
+	}
+	else
+	{
+		write(2, "minishell: ", 11);
+		ft_putstr_fd(str, 2);
+		write(2, ": command not found\n", 20);
+		data->error_code = 127;
+	}
 }
 
 void	red_check(t_ms *data, int i)
@@ -73,24 +80,54 @@ int	other_fun(t_ms *data)
 	return (0);
 }
 
+// void	err_file(char *str, t_ms *data)
+// {
+// 	struct stat	st;
+
+// 	if (str[0] == '/' || str[0] == '.')
+// 	{
+// 		if (stat(str, &st) != 0)
+// 		{
+// 			write(2, "minishell: ", 11);
+// 			perror(str);
+// 			data->error_code = 1;
+// 		}
+// 		else
+// 		{
+// 			write(2, "minishell: ", 11);
+// 			ft_putstr_fd(str, 2);
+// 			ft_putstr_fd(": is a directory\n", 2);
+// 			data->error_code = 126;
+// 		}
+// 	}
+// 	else
+// 		err_file2(str, data);
+// }
+
+
 void	err_file(char *str, t_ms *data)
 {
 	struct stat	st;
 
-	if (str[0] == '/' || str[0] == '.')
+	if (access(str, F_OK) == 0)
 	{
-		if (stat(str, &st) != 0)
-		{
-			write(2, "minishell: ", 11);
-			perror(str);
-			data->error_code = 1;
-		}
-		else
+		if (stat(str, &st) == 0 && S_ISDIR(st.st_mode))
 		{
 			write(2, "minishell: ", 11);
 			ft_putstr_fd(str, 2);
 			ft_putstr_fd(": is a directory\n", 2);
 			data->error_code = 126;
+		}
+		else if (access(str, R_OK | X_OK | W_OK) == 0)
+		{
+			perror("minishell:");
+			data->error_code = 126;
+		}
+		else
+		{
+			write(2, "minishell: ", 11);
+			perror(str);
+			data->error_code = 1;
 		}
 	}
 	else

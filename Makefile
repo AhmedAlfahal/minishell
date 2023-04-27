@@ -6,7 +6,7 @@
 #    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 23:48:21 by hmohamed          #+#    #+#              #
-#    Updated: 2023/04/24 17:05:24 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/27 18:42:57 by hmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC = exec/ms_main.c 				\
 			
 OBJ = $(SRC:.c=.o)
 CC = cc 
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 LIBFT = ./libft/libft.a
 
 all: $(NAME)
