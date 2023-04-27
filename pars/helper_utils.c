@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 15:15:37 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:46:37 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,43 @@ void	dupper_2d(t_ms *m, char **source)
 	}
 	m->env[i] = NULL;
 }
+
+static int	null_detector(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i][0] == '\0')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	cut_null(t_cmd *c)
+{
+	int		i;
+	int		j;
+	char	**tmp;
+
+	tmp = malloc(sizeof(char *) * ft_strlen_2d(c->args));
+	i = 0;
+	j = 0;
+	if (null_detector(c->args) == 0)
+		return ;
+	while (c->args[i])
+	{
+		if (c->args[i][0] == '\0')
+		{
+			i++;
+			continue ;
+		}
+		tmp[j++] = ft_strdup(c->args[i++]);
+	}
+	tmp[j] = NULL;
+	free_2d_array(c->args);
+	c->args = tmp;
+}
+

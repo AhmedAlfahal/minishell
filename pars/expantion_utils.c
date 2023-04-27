@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/22 21:52:12 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:46:07 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	add_2d_in_2d(t_ms *m, t_cmd *c, char **add)
 		if (j == m->i)
 		{
 			while (add[l])
-				tmp[j++] = add[l++];
+				tmp[j++] = ft_strdup(add[l++]);
 			k++;
 			continue ;
 		}
@@ -143,9 +143,10 @@ void	clean_expantion(t_cmd *c, t_ms *m)
 			remove_white_space(&c->args[m->i]);
 			tmp = ft_split(c->args[m->i], ' ');
 			add_2d_in_2d(m, c, tmp);
-			free(tmp);
+			free_2d_array(tmp);
 			continue ;
 		}
 		m->i++;
 	}
+	cut_null(c);
 }
