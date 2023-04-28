@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 03:22:18 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 13:50:53 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/28 19:04:46 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static char	*clone_wo_space(char *s)
 
 	ft_bzero(&t, sizeof(t_tmp));
 	tmp = malloc(sizeof(char) * (ft_wospace_len(s) + 1));
+	ft_bzero(tmp, (ft_wospace_len(s) + 1));
 	while (*s)
 	{
 		while ((*s == ' ' || (*s >= 9 && *s <= 13)) && *s)
@@ -57,7 +58,6 @@ static char	*clone_wo_space(char *s)
 		else
 			tmp[t.i++] = *s++;
 	}
-	tmp[t.i] = 0;
 	t.s = ft_strtrim(tmp, " ");
 	free(tmp);
 	return (t.s);

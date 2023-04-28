@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/27 12:46:37 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:55:19 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,14 @@ void	cut_null(t_cmd *c)
 	int		j;
 	char	**tmp;
 
-	tmp = malloc(sizeof(char *) * ft_strlen_2d(c->args));
+	tmp = malloc(sizeof(char *) * ft_strlen_2d(c->args) + 1);
 	i = 0;
 	j = 0;
 	if (null_detector(c->args) == 0)
+	{
+		free(tmp);
 		return ;
+	}
 	while (c->args[i])
 	{
 		if (c->args[i][0] == '\0')
@@ -117,4 +120,3 @@ void	cut_null(t_cmd *c)
 	free_2d_array(c->args);
 	c->args = tmp;
 }
-
