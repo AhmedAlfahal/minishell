@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 19:38:26 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 17:28:43 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:04:59 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	find_upnv(t_ms *data, char *name, char *value)
 			if (temp->value && ft_strncmp(temp->value, "", 1) != 0)
 				free(temp->value);
 			temp->value = value;
+			free_vn(name, NULL);
 			return (0);
 		}
 		temp = temp->next;

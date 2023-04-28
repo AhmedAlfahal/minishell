@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:07:09 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/26 19:21:31 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:51:47 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,7 @@ void	exiting_arg(t_ms *m)
 	{
 		if (!m->cmds->args[2])
 		{
-			code = ft_atol(m->cmds->args[1]) % 256;
-			free_all(m, 2);
-			f_free(m);
-			printf("exit\n");
-			exit(code);
+			exit_arg_c(m, code);
 		}
 		write(2, " too many arguments\n", 20);
 		m->error_code = 1;

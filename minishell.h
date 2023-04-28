@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/26 19:21:17 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:44:45 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,5 +168,7 @@ int		get_hd_fd(t_ms *data, int k, char *hd);
 int		check_builtin_perent(t_ms *data, int i);
 char	*get_hd_last(t_ms *data, int k);
 void	h_status(t_ms *data, int k, int sts);
+void	exit_arg_c(t_ms *data, int code);
+void	free_vn(char *name, char *value);
 
 #endif

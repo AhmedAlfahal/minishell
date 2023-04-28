@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:20:34 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/26 19:12:23 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:40:49 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ long	ft_atol(const char *str)
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + (str[i] - '0');
-		if (num > 2147483648)
-			return (message());
 		i++;
 	}
 	if (str[i] != '\0')

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:23:33 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/25 17:48:05 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:29:49 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,15 @@ int	find_upxp(t_ms *data, char *name, char *value)
 		if (ft_strlen(temp->name) == ft_strlen(name)
 			&& ft_strncmp(temp->name, name, ft_strlen(temp->name)) == 0)
 		{
+			if (!value && temp->value)
+			{
+				free_vn(name, value);
+				return (0);
+			}
 			if (temp->value && ft_strncmp(temp->value, "", 1) != 0)
 				free(temp->value);
-			if (!value && temp->value)
-				return (0);
 			temp->value = value;
+			free_vn(name, NULL);
 			return (0);
 		}
 		temp = temp->next;

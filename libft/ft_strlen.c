@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 15:55:43 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/13 22:33:47 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/28 19:06:27 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ int	ft_wospace_len(char *s)
 			i++;
 		}
 	}
-	return (j * 3);
+	return (j + 1);
 }

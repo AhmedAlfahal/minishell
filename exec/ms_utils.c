@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 20:12:10 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:51:17 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:54:16 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,34 @@ char	**gen_path(t_ms *data)
 		tmp = tmp->next;
 	}
 	return (path);
+}
+
+void	exit_arg_c(t_ms *data, int code)
+{
+	if (!ft_strncmp("9223372036854775807", data->cmds->args[1], 20))
+		code = 255;
+	else if (!ft_strncmp("9223372036854775808", data->cmds->args[1], 20)
+		|| !ft_strncmp("-9223372036854775809", data->cmds->args[1], 21))
+	{
+		code = 255;
+		write(2, " numeric argument required\n", 27);
+	}
+	else if (!ft_strncmp("-9223372036854775807", data->cmds->args[1], 21))
+		code = 1;
+	else if (!ft_strncmp("-9223372036854775808", data->cmds->args[1], 21))
+		code = 0;
+	else
+		code = ft_atol(data->cmds->args[1]) % 256;
+	free_all(data, 2);
+	f_free(data);
+	printf("exit\n");
+	exit(code);
+}
+
+void	free_vn(char *name, char *value)
+{
+	if (name)
+		free(name);
+	if (value && ft_strncmp(value, "", 1) != 0)
+		free(value);
 }
