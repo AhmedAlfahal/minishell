@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/27 17:01:13 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:48:45 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static int	ex_hd(t_ms *data, char *str, int k)
 		close(fd[1]);
 		exec_ve(data, k);
 	}
+	free(str);
 	close(fd[0]);
 	close(fd[1]);
 	wait(&status);

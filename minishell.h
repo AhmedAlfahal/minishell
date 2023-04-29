@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/28 17:44:45 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/29 12:52:00 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_minishell
 	int		fd[2][2];
 	t_list	*envd;
 	t_list	*expd;
+	char	**hd;
 }			t_ms;
 
 /******************************Pars_utils********************************/
@@ -100,6 +101,7 @@ void	pars(t_ms *m);
 void	count(t_c *counter, char *rdln);
 void	init_pipes(t_ms *m);
 int		cots_check(char *s, int start, int end);
+void	cut_null(t_cmd *c);
 
 /******************************Redirections******************************/
 
@@ -155,7 +157,7 @@ char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
 int		check_namepath(char *s);
-int		pipe_fun(t_ms *data, char *hd, int i);
+int		pipe_fun(t_ms *data, int i);
 void	exec_ve(t_ms *data, int i);
 void	med_cmd(t_ms *data, int i);
 int		check_red(t_cmd *tcheck, int type, int k);
@@ -166,9 +168,10 @@ int		check_builtin(t_ms *data, int i);
 char	*hd_herstr(t_ms *data, int k);
 int		get_hd_fd(t_ms *data, int k, char *hd);
 int		check_builtin_perent(t_ms *data, int i);
-char	*get_hd_last(t_ms *data, int k);
+char	**get_hd_last(t_ms *data, int k);
 void	h_status(t_ms *data, int k, int sts);
 void	exit_arg_c(t_ms *data, int code);
 void	free_vn(char *name, char *value);
+char	**free_hd(char **hd);
 
 #endif
