@@ -10,5 +10,5 @@ a.out.dSYM/
 tmp_printers.c
 minishell
 tester/
-readline_supp
+readline_sup
 check_leaks.sh
