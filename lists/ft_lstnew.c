@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 17:29:18 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/05 20:25:14 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/10/05 17:11:59 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/01 21:43:26 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+t_list	*ft_lstnew(void *name, void *value, int err)
 {
-	unsigned int	a;
+	t_list	*new;
 
-	a = 0;
-	if (s && f)
-	{
-		while (s[a])
-		{
-			f(a, &s[a]);
-			a++;
-		}
-	}
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->name = name;
+	new->value = value;
+	new->err = err;
+	new->next = NULL;
+	return (new);
 }

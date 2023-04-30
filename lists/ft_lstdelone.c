@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 17:29:18 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/05 20:25:14 by hmohamed         ###   ########.fr       */
+/*   Created: 2022/10/06 13:12:17 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/13 01:44:20 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_lstdelone(t_list *lst)
 {
-	unsigned int	a;
-
-	a = 0;
-	if (s && f)
-	{
-		while (s[a])
-		{
-			f(a, &s[a]);
-			a++;
-		}
-	}
+	if (!lst)
+		return ;
+	free(lst->name);
+	if (lst->value && ft_strncmp(lst->value, "", 1) != 0)
+		free(lst->value);
+	free(lst);
 }

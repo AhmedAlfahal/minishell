@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/27 12:45:58 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:57:12 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ typedef struct s_redirection
 
 typedef struct s_commands
 {
+	char	*pcontect;
 	char	**args;
 	t_rdr	*rdr;
 	int		c_rdr;
-	int		current_arg;
 	t_list	*envd;
 	t_list	*expd;
 }			t_cmd;
@@ -101,6 +101,7 @@ void	pars(t_ms *m);
 void	count(t_c *counter, char *rdln);
 void	init_pipes(t_ms *m);
 int		cots_check(char *s, int start, int end);
+void	cut_null(t_cmd *c);
 
 /******************************Redirections******************************/
 
@@ -109,12 +110,12 @@ void	check_rdr_error(t_ms *m, char *s);
 void	malloc_rdrs(t_cmd *c);
 void	rdr_remove(t_cmd *c);
 void	clean_expantion(t_cmd *c, t_ms *m);
-void	cut_null(t_cmd *c);
 
 /******************************Free_things*******************************/
 
 void	free_all(t_ms *m, int exit);
 void	free_2d_array(char **s);
+void	f_free(t_ms *m);
 
 /******************************Tmp_printers******************************/
 
@@ -136,6 +137,7 @@ char	*env_value(char *path);
 
 /******************************Exce_utils_builtins***********************/
 
+void	exiting_arg(t_ms *m);
 int		echo_fun(t_ms *data, int k);
 int		exce(t_ms	*data);
 int		builtin_fun(t_ms *data, int i);
@@ -155,12 +157,21 @@ char	**gen_path(t_ms *data);
 void	err_file(char *str, t_ms *data);
 void	f_free(t_ms *m);
 int		check_namepath(char *s);
-int		pipe_fun(t_ms *data);
+int		pipe_fun(t_ms *data, int i, int st);
 void	exec_ve(t_ms *data, int i);
 void	med_cmd(t_ms *data, int i);
 int		check_red(t_cmd *tcheck, int type, int k);
 int		redir_fun(t_ms *data, int k);
 void	red_check(t_ms *data, int i);
-char	*get_hd(t_cmd *hdoc, int k);
+int		get_hd(t_ms *data, int k);
+int		check_builtin(t_ms *data, int i);
+char	*hd_herstr(t_ms *data, int k);
+void	free_hdmain(t_ms *data);
+int		check_builtin_perent(t_ms *data, int i);
+void	get_hd_last(t_ms *data, int k);
+void	h_status(t_ms *data, int k, int sts);
+void	exit_arg_c(t_ms *data, int code);
+void	free_vn(char *name, char *value);
+void	hd_pipe(t_ms *data, int i);
 
 #endif

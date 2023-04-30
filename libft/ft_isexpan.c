@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include<stdio.h>
 
 static void	ft_is_expn_helper(t_vars *t, char *c)
 {

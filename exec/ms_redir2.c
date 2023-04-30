@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ms_redir2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 17:29:18 by hmohamed          #+#    #+#             */
-/*   Updated: 2022/10/05 20:25:14 by hmohamed         ###   ########.fr       */
+/*   Created: 2023/04/14 01:35:11 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/24 16:51:11 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+int	check_red(t_cmd *tcheck, int type, int k)
 {
-	unsigned int	a;
+	int	i;
 
-	a = 0;
-	if (s && f)
+	i = tcheck[k].c_rdr - 1;
+	while (i >= 0)
 	{
-		while (s[a])
-		{
-			f(a, &s[a]);
-			a++;
-		}
+		if (tcheck[k].rdr[i].rdr_type == type)
+			return (i + 1);
+		i--;
 	}
+	return (0);
 }
