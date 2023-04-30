@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 23:02:33 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/20 05:13:28 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:40:47 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

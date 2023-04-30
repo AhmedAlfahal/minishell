@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:00:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/24 16:59:33 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:17:52 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

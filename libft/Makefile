@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/26 14:23:08 by hmohamed         ###   ########.fr        #
+#    Updated: 2023/04/14 01:07:04 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ OBJ		= 	ft_strdup.c		\
 			ft_isalpha.c 	\
 			ft_atol.c 		\
 
-			
 OBJS 	= $(OBJ:%.c=%.o)
 
 all: $(NAME)

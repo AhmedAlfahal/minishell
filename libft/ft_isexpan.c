@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isexpan.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:46 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/24 16:58:30 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:15:52 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
