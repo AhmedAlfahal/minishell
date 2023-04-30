@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 04:07:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/28 18:55:19 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/30 11:36:30 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	dupper_2d(t_ms *m, char **source)
 
 	i = ft_strlen_2d(source);
 	m->env = malloc(sizeof(char *) * (i + 1));
+	if (!m->env)
+		return ;
 	i = 0;
 	while (source[i])
 	{
@@ -95,28 +97,28 @@ static int	null_detector(char **s)
 
 void	cut_null(t_cmd *c)
 {
-	int		i;
-	int		j;
+	t_tmp	t;
 	char	**tmp;
 
 	tmp = malloc(sizeof(char *) * ft_strlen_2d(c->args) + 1);
-	i = 0;
-	j = 0;
+	if (!tmp)
+		return ;
+	ft_bzero(&t, sizeof(t_tmp));
 	if (null_detector(c->args) == 0)
 	{
 		free(tmp);
 		return ;
 	}
-	while (c->args[i])
+	while (c->args[t.i])
 	{
-		if (c->args[i][0] == '\0')
+		if (c->args[t.i][0] == '\0')
 		{
-			i++;
+			t.i++;
 			continue ;
 		}
-		tmp[j++] = ft_strdup(c->args[i++]);
+		tmp[t.j++] = ft_strdup(c->args[t.i++]);
 	}
-	tmp[j] = NULL;
+	tmp[t.j] = NULL;
 	free_2d_array(c->args);
 	c->args = tmp;
 }

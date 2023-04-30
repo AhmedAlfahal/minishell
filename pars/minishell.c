@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 16:01:47 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/30 11:52:14 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ void	init_pipes(t_ms *m)
 {
 	m->c_cmds = 0;
 	m->cmds = malloc(sizeof(t_cmd) * (m->counters->pipes + 2));
+	if (!m->cmds)
+		return ;
 	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 2));
 }
 
 static void	init_counter(t_ms *m, char **env)
 {
 	m->counters = malloc(sizeof(t_c));
+	if (!m->counters)
+		return ;
 	ft_bzero(m->counters, sizeof(t_c));
 	dupper_2d(m, env);
 	init_envlist(m, env);

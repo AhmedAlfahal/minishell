@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:06:22 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/27 12:46:07 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/30 11:35:04 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	remove_white_space(char **s)
 	local = *s;
 	ft_bzero(&t, sizeof(t_tmp));
 	t.tmp = malloc(sizeof(char) * (ft_strlen(local) + 1));
+	if (!t.tmp)
+		return ;
 	while (local[t.i])
 	{
 		while ((local[t.i] == ' ' || (local[t.i] >= 9 && local[t.i] <= 13)) \
@@ -42,27 +44,25 @@ static void	remove_white_space(char **s)
 static void	add_2d_in_2d(t_ms *m, t_cmd *c, char **add)
 {
 	char	**tmp;
-	int		j;
-	int		k;
-	int		l;
+	t_tmp	t;
 
 	tmp = malloc(sizeof(char *) * \
 	(ft_strlen_2d(c->args) - 1 + ft_strlen_2d(add) + 1));
-	j = 0;
-	k = 0;
-	l = 0;
-	while (c->args[k])
+	if (!tmp)
+		return ;
+	ft_bzero(&t, sizeof(t_tmp));
+	while (c->args[t.i])
 	{
-		if (j == m->i)
+		if (t.j == m->i)
 		{
-			while (add[l])
-				tmp[j++] = ft_strdup(add[l++]);
-			k++;
+			while (add[t.x])
+				tmp[t.j++] = ft_strdup(add[t.x++]);
+			t.i++;
 			continue ;
 		}
-		tmp[j++] = ft_strdup(c->args[k++]);
+		tmp[t.j++] = ft_strdup(c->args[t.i++]);
 	}
-	tmp[j] = 0;
+	tmp[t.j] = 0;
 	free_2d_array(c->args);
 	c->args = tmp;
 }
@@ -75,6 +75,8 @@ static void	replace_expan(char **s, char *val, char *name, int *done)
 
 	local = *s;
 	tmp = malloc(ft_strlen(local) - ft_strlen(name) + ft_strlen(val) + 1);
+	if (!tmp)
+		return ;
 	ft_bzero(&t, sizeof(t_tmp));
 	while (local[t.i])
 	{

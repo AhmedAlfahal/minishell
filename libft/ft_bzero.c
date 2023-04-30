@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:05:40 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/17 20:40:11 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/30 11:28:42 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_cut(char **s, int start, int end)
 	char	*local;
 
 	str = malloc(sizeof(char) * (end - start + ft_strlen(*s) + 1));
+	if (!str)
+		return ;
 	local = *s;
 	i = 0;
 	j = 0;
