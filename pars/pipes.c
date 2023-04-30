@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/23 16:02:38 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:42:46 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	pars(t_ms *m)
 		clean_cots(&m->cmds[m->c_cmds]);
 		m->c_cmds++;
 	}
-	print_pipes(m);
 	if (m->counters->error == 1)
 	{
 		free_2d_array(tmp);

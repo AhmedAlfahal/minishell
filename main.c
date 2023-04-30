@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 05:36:32 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/30 11:52:14 by aalfahal         ###   ########.fr       */
+/*   Created: 2023/02/07 18:32:00 by hmohamed          #+#    #+#             */
+/*   Updated: 2023/04/30 17:00:22 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	init_pipes(t_ms *m)
 {
 	m->c_cmds = 0;
 	m->cmds = malloc(sizeof(t_cmd) * (m->counters->pipes + 2));
-	if (!m->cmds)
-		return ;
 	ft_bzero(m->cmds, sizeof(t_cmd) * (m->counters->pipes + 2));
 }
 
 static void	init_counter(t_ms *m, char **env)
 {
+	m->error_code = 0;
 	m->counters = malloc(sizeof(t_c));
-	if (!m->counters)
-		return ;
 	ft_bzero(m->counters, sizeof(t_c));
 	dupper_2d(m, env);
 	init_envlist(m, env);
@@ -34,12 +31,15 @@ static void	init_counter(t_ms *m, char **env)
 
 static void	exiting(t_ms *m)
 {
+	int	code;
+
+	code = m->error_code;
 	if (!m->rdln)
-		printf(" exit\n");
+		printf("exit\n");
 	else if (ft_strlen(m->rdln) == 4 && !ft_strncmp("exit", m->rdln, 4))
 		printf("exit\n");
 	free_all(m, 1);
-	exit(0);
+	exit(code);
 }
 
 void	handler(int signal)
@@ -60,8 +60,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_ms	m;
 
-	(void)ac;
-	(void)av;
+	ac_exiting(ac, av);
 	m.error_code = 0;
 	init_counter(&m, env);
 	while (1)
@@ -75,8 +74,8 @@ int	main(int ac, char **av, char **env)
 		|| !m.rdln)
 			exiting(&m);
 		pars(&m);
-		// if (m.error == 0)
-		// 	exce(&m);
+		if (m.error == 0)
+			exce(&m);
 		free_all(&m, 0);
 	}
 	free_all(&m, 1);

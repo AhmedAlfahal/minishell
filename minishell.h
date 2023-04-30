@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/30 14:57:12 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:59:51 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,6 @@ void	free_all(t_ms *m, int exit);
 void	free_2d_array(char **s);
 void	f_free(t_ms *m);
 
-/******************************Tmp_printers******************************/
-
-void	print_counters(t_c *counter);
-void	print_pipes(t_ms *m);
-void	print_2d_array(char **d);
-
 /******************************Lists*************************************/
 
 t_list	*ft_lstnew(void *name, void *value, int err);
@@ -173,5 +167,6 @@ void	h_status(t_ms *data, int k, int sts);
 void	exit_arg_c(t_ms *data, int code);
 void	free_vn(char *name, char *value);
 void	hd_pipe(t_ms *data, int i);
+void	ac_exiting(int ac, char **av);
 
 #endif

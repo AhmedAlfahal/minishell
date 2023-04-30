@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/01 23:54:55 by aalfahal          #+#    #+#              #
-#    Updated: 2023/04/14 01:07:04 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/04/30 16:47:27 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= libft.a
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -Werror -g3
+CFLAGS	= -Wall -Wextra -Werror
 
 OBJ		= 	ft_strdup.c		\
 			ft_strnstr.c	\

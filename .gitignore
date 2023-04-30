@@ -1,7 +1,6 @@
 .vs/
 *.o
 *.out
-pars/
 .vscode/
 .DS_Store
 *.a
@@ -10,6 +9,6 @@ libft/a.out.dSYM/Contents/Info.plist
 a.out.dSYM/
 tmp_printers.c
 minishell
-check_leaks.sh
-readline_supp
 tester/
+readline_supp
+check_leaks.sh

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 20:12:10 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/28 17:54:16 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:59:34 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,15 @@ void	free_vn(char *name, char *value)
 		free(name);
 	if (value && ft_strncmp(value, "", 1) != 0)
 		free(value);
+}
+
+void	ac_exiting(int ac, char **av)
+{
+	if (ac > 1)
+	{
+		access(av[1], F_OK);
+		write(2, "minishell: ", 11);
+		perror(av[1]);
+		exit (127);
+	}
 }
