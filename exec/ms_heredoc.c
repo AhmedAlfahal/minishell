@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/29 13:48:45 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:17:08 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	ex_hd(t_ms *data, char *str, int k)
 	id = fork();
 	if (id == 0)
 	{
-		if (!data->cmds[k].args[1])
+		if (!data->cmds[k].args[1] && check_red(data->cmds, herdock, k))
 		{
 			write(fd[1], str, ft_strlen(str));
 			dup2(fd[0], STDIN_FILENO);
@@ -61,7 +61,6 @@ static int	ex_hd(t_ms *data, char *str, int k)
 		close(fd[1]);
 		exec_ve(data, k);
 	}
-	free(str);
 	close(fd[0]);
 	close(fd[1]);
 	wait(&status);

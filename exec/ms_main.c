@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:32:00 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/29 13:41:22 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:24:00 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_pipes(t_ms *m)
 static void	init_counter(t_ms *m, char **env)
 {
 	m->error_code = 0;
-	m->hd = NULL;
 	m->counters = malloc(sizeof(t_c));
 	ft_bzero(m->counters, sizeof(t_c));
 	dupper_2d(m, env);

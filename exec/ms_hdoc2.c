@@ -6,57 +6,26 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:43:29 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/29 13:23:02 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:45:29 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static char	**cop(char **last, char *hd)
-{
-	int		i;
-	char	**first;
-
-	i = ft_strlen_2d(last);
-	first = malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	if (last)
-	{
-		while (last[i])
-		{
-			first[i] = last[i];
-			i++;
-		}
-		free(last);
-	}
-	first[i] = hd;
-	i++;
-	first[i] = NULL;
-	return (first);
-}
-
-char	**get_hd_last(t_ms *data, int k)
+void	get_hd_last(t_ms *data, int k)
 {
 	char	*hd;
-	char	**hdar;
-	char	**temp;
 
 	hd = NULL;
-	hdar = NULL;
-	temp = NULL;
 	while (k < data->c_cmds)
 	{
 		hd = hd_herstr(data, k);
 		if (hd)
-		{
-			temp = hdar;
-			hdar = cop(temp, hd);
-			hd = NULL;
-		}
+			data->cmds[k].pcontect = hd;
+		hd = NULL;
 		k++;
 	}
-	//print_2d_array(hdar);
-	return (hdar);
+	return ;
 }
 
 void	h_status(t_ms *data, int k, int sts)
@@ -81,27 +50,4 @@ void	h_status(t_ms *data, int k, int sts)
 		else
 			data->error_code = 127;
 	}
-}
-
-char	**free_hd(char **hd)
-{
-	int		i;
-	int		j;
-	char	**first;
-
-	i = ft_strlen_2d(hd);
-	if (i > 1)
-	{
-		first = malloc(sizeof(char *) * i);
-		i = 1;
-		j = 0;
-		while (hd[i])
-			first[j++] = hd[i++];
-		free(hd);
-		first[j] = NULL;
-		return (first);
-	}
-	else
-		free_2d_array(hd);
-	return (NULL);
 }
