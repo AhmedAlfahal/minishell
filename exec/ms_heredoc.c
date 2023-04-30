@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 00:49:43 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/30 13:17:08 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:50:34 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,21 @@ int	get_hd(t_ms *data, int k)
 	return (0);
 }
 
-int	get_hd_fd(t_ms *data, int k, char *hd)
+void	free_hdmain(t_ms *data)
 {
-	close(data->fd[0][0]);
-	close(data->fd[1][0]);
-	close(data->fd[1][1]);
-	close(data->fd[0][1]);
-	if (check_builtin_perent(data, k))
-		builtin_fun(data, k);
-	else
-		ex_hd(data, hd, k);
-	if (hd)
-		free(hd);
-	return (0);
+	int		i;
+
+	i = 0;
+	while (i < data->c_cmds)
+	{
+		if (data->cmds[i].pcontect)
+		{
+			free(data->cmds[i].pcontect);
+			data->cmds[i].pcontect = NULL;
+		}
+		i++;
+	}
+	return ;
 }
 
 char	*hd_herstr(t_ms *data, int k)

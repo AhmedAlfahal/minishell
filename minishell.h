@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 04:13:48 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/30 13:48:12 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:57:12 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,11 +166,12 @@ void	red_check(t_ms *data, int i);
 int		get_hd(t_ms *data, int k);
 int		check_builtin(t_ms *data, int i);
 char	*hd_herstr(t_ms *data, int k);
-int		get_hd_fd(t_ms *data, int k, char *hd);
+void	free_hdmain(t_ms *data);
 int		check_builtin_perent(t_ms *data, int i);
 void	get_hd_last(t_ms *data, int k);
 void	h_status(t_ms *data, int k, int sts);
 void	exit_arg_c(t_ms *data, int code);
 void	free_vn(char *name, char *value);
+void	hd_pipe(t_ms *data, int i);
 
 #endif

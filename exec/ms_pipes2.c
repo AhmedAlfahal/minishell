@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/27 17:00:32 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:02:11 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,24 @@ static void	pipe_init2(t_ms *data, int i)
 	}
 }
 
-static void	med_cmdex(t_ms *data, int i)
+static void	med_cmdex(t_ms *data, int i, int id)
 {
-	int		id;
-
 	pipe_init2(data, i);
 	id = fork();
 	if (id == 0)
 	{
+		if (check_red(data->cmds, herdock, i) > 0)
+			hd_pipe(data, i);
 		if ((i + 1) % 2 == 0)
 		{
-			dup2(data->fd[0][0], STDIN_FILENO);
+			if (!check_red(data->cmds, herdock, i))
+				dup2(data->fd[0][0], STDIN_FILENO);
 			dup2(data->fd[1][1], STDOUT_FILENO);
 		}
 		else if ((i + 1) % 2 != 0)
 		{
-			dup2(data->fd[1][0], STDIN_FILENO);
+			if (!check_red(data->cmds, herdock, i))
+				dup2(data->fd[1][0], STDIN_FILENO);
 			dup2(data->fd[0][1], STDOUT_FILENO);
 		}
 		close(data->fd[0][0]);
@@ -91,5 +93,5 @@ void	exec_ve(t_ms *data, int i)
 
 void	med_cmd(t_ms *data, int i)
 {
-	med_cmdex(data, i);
+	med_cmdex(data, i, 0);
 }
