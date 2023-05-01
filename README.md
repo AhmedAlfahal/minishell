@@ -22,19 +22,19 @@ in addittion this project requires the implementation of several features, inclu
 # Features:
 
 &nbsp;  • Reading and Parsing Commands: The shell reads commands entered \
-&nbsp;    by the user and parses them into tokens. It supports various types of tokens, \
-&nbsp;    such as quotes, escapes, and redirections.
+&nbsp; &nbsp; by the user and parses them into tokens. It supports various types of tokens, \
+&nbsp; &nbsp; such as quotes, escapes, and redirections.
 
 &nbsp;  • Built-in Commands: The shell supports built-in commands, such as cd, echo, env, exit, and pwd.\
-&nbsp;    These commands are implemented within the shell and do not require  executing external commands.
+&nbsp; &nbsp; These commands are implemented within the shell and do not require  executing external commands.
 
 &nbsp;  • Environment Variables: The shell allows the user to manage environment variables, including \
-&nbsp;    setting new variables, deleting variables, and printing all variables.
+&nbsp; &nbsp; setting new variables, deleting variables, and printing all variables.
 
 &nbsp;  • External Commands: The shell can execute external commands by creating \
-&nbsp;    a child process and executing the command within the child process. \
-&nbsp;    It supports various types of external commands, such as programs \
-&nbsp;    installed on the system and custom scripts.
+&nbsp; &nbsp; a child process and executing the command within the child process. \
+&nbsp; &nbsp; It supports various types of external commands, such as programs \
+&nbsp; &nbsp; installed on the system and custom scripts.
 
 # Conclusion:
 &nbsp;   Overall, the Minishell project provides an opportunity to gain a deeper \
