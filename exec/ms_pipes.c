@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:37:03 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/30 15:28:00 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:19:56 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ int	pipe_fun(t_ms *data, int i, int st)
 	close(data->fd[1][1]);
 	close(data->fd[0][1]);
 	i = -1;
-	while (++i < data->c_cmds - 1)
-		wait(&st);
 	waitpid(id, &st, 0);
+	while (++i < data->c_cmds - 1)
+		wait(NULL);
 	h_status(data, i, WEXITSTATUS(st));
 	return (0);
 }
