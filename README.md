@@ -12,9 +12,9 @@ in addittion this project requires the implementation of several features, inclu
 # Getting Started:
 &nbsp;  • First: clone our Repo \
 &nbsp; &nbsp; `git clone git@github.com:AhmedAlfahal/minishell.git` \
-&nbsp;  • Second: go to minishell directory  \
+&nbsp;  • Second: go to minishell directory.  \
 &nbsp; &nbsp; `cd minishell` \
-&nbsp;  • Third: Compile it by \
+&nbsp;  • Third: Compile it. \
 &nbsp; &nbsp; `make` \
 &nbsp;   •Last: Enjoy shelling ;) \
 &nbsp; &nbsp; `./minishell`
