@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 00:28:08 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/30 15:02:11 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:45:49 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	med_cmdex(t_ms *data, int i, int id)
 	{
 		if (check_red(data->cmds, herdock, i) > 0)
 			hd_pipe(data, i);
+		free_hdmain(data);
 		if ((i + 1) % 2 == 0)
 		{
 			if (!check_red(data->cmds, herdock, i))

@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:37:03 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/05/01 10:19:56 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:46:06 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	hd_pipe(t_ms *data, int i)
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
-	free_hdmain(data);
 }
 
 static void	first_cmd(t_ms *data, int i)
@@ -48,6 +47,7 @@ static void	first_cmd(t_ms *data, int i)
 	{
 		if (check_red(data->cmds, herdock, i) > 0)
 			hd_pipe(data, i);
+		free_hdmain(data);
 		if (dup2(data->fd[0][1], STDOUT_FILENO) < 0)
 		{
 			perror("dup2_1");
@@ -75,6 +75,7 @@ static void	last_cmd(t_ms *data, int i, int *id)
 			else if ((i + 1) % 2 != 0)
 				dup2(data->fd[1][0], STDIN_FILENO);
 		}
+		free_hdmain(data);
 		close(data->fd[0][0]);
 		close(data->fd[1][0]);
 		close(data->fd[1][1]);
