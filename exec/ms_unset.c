@@ -6,7 +6,7 @@
 /*   By: hmohamed <hmohamed@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:47:14 by hmohamed          #+#    #+#             */
-/*   Updated: 2023/04/24 16:51:14 by hmohamed         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:32:08 by hmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static int	find_unsetxp(t_list **data, char *name)
 	{
 		tmp = temp;
 		temp = temp->next;
+		*data = temp;
 		ft_lstdelone(tmp);
 		free(name);
 		return (0);
@@ -79,8 +80,10 @@ int	unset_fun(t_ms *data, int k)
 		if ((ft_isalpha(cm[k].args[i][0]) || cm[k].args[i][0] == '_')
 			&& !check_unsetpath(cm[k].args[i]))
 		{
-			find_unsetxp(&data->envd, env_name(cm[k].args[i]));
-			find_unsetxp(&data->expd, env_name(cm[k].args[i]));
+			if (data->envd)
+				find_unsetxp(&data->envd, env_name(cm[k].args[i]));
+			if (data->expd)
+				find_unsetxp(&data->expd, env_name(cm[k].args[i]));
 		}
 		else
 		{
