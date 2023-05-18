@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:39:51 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/04/30 16:42:46 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/05/18 08:27:12 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	remove_cots(char *s)
 	t_tmp	t;
 
 	ft_bzero(&t, sizeof(t_tmp));
+	if (!s)
+		return ;
 	while (s[t.i])
 	{
 		if (s[t.i] == '\'' || s[t.i] == '"')
